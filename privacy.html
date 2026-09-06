@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+  Dinozoa — privacy policy.
+  Copyright (C) 2026 Matej Krsteski. AGPL-3.0. See LICENSE.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy — Dinozoa</title>
+    <meta name="description" content="What Dinozoa stores and what it does not. No accounts, no cookies, no tracking." />
+    <meta name="theme-color" content="#f0e4d0" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="canonical" href="%VITE_SITE_URL%/privacy.html" />
+    <style>
+      :root { --ink: #3f2c1a; --muted: #7d6f5c; --line: #d9cbb2; }
+      body {
+        margin: 0; padding: 3rem clamp(1.1rem, 6vw, 2rem) 4rem;
+        background-color: #f0e4d0;
+        background-image: linear-gradient(160deg, #efe2cd 0%, #f4ebda 45%, #faf4e9 100%);
+        background-attachment: fixed;
+        color: var(--ink);
+        font-family: "Segoe UI Variable", system-ui, -apple-system, sans-serif;
+        line-height: 1.65;
+      }
+      main { max-width: 42rem; margin: 0 auto; }
+      h1 { font-size: 1.9rem; margin: 0 0 .3rem; letter-spacing: -.3px; }
+      h2 { font-size: 1.05rem; margin: 2.2rem 0 .5rem; }
+      p, li { font-size: .95rem; }
+      ul { padding-left: 1.2rem; }
+      li { margin-bottom: .4rem; }
+      .updated { color: var(--muted); font-size: .82rem; margin: 0 0 2rem; }
+      .lede { font-size: 1.05rem; }
+      code {
+        background: rgba(122,100,68,.12); padding: .1rem .3rem;
+        border-radius: .2rem; font-size: .85em;
+      }
+      a { color: inherit; text-underline-offset: 2px; }
+      .back {
+        display: inline-block; margin-top: 2.5rem; padding: .5rem .9rem;
+        border: 1px solid var(--line); border-radius: 1rem;
+        text-decoration: none; font-weight: 700; font-size: .82rem;
+      }
+      .back:hover { background: rgba(63,44,26,.08); }
+      footer {
+        margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+        color: var(--muted); font-size: .78rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Privacy</h1>
+      <p class="updated">Last updated 3 September 2026</p>
+
+      <p class="lede">
+        Dinozoa has no accounts, no sign-up and no login. It does not set cookies, and it
+        does not sell, share or trade anything about you. This page explains the small
+        amount of data that does exist and why.
+      </p>
+
+      <h2>What stays on your device</h2>
+      <p>
+        Your game progress and statistics are stored in your own browser using
+        <code>localStorage</code>. That includes:
+      </p>
+      <ul>
+        <li>games played, games won, current and best streak, fewest guesses;</li>
+        <li>today's guesses and hints, so refreshing mid-game does not lose your place;</li>
+        <li>your Endless mode best run;</li>
+        <li>whether you have already seen the tutorial.</li>
+      </ul>
+      <p>
+        This never leaves your device. It is not sent to me or to anyone else, because there
+        is no server to send it to — Dinozoa is a static website with no backend. Clearing
+        your browser data deletes it permanently, and there is no way for me to restore it.
+        You can also erase it yourself with the "Reset stats" button in the account panel.
+      </p>
+
+      <h2>Visitor statistics</h2>
+      <p>
+        I use <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a>
+        to count visits, because otherwise I would have no idea whether anyone plays. It is
+        an open-source, privacy-focused analytics tool that records the page visited, the
+        referring site, your browser and screen size, and the country your request came
+        from.
+      </p>
+      <p>
+        It sets no cookies, creates no advertising profile, and does not follow you across
+        websites. Your IP address is not stored: it is hashed with a salt that changes every
+        day and then discarded, which lets a visit be counted once without the visitor ever
+        being identifiable. Because no personal data is processed and no information is
+        stored on your device, this does not require a consent banner, which is exactly why
+        you are not seeing one.
+      </p>
+
+      <h2>Images and descriptions</h2>
+      <p>
+        Animal pictures and descriptions are fetched directly from Wikipedia by your
+        browser while you play. That request goes to the Wikimedia Foundation rather than to
+        me, so your IP address and browser are visible to them in the same way as if you had
+        opened Wikipedia yourself. Their handling of that is covered by the
+        <a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" target="_blank" rel="noopener">Wikimedia
+        privacy policy</a>. I never see those requests.
+      </p>
+
+      <h2>Sharing your result</h2>
+      <p>
+        The share button copies a text summary to your clipboard. Nothing is posted
+        anywhere, and I do not see what you copy or where you paste it.
+      </p>
+
+      <h2>Links to other sites</h2>
+      <p>
+        Dinozoa links out to Wikipedia, to the source code repository, and possibly to a
+        tip page. Following any of those takes you to a site with its own privacy policy,
+        which I do not control.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        Dinozoa is suitable for all ages and collects no personal information from anyone,
+        including children.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        Data protection law gives you rights to access, correct and delete personal data
+        held about you. In this case there is nothing to exercise them against: I hold no
+        personal data about you, and I have no way to identify you. The only data connected
+        to you is in your own browser, entirely under your control. If you would like to
+        confirm any of this, please get in touch.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        If this policy changes, the date at the top of the page changes with it. Dinozoa is
+        a personal project, so any changes will be small ones.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy, or about anything else on the site:
+        <a href="mailto:hello@dinozoa.com">hello@dinozoa.com</a>
+      </p>
+
+      <a class="back" href="./">&larr; Back to the game</a>
+
+      <footer>
+        &copy; 2026 Matej Krsteski. Dinozoa is an independent project and is not affiliated
+        with the Wikimedia Foundation.
+      </footer>
+    </main>
+  </body>
+</html>

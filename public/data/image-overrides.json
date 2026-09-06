@@ -1,0 +1,36 @@
+{
+  "_readme": [
+    "Hand-picked images that beat everything else: checked before the cache and",
+    "before any live Wikipedia lookup, and never overwritten by a regeneration.",
+    "",
+    "Use this when an automatic pick is wrong. Filename scoring cannot tell a life",
+    "restoration from a diagram of an animal's tail muscles, so a handful of taxa",
+    "will always need a human.",
+    "",
+    "HOW TO ADD ONE",
+    "  1. Open the animal's Wikipedia page and find an image you want.",
+    "  2. Click it, then 'More details' to reach its Commons file page.",
+    "  3. Right-click the picture, 'Copy image address'. That is imageUrl.",
+    "  4. The Commons page address is fileUrl, and the Author field is artist.",
+    "",
+    "Key must be the SCIENTIFIC name exactly as it appears in the database.",
+    "Delete this _readme entry at any time; the game ignores keys it never asks for.",
+    "",
+    "EXAMPLE (delete or replace):",
+    "  \"Carnotaurus\": {",
+    "    \"imageUrl\": \"https://upload.wikimedia.org/.../Carnotaurus.jpg\",",
+    "    \"artist\": \"Fred Wierum\",",
+    "    \"fileUrl\": \"https://commons.wikimedia.org/wiki/File:Carnotaurus.jpg\"",
+    "  }"
+  ],
+  "Tylosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Tylosaurus_pembinensis_1DB.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+    "artist": "Dmitry Bogdanov - dmitrchel@mail.ru",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Tylosaurus_pembinensis_1DB.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+  },
+  "Liopleurodon": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Liopleurodon_after_Tarlo.jpg/1920px-Liopleurodon_after_Tarlo.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "artist": "By DiBgd - Own work",
+    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Liopleurodon_after_Tarlo.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+  }
+}

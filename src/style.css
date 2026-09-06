@@ -1,0 +1,801 @@
+:root {
+  /* ===== TEXT COLOUR — revert switch =================================
+     To go back to the original near-black, comment out the brown line
+     below and uncomment the original one. There is a second, matching
+     switch in src/ui/treeView.ts (search for "TEXT COLOUR") that controls
+     the text INSIDE the tree boxes; change both or they'll disagree.
+     Contrast on the page background: brown 10.36:1, original 12.11:1 —
+     both far above the 7:1 AAA bar, so this is purely a look choice.  */
+  /* --ink: #2b2318; */            /* ORIGINAL — near-black brown */
+  --ink: #3f2c1a;                  /* CURRENT  — warm very dark brown */
+  /* =================================================================== */
+  --muted: #7d6f5c;
+  --line: #e0cdbd;
+  --card: #fbf3e4;
+  --card-2: #f3e6d2;
+  --accent: #8a2d20;
+  --green: #4f7a2f;
+  --gold: #c99700;
+}
+
+* { box-sizing: border-box; }
+
+html { height: 100%; }
+body { min-height: 100%; margin: 0; }
+
+body {
+  /* Excavation matrix: the pale sandstone dinosaur bone actually comes out of.
+     Kept light on purpose — the muted text colour (#7d6f5c) falls to 3.02:1 on a
+     deep sand, under the 4.5:1 body-text floor, so the "dirt" is carried by grain
+     and hue rather than by darkness. Every ramp colour keeps roughly the contrast
+     it had on the old pink (red 5.10 vs 5.24, green 3.85 vs 3.95).
+     The grain is one pre-baked 64px SVG tile, not a live filter — it costs a
+     single background-image repeat and nothing per frame. */
+  background-color: #f0e4d0;
+  /* THREE grain tiles, not one. A single tile at 64px repeats visibly once you
+     know to look for it. These are sized 64 / 97 / 149 — 64 is a power of two,
+     97 and 149 are prime, so no two share a factor and the combined pattern only
+     lines up again every 64*97*149 = 924,992 px. In practice it never repeats
+     on screen. Still three static background-images: no filter, nothing per
+     frame, so the cost is the same as before. */
+  background-image:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%220%200%2064%2064%22%3E%3Ccircle%20cx%3D%2228.95%22%20cy%3D%2235.83%22%20r%3D%221.05%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.087%22%2F%3E%3Ccircle%20cx%3D%2237.59%22%20cy%3D%2211.82%22%20r%3D%220.78%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.1%22%2F%3E%3Ccircle%20cx%3D%226.02%22%20cy%3D%2219.42%22%20r%3D%220.51%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.115%22%2F%3E%3Ccircle%20cx%3D%222.68%22%20cy%3D%2262.86%22%20r%3D%221.08%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.102%22%2F%3E%3Ccircle%20cx%3D%2266.68%22%20cy%3D%2262.86%22%20r%3D%221.08%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.102%22%2F%3E%3Ccircle%20cx%3D%222.68%22%20cy%3D%22-1.14%22%20r%3D%221.08%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.102%22%2F%3E%3Ccircle%20cx%3D%2210.08%22%20cy%3D%220.96%22%20r%3D%220.79%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.083%22%2F%3E%3Ccircle%20cx%3D%2210.08%22%20cy%3D%2264.96%22%20r%3D%220.79%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.083%22%2F%3E%3Ccircle%20cx%3D%2215.48%22%20cy%3D%221.93%22%20r%3D%220.75%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.085%22%2F%3E%3Ccircle%20cx%3D%2215.48%22%20cy%3D%2265.93%22%20r%3D%220.75%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.085%22%2F%3E%3Ccircle%20cx%3D%2233.22%22%20cy%3D%2240.98%22%20r%3D%220.77%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.103%22%2F%3E%3Ccircle%20cx%3D%2217.8%22%20cy%3D%2263.85%22%20r%3D%221.1%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.117%22%2F%3E%3Ccircle%20cx%3D%2217.8%22%20cy%3D%22-0.15%22%20r%3D%221.1%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.117%22%2F%3E%3Ccircle%20cx%3D%2220.18%22%20cy%3D%2214.7%22%20r%3D%220.64%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.056%22%2F%3E%3Ccircle%20cx%3D%2225.63%22%20cy%3D%2254.18%22%20r%3D%220.7%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.127%22%2F%3E%3Ccircle%20cx%3D%220.03%22%20cy%3D%2213.42%22%20r%3D%221.04%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.088%22%2F%3E%3Ccircle%20cx%3D%2264.03%22%20cy%3D%2213.42%22%20r%3D%221.04%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.088%22%2F%3E%3Ccircle%20cx%3D%2225.44%22%20cy%3D%224.67%22%20r%3D%220.86%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.168%22%2F%3E%3Ccircle%20cx%3D%225.58%22%20cy%3D%2221.29%22%20r%3D%221.08%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.167%22%2F%3E%3Ccircle%20cx%3D%2215.77%22%20cy%3D%226.47%22%20r%3D%220.49%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.171%22%2F%3E%3Ccircle%20cx%3D%2235.79%22%20cy%3D%2228.64%22%20r%3D%220.57%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.164%22%2F%3E%3Ccircle%20cx%3D%2241.2%22%20cy%3D%227.46%22%20r%3D%220.72%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.101%22%2F%3E%3Ccircle%20cx%3D%2262.14%22%20cy%3D%2251.42%22%20r%3D%220.65%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.181%22%2F%3E%3Ccircle%20cx%3D%22-1.86%22%20cy%3D%2251.42%22%20r%3D%220.65%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.181%22%2F%3E%3Ccircle%20cx%3D%2225.23%22%20cy%3D%2254.68%22%20r%3D%220.87%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.058%22%2F%3E%3Ccircle%20cx%3D%2213.65%22%20cy%3D%2216.53%22%20r%3D%220.95%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.076%22%2F%3E%3Ccircle%20cx%3D%224.7%22%20cy%3D%225.77%22%20r%3D%220.83%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.069%22%2F%3E%3Ccircle%20cx%3D%2223.79%22%20cy%3D%2229.01%22%20r%3D%221.07%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.089%22%2F%3E%3Ccircle%20cx%3D%2255.46%22%20cy%3D%2211.7%22%20r%3D%220.55%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.123%22%2F%3E%3Ccircle%20cx%3D%2215.97%22%20cy%3D%2212.15%22%20r%3D%220.93%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.188%22%2F%3E%3Ccircle%20cx%3D%2260.81%22%20cy%3D%2256.46%22%20r%3D%220.84%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.126%22%2F%3E%3Ccircle%20cx%3D%222.48%22%20cy%3D%2261.61%22%20r%3D%220.6%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.159%22%2F%3E%3Ccircle%20cx%3D%2266.48%22%20cy%3D%2261.61%22%20r%3D%220.6%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.159%22%2F%3E%3Ccircle%20cx%3D%222.48%22%20cy%3D%22-2.39%22%20r%3D%220.6%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.159%22%2F%3E%3Ccircle%20cx%3D%2252.72%22%20cy%3D%2238.17%22%20r%3D%220.64%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.064%22%2F%3E%3C%2Fsvg%3E"),
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2297%22%20height%3D%2297%22%20viewBox%3D%220%200%2097%2097%22%3E%3Ccircle%20cx%3D%2253.17%22%20cy%3D%2233.55%22%20r%3D%221.53%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.06%22%2F%3E%3Ccircle%20cx%3D%2233.35%22%20cy%3D%2240.3%22%20r%3D%221.67%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.047%22%2F%3E%3Ccircle%20cx%3D%2221.81%22%20cy%3D%2233.91%22%20r%3D%221.7%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.063%22%2F%3E%3Ccircle%20cx%3D%2240.7%22%20cy%3D%2270.85%22%20r%3D%221.09%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.052%22%2F%3E%3Ccircle%20cx%3D%2239.58%22%20cy%3D%2276.89%22%20r%3D%221.22%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.054%22%2F%3E%3Ccircle%20cx%3D%2228.94%22%20cy%3D%2249.65%22%20r%3D%220.84%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.069%22%2F%3E%3Ccircle%20cx%3D%2250.02%22%20cy%3D%2272.98%22%20r%3D%221.43%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.081%22%2F%3E%3Ccircle%20cx%3D%2238.54%22%20cy%3D%2259.94%22%20r%3D%221.45%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.047%22%2F%3E%3Ccircle%20cx%3D%2235.62%22%20cy%3D%2213.49%22%20r%3D%220.77%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.096%22%2F%3E%3Ccircle%20cx%3D%2238.59%22%20cy%3D%2240.26%22%20r%3D%221.32%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.073%22%2F%3E%3Ccircle%20cx%3D%2263.96%22%20cy%3D%2231.14%22%20r%3D%221.56%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.089%22%2F%3E%3Ccircle%20cx%3D%2271.23%22%20cy%3D%2293.67%22%20r%3D%220.83%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.059%22%2F%3E%3Ccircle%20cx%3D%222.12%22%20cy%3D%2289.6%22%20r%3D%221.6%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.075%22%2F%3E%3Ccircle%20cx%3D%2299.12%22%20cy%3D%2289.6%22%20r%3D%221.6%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.075%22%2F%3E%3Ccircle%20cx%3D%2288.85%22%20cy%3D%2293.09%22%20r%3D%221.56%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.091%22%2F%3E%3Ccircle%20cx%3D%2229.86%22%20cy%3D%220.72%22%20r%3D%221.29%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.102%22%2F%3E%3Ccircle%20cx%3D%2229.86%22%20cy%3D%2297.72%22%20r%3D%221.29%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.102%22%2F%3E%3Ccircle%20cx%3D%2249.94%22%20cy%3D%220.81%22%20r%3D%220.79%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.106%22%2F%3E%3Ccircle%20cx%3D%2249.94%22%20cy%3D%2297.81%22%20r%3D%220.79%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.106%22%2F%3E%3Ccircle%20cx%3D%222.69%22%20cy%3D%2218.69%22%20r%3D%221.15%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.074%22%2F%3E%3Ccircle%20cx%3D%2299.69%22%20cy%3D%2218.69%22%20r%3D%221.15%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.074%22%2F%3E%3Ccircle%20cx%3D%2216.05%22%20cy%3D%223.27%22%20r%3D%221.46%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.152%22%2F%3E%3Ccircle%20cx%3D%2216.05%22%20cy%3D%22100.27%22%20r%3D%221.46%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.152%22%2F%3E%3Ccircle%20cx%3D%2261.5%22%20cy%3D%2285.0%22%20r%3D%220.87%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.063%22%2F%3E%3Ccircle%20cx%3D%2273.9%22%20cy%3D%2260.25%22%20r%3D%221.47%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.08%22%2F%3E%3Ccircle%20cx%3D%2266.47%22%20cy%3D%2276.04%22%20r%3D%220.66%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.063%22%2F%3E%3Ccircle%20cx%3D%2285.98%22%20cy%3D%2227.95%22%20r%3D%221.34%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.07%22%2F%3E%3Ccircle%20cx%3D%2248.5%22%20cy%3D%2286.81%22%20r%3D%221.32%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.101%22%2F%3E%3Ccircle%20cx%3D%2233.41%22%20cy%3D%2245.67%22%20r%3D%221.31%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.11%22%2F%3E%3Ccircle%20cx%3D%2291.19%22%20cy%3D%2288.34%22%20r%3D%221.09%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.084%22%2F%3E%3Ccircle%20cx%3D%2289.37%22%20cy%3D%2216.84%22%20r%3D%221.31%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.129%22%2F%3E%3Ccircle%20cx%3D%223.04%22%20cy%3D%2261.91%22%20r%3D%220.66%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.078%22%2F%3E%3Ccircle%20cx%3D%2244.98%22%20cy%3D%2230.27%22%20r%3D%220.72%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.061%22%2F%3E%3Ccircle%20cx%3D%2211.36%22%20cy%3D%2268.14%22%20r%3D%221.26%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.135%22%2F%3E%3Ccircle%20cx%3D%2224.29%22%20cy%3D%2289.73%22%20r%3D%220.61%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.066%22%2F%3E%3C%2Fsvg%3E"),
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22149%22%20height%3D%22149%22%20viewBox%3D%220%200%20149%20149%22%3E%3Ccircle%20cx%3D%2252.43%22%20cy%3D%2264.1%22%20r%3D%221.82%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.045%22%2F%3E%3Ccircle%20cx%3D%2258.47%22%20cy%3D%226.1%22%20r%3D%221.75%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.046%22%2F%3E%3Ccircle%20cx%3D%2239.31%22%20cy%3D%22143.87%22%20r%3D%221.87%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.055%22%2F%3E%3Ccircle%20cx%3D%22133.91%22%20cy%3D%2284.57%22%20r%3D%221.41%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.054%22%2F%3E%3Ccircle%20cx%3D%22142.71%22%20cy%3D%224.96%22%20r%3D%221.67%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.061%22%2F%3E%3Ccircle%20cx%3D%2283.11%22%20cy%3D%22113.52%22%20r%3D%221.43%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.068%22%2F%3E%3Ccircle%20cx%3D%225.26%22%20cy%3D%2249.76%22%20r%3D%221.65%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.047%22%2F%3E%3Ccircle%20cx%3D%2237.67%22%20cy%3D%2296.67%22%20r%3D%222.59%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.072%22%2F%3E%3Ccircle%20cx%3D%2232.56%22%20cy%3D%22110.88%22%20r%3D%222.39%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.057%22%2F%3E%3Ccircle%20cx%3D%2242.66%22%20cy%3D%22115.17%22%20r%3D%221.43%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.083%22%2F%3E%3Ccircle%20cx%3D%2279.37%22%20cy%3D%225.98%22%20r%3D%221.56%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.098%22%2F%3E%3Ccircle%20cx%3D%22108.8%22%20cy%3D%22119.14%22%20r%3D%222.09%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.087%22%2F%3E%3Ccircle%20cx%3D%2272.32%22%20cy%3D%22143.39%22%20r%3D%222.77%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.055%22%2F%3E%3Ccircle%20cx%3D%22146.19%22%20cy%3D%2281.5%22%20r%3D%222.45%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.051%22%2F%3E%3Ccircle%20cx%3D%22-2.81%22%20cy%3D%2281.5%22%20r%3D%222.45%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.051%22%2F%3E%3Ccircle%20cx%3D%22121.09%22%20cy%3D%2281.48%22%20r%3D%222.41%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.05%22%2F%3E%3Ccircle%20cx%3D%224.94%22%20cy%3D%2239.49%22%20r%3D%222.16%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.053%22%2F%3E%3Ccircle%20cx%3D%2270.3%22%20cy%3D%22105.52%22%20r%3D%222.44%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.066%22%2F%3E%3Ccircle%20cx%3D%2236.21%22%20cy%3D%2251.55%22%20r%3D%222.79%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.073%22%2F%3E%3Ccircle%20cx%3D%2226.32%22%20cy%3D%22137.22%22%20r%3D%221.23%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.036%22%2F%3E%3Ccircle%20cx%3D%2251.26%22%20cy%3D%2258.46%22%20r%3D%221.48%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.045%22%2F%3E%3Ccircle%20cx%3D%2210.01%22%20cy%3D%223.09%22%20r%3D%221.08%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.038%22%2F%3E%3Ccircle%20cx%3D%2273.16%22%20cy%3D%22116.68%22%20r%3D%222.46%22%20fill%3D%22%238a6a45%22%20opacity%3D%220.054%22%2F%3E%3C%2Fsvg%3E"),
+    linear-gradient(160deg, #efe2cd 0%, #f4ebda 45%, #faf4e9 100%);
+  background-size: 64px 64px, 97px 97px, 149px 149px, auto;
+  background-position: 0 0, 17px 31px, 53px 11px, 0 0;
+  background-repeat: repeat, repeat, repeat, no-repeat;
+  background-attachment: scroll, scroll, scroll, fixed;
+  color: var(--ink);
+  font-family: "Segoe UI Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;            /* one page-level scrollbar, never a second one */
+}
+
+/* ---------------- header ---------------- */
+.topbar {
+  position: relative;
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  padding: .7rem clamp(2rem, 9vw, 9rem) .6rem;
+  border-bottom: 2px solid var(--ink);
+  flex: 0 0 auto;
+}
+.account-btn {
+  position: absolute; top: 50%; right: clamp(2rem, 9vw, 9rem);
+  transform: translateY(-50%);
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .3rem; border: none; border-radius: 50%;
+  background: none; color: var(--ink);
+}
+.account-btn:hover:not(:disabled) { background: rgba(43, 35, 24, .09); color: var(--ink); }
+.account-btn svg { display: block; }
+.topbar h1 {
+  margin: 0; font-size: 2rem; font-weight: 800; letter-spacing: .5px;
+}
+.topbar-mark { font-size: 1.6rem; }
+
+/* ---------------- layout ---------------- */
+.layout {
+  flex: 1 1 auto;
+  min-height: 0;                 /* lets the children own the height */
+  display: grid;
+  grid-template-columns: minmax(250px, 23rem) 1fr;
+  gap: 1.75rem;
+  padding: 1.1rem clamp(2rem, 9vw, 9rem) 2rem;
+}
+
+.pane-left { min-height: 0; }   /* no scroller of its own — the page scrolls instead */
+.pane-right { min-height: 0; display: flex; }
+
+/* ---------------- left: controls ---------------- */
+.animal-no { margin: 0 0 .7rem; font-size: 1.25rem; font-weight: 800; }
+
+.prompt-row { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
+#prompt-label { font-size: .92rem; }
+.remaining { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.guess-row { display: flex; gap: .5rem; margin: .4rem 0 .7rem; }
+#guess-input {
+  flex: 1; min-width: 0; padding: .45rem .6rem; font-size: .95rem;
+  border: 2px solid #9db4c8; border-radius: .35rem;
+  background: #fff; color: var(--ink);
+}
+#guess-input:focus-visible { outline: 2px solid var(--green); outline-offset: 1px; }
+#guess-input:disabled { background: #e6e0d6; }
+
+button {
+  font-family: inherit; font-size: 1rem; font-weight: 600; cursor: pointer;
+  padding: .45rem .9rem; border-radius: .35rem;
+  border: 2px solid var(--green); background: #fff; color: var(--green);
+  transition: background .15s ease, color .15s ease;
+}
+button:hover:not(:disabled) { background: var(--green); color: #fff; }
+button:disabled { opacity: .45; cursor: default; }
+button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.hint-row { display: flex; align-items: center; gap: .8rem; }
+.hint-note { margin: 0; font-size: .85rem; flex: 1; }
+.hint-btn { border-color: var(--gold); color: #8a6a00; }
+.hint-btn:hover:not(:disabled) { background: var(--gold); color: #fff; }
+
+#status { min-height: 1.2rem; margin: .55rem 0; font-size: .88rem; font-weight: 600; }
+#status[data-tone="info"] { color: var(--muted); }
+#status[data-tone="good"] { color: var(--green); }
+#status[data-tone="bad"]  { color: #b0402c; }
+#status[data-tone="win"]  { color: var(--gold); }
+
+/* ---------------- left: LCA card ---------------- */
+.lca-panel { display: none; }
+.lca-panel[data-state] {
+  display: block;
+  background: #e7edd3; border: 2px solid #c4d0a4; border-radius: .6rem;
+  padding: .7rem .85rem .8rem;
+}
+.lca-eyebrow { font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; color: #5e6b3e; }
+.lca-name { margin: .05rem 0; font-size: 1.2rem; font-weight: 800; line-height: 1.2; }
+.lca-rank { color: #5e6b3e; font-size: .82rem; font-style: italic; }
+.lca-blurb { margin: .45rem 0 .6rem; font-size: .85rem; }
+.lca-media {
+  /* No fixed aspect ratio and object-fit:contain, so the WHOLE photo is visible —
+     Wikipedia taxon images are a mix of portrait and landscape, and cropping them
+     to a fixed box was cutting the animal in half. */
+  width: 100%;
+  min-height: 140px;
+  max-height: 320px;
+  border-radius: .4rem; overflow: hidden;
+  background: #d9e2c0; display: flex; align-items: center; justify-content: center;
+}
+.lca-img { width: 100%; height: auto; max-height: 320px; object-fit: contain; display: block; }
+.lca-fallback { font-size: 2.6rem; opacity: .6; }
+.lca-source { display: inline-block; margin-top: .45rem; font-size: .78rem; color: #4a5a2c; }
+
+/* ---------------- right: the tree ---------------- */
+.tree-frame {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;              /* fit-to-viewBox means this never needs to scroll */
+  display: flex;
+}
+#tree { width: 100%; height: 100%; display: block; }
+/* Raised alongside ROW_H: a taller tree needs a taller pane, or fit-to-viewBox has to
+   shrink everything more at high guess counts, and text gets small. At this height a
+   worst-case 20-guess tree still lands at roughly 9px, versus ~7px at the old height. */
+.tree-frame { height: min(80vh, 760px); }
+.tv-text { font: 600 15px ui-monospace, SFMono-Regular, Menlo, monospace; pointer-events: none; }
+#tree g[role="button"] { transition: opacity .12s ease; }
+#tree g[role="button"]:hover { opacity: .78; }
+#tree g[role="button"]:focus-visible { outline: none; }
+#tree g[role="button"]:focus-visible rect { stroke: #2b2318; stroke-width: 3.5; }
+
+/* ---------------- modal ---------------- */
+.modal {
+  position: fixed; inset: 0; display: none;
+  align-items: center; justify-content: center;
+  background: rgba(40, 30, 20, .55);
+  padding: 1rem; z-index: 50;
+}
+.modal.open { display: flex; animation: fade .18s ease; }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-card {
+  position: relative; width: min(26rem, 100%);
+  /* Flat beige, no grain on purpose: the panel should read as a clean card
+     lifted off the textured page, not as more dirt. */
+  background: #f4ead8;
+  border-radius: .8rem; padding: 1.4rem 1.5rem 1.2rem;
+  box-shadow: 0 18px 50px rgba(0,0,0,.3);
+  text-align: center;
+  animation: pop .22s ease;
+}
+@keyframes pop { from { transform: translateY(10px) scale(.97); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.modal-close {
+  position: absolute; top: .5rem; right: .6rem;
+  border: none; background: none; color: var(--green);
+  font-size: 1.6rem; line-height: 1; padding: .1rem .35rem;
+}
+.modal-close:hover { background: none; color: var(--accent); }
+.modal-title { margin: 0 0 .3rem; font-size: 1.8rem; font-weight: 800; }
+.modal-line { margin: 0 0 .9rem; color: var(--muted); }
+
+.modal-answer { display: flex; align-items: center; gap: .9rem; text-align: left; margin-bottom: 1rem; }
+.modal-media {
+  width: 104px; min-width: 104px; height: 104px; border-radius: .5rem; overflow: hidden;
+  background: var(--card-2); display: flex; align-items: center; justify-content: center;
+}
+.modal-animal { font-size: 1.25rem; font-weight: 800; }
+.modal-sci { font-style: italic; color: var(--muted); font-size: .9rem; }
+
+.modal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; margin-bottom: 1rem; }
+.ms-value { font-size: 1.5rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.ms-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+
+.modal-actions { display: flex; justify-content: center; gap: .6rem; }
+.modal-btn.danger { border-color: #a33b28; color: #a33b28; }
+.modal-btn.danger:hover:not(:disabled) { background: #a33b28; color: #fff; }
+.account-avatar { color: var(--green); margin-bottom: .1rem; }
+.account-stats { grid-template-columns: repeat(3, 1fr); row-gap: .7rem; }
+.modal-foot { margin: .8rem 0 0; font-size: .82rem; color: var(--muted); }
+
+/* ---------------- responsive ---------------- */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; padding: 1rem 1rem 2rem; }
+  .tree-frame { height: 58vh; }
+}
+
+/* ---------------- the skull mark + theme switch ---------------- */
+.topbar-mark { display: inline-flex; align-items: center; color: var(--ink); }
+.topbar-mark svg { display: block; height: 1.9rem; width: auto; }
+
+.theme-btn {
+  position: absolute; top: 50%; right: calc(clamp(2rem, 9vw, 9rem) + 2.6rem);
+  transform: translateY(-50%);
+  border: none; background: none; color: var(--ink);
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: .35rem .55rem; border-radius: .3rem;
+}
+.theme-btn:hover:not(:disabled) { background: rgba(43, 35, 24, .09); color: var(--ink); }
+
+.tv-band {
+  font: 700 15px ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .14em; pointer-events: none; user-select: none;
+}
+
+/* =====================================================================
+   STRATA SKIN — everything below is additive. Delete this whole block and
+   the page is byte-for-byte the classic design again.
+
+   The one idea: the guess boxes are painted in a warm red->green ramp, so the
+   page underneath them must be the ramp's opposite or the signal fights the
+   set it's standing on. Cool rock, warm boxes.
+   ===================================================================== */
+:root[data-theme="strata"] {
+  --ink: #e8e3d6;          /* bone */
+  --muted: #8fa79a;        /* lichen */
+  --line: #33403b;
+  --card: #212a27;
+  --card-2: #1a221f;
+  --accent: #d9724f;
+  --green: #7fb069;
+  --gold: #e0b24a;
+}
+
+:root[data-theme="strata"] body {
+  background: #1d2422;
+  background-image:
+    linear-gradient(#1a211f 1px, transparent 1px),
+    linear-gradient(180deg, #202826 0%, #1d2422 40%, #19201e 100%);
+  background-size: 100% 96px, 100% 100%;
+  color: var(--ink);
+}
+
+:root[data-theme="strata"] .topbar { border-bottom-color: #3a4a44; }
+:root[data-theme="strata"] .account-btn:hover:not(:disabled),
+:root[data-theme="strata"] .theme-btn:hover:not(:disabled) { background: rgba(232, 227, 214, .1); }
+
+:root[data-theme="strata"] #guess-input {
+  background: #161d1b; color: var(--ink); border-color: #3f5149;
+}
+:root[data-theme="strata"] #guess-input::placeholder { color: #6d8378; }
+:root[data-theme="strata"] #guess-input:disabled { background: #232b28; color: #7d918a; }
+
+:root[data-theme="strata"] button {
+  background: transparent; color: var(--green); border-color: var(--green);
+}
+:root[data-theme="strata"] button:hover:not(:disabled) { background: var(--green); color: #16201a; }
+:root[data-theme="strata"] .hint-btn { border-color: var(--gold); color: var(--gold); }
+:root[data-theme="strata"] .hint-btn:hover:not(:disabled) { background: var(--gold); color: #201a08; }
+:root[data-theme="strata"] button:focus-visible { outline-color: var(--ink); }
+
+:root[data-theme="strata"] #status[data-tone="bad"] { color: #e08b6e; }
+:root[data-theme="strata"] #status[data-tone="win"] { color: var(--gold); }
+
+/* the info card reads as a specimen label pinned to the rock */
+:root[data-theme="strata"] .lca-panel[data-state] {
+  background: #202B27; border-color: #3a4c44;
+}
+:root[data-theme="strata"] .lca-eyebrow,
+:root[data-theme="strata"] .lca-rank,
+:root[data-theme="strata"] .lca-source { color: #8fae9d; }
+:root[data-theme="strata"] .lca-media { background: #172020; }
+
+:root[data-theme="strata"] #tree g[role="button"]:focus-visible rect { stroke: #e8e3d6; }
+
+:root[data-theme="strata"] .modal { background: rgba(10, 14, 13, .68); }
+:root[data-theme="strata"] .modal-card {
+  background: #222c28; box-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+}
+:root[data-theme="strata"] .modal-close { color: var(--green); }
+:root[data-theme="strata"] .modal-close:hover { color: var(--accent); }
+:root[data-theme="strata"] .modal-media { background: #172020; }
+:root[data-theme="strata"] .modal-btn.danger { border-color: #d9724f; color: #e08b6e; }
+:root[data-theme="strata"] .modal-btn.danger:hover:not(:disabled) { background: #a8442a; color: #fff; }
+:root[data-theme="strata"] .account-avatar { color: var(--green); }
+
+/* =====================================================================
+   DIG SKIN — bone in earth. Additive like the strata block: delete from
+   this banner down and nothing else notices.
+
+   The idea the numbers forced: earth pigments on earth ground measure
+   1.06:1, but bone on earth measures 4.43-9.48:1. So temperature stops
+   being a hue and becomes an excavation state, and the page becomes the
+   soil profile you are digging down through.
+   ===================================================================== */
+:root[data-theme="dig"] {
+  --ink: #ece4d2;          /* bone */
+  --muted: #b3a48a;        /* dry silt */
+  --line: #8a765a;
+  --card: #e8dfc9;         /* the field notebook page */
+  --card-2: #6b5842;
+  --accent: #8a4b2a;       /* burnt sienna */
+  --green: #7d8a4a;        /* olive, not a signal colour */
+  --gold: #c08a2c;         /* raw ochre */
+}
+
+:root[data-theme="dig"] body {
+  /* a soil profile: topsoil, subsoil, bedrock. No labels, nothing to misread. */
+  background: #5c4b34;
+  /* Darker than the darkest box on purpose: if the ground sits in the middle of
+     the box range, every mid-tone box disappears into it. Below the range, the
+     whole ramp reads as bone emerging from earth. */
+  background-image: linear-gradient(180deg,
+    #4a3d2c 0%, #423628 24%, #392f22 52%, #31281d 78%, #281f16 100%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+}
+
+:root[data-theme="dig"] .topbar { border-bottom: 2px solid #8a765a; }
+:root[data-theme="dig"] .topbar h1 {
+  font-family: Georgia, "Iowan Old Style", serif;
+  font-weight: 400; letter-spacing: .16em; color: #ece4d2;
+}
+:root[data-theme="dig"] .topbar-mark svg { height: 2.7rem; }
+:root[data-theme="dig"] .topbar-mark .sk-fill { fill: #ece4d2; }
+:root[data-theme="dig"] .topbar-mark { color: #3f3527; }
+
+:root[data-theme="dig"] .account-btn:hover:not(:disabled),
+:root[data-theme="dig"] .theme-btn:hover:not(:disabled) { background: rgba(236, 228, 210, .14); }
+:root[data-theme="dig"] .account-avatar { color: #ece4d2; }
+
+/* scientific names: the only italic serif on the page, per taxonomic convention */
+:root[data-theme="dig"] .lca-rank,
+:root[data-theme="dig"] .modal-sci { font-style: italic; font-family: Georgia, serif; }
+
+/* the info card is a field notebook page pinned to the dirt */
+:root[data-theme="dig"] .lca-panel[data-state] {
+  background: #e8dfc9; border: 1px solid #a8916c; color: #2a2318;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .34);
+}
+:root[data-theme="dig"] .lca-panel h2, :root[data-theme="dig"] .lca-panel p { color: #2a2318; }
+:root[data-theme="dig"] .lca-eyebrow {
+  color: #6b5842; letter-spacing: .2em; font-family: Georgia, serif;
+}
+:root[data-theme="dig"] .lca-rank, :root[data-theme="dig"] .lca-source { color: #6b5842; }
+:root[data-theme="dig"] .lca-media { background: #d8cdb2; }
+
+:root[data-theme="dig"] #guess-input {
+  background: #e8dfc9; color: #2a2318; border: 1px solid #a8916c;
+  font-family: Georgia, serif;
+}
+:root[data-theme="dig"] #guess-input::placeholder { color: #8a7a5e; }
+:root[data-theme="dig"] #guess-input:disabled { background: #c9bda2; color: #6b5842; }
+
+:root[data-theme="dig"] button {
+  background: #e8dfc9; color: #3f3527; border: 1px solid #a8916c;
+  font-family: Georgia, serif; letter-spacing: .04em;
+}
+:root[data-theme="dig"] button:hover:not(:disabled) { background: #fff8e8; color: #2a2318; }
+:root[data-theme="dig"] .hint-btn { background: transparent; color: #e8dfc9; border-color: #c08a2c; }
+:root[data-theme="dig"] .hint-btn:hover:not(:disabled) { background: #c08a2c; color: #2a2318; }
+:root[data-theme="dig"] button:focus-visible { outline-color: #ece4d2; }
+
+:root[data-theme="dig"] #status[data-tone="bad"] { color: #e0a07e; }
+:root[data-theme="dig"] #status[data-tone="win"] { color: #f0d79a; }
+
+:root[data-theme="dig"] .tv-text { font-family: Georgia, "Iowan Old Style", serif; }
+:root[data-theme="dig"] #tree g[role="button"]:focus-visible rect { stroke: #fff8e8; }
+
+:root[data-theme="dig"] .modal { background: rgba(30, 22, 12, .7); }
+:root[data-theme="dig"] .modal-card { background: #e8dfc9; color: #2a2318; }
+:root[data-theme="dig"] .modal-card h2, :root[data-theme="dig"] .modal-card p { color: #2a2318; }
+:root[data-theme="dig"] .modal-media { background: #d8cdb2; }
+:root[data-theme="dig"] .modal-close { color: #6b5842; }
+
+.topbar-mark .sk-fill { fill: var(--card, #fbf3e4); }
+
+/* The logo has a square viewBox with a wide drawing inside, so it needs more
+   height than a tightly-cropped mark would to read at the same visual size. */
+.topbar-mark svg { height: 2.6rem; }
+
+/* =====================================================================
+   LAYERS SKIN — the classic palette, unchanged, hung in geological ground.
+   Additive: delete this block and the layers entry in THEMES to revert.
+   ===================================================================== */
+:root[data-theme="layers"] .tree-frame {
+  border: 1px solid rgba(122, 100, 68, .32);
+  border-radius: .45rem;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5),
+              0 2px 10px rgba(122, 100, 68, .12);
+}
+
+/* ---------------- how to play, countdown, share ---------------- */
+.help-btn {
+  position: absolute; top: 50%; right: calc(clamp(2rem, 9vw, 9rem) + 2.6rem);
+  transform: translateY(-50%);
+  border: 1px solid var(--line); background: none; color: var(--ink);
+  width: 1.7rem; height: 1.7rem; border-radius: 50%;
+  font: 700 .9rem/1 system-ui; padding: 0; cursor: pointer;
+}
+.help-btn:hover { background: rgba(63, 44, 26, .1); }
+
+.countdown {
+  margin: .1rem 0 .9rem; font-size: .82rem; color: var(--muted);
+  min-height: 1.1em;   /* reserve the line so the layout doesn't jump on tick */
+}
+.countdown strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.howto-card { width: min(30rem, 100%); text-align: center; }
+.howto-step { min-height: 2.6em; margin: .5rem 0 .3rem; font-size: .95rem; }
+.howto-demo { width: 100%; height: auto; display: block; margin: .2rem 0 .6rem; }
+.hd { opacity: 0; transition: opacity .35s ease; }
+.hd.on { opacity: 1; }
+.hd-t {
+  font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+  fill: var(--ink); text-anchor: middle;
+}
+.hd-t.hd-on { fill: #fff; }
+.howto-actions { display: flex; gap: .6rem; justify-content: center; }
+.howto-play { display: none; }
+.howto-dots { display: flex; gap: .35rem; justify-content: center; margin: .8rem 0 0; }
+.howto-dots span {
+  width: .4rem; height: .4rem; border-radius: 50%;
+  background: var(--line); opacity: .45; transition: opacity .2s, transform .2s;
+}
+.howto-dots span.on { opacity: 1; transform: scale(1.3); background: var(--green); }
+
+/* The share button has to look like the most clickable thing in the modal —
+   a plain text button reads as an afterthought and nobody presses it. */
+.share-btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--green); color: #fff; border-color: var(--green);
+  font-weight: 700; padding: .5rem .95rem;
+}
+.share-btn:hover:not(:disabled) { background: #3d6224; border-color: #3d6224; color: #fff; }
+.share-icon { display: inline-flex; gap: 2px; }
+.share-icon i { width: .5rem; height: .8rem; border-radius: 1px; display: block; }
+
+.load-error {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .7rem; height: 100%; text-align: center; padding: 2rem;
+}
+.load-error h2 { margin: 0; font-size: 1.1rem; }
+.load-error p { margin: 0; color: var(--muted); max-width: 26rem; font-size: .9rem; }
+
+/* The header button now says what it does — a bare "?" made people guess. */
+.help-btn {
+  width: auto; height: auto; border-radius: 1rem;
+  padding: .3rem .7rem; font: 700 .74rem/1 system-ui;
+  letter-spacing: .04em; white-space: nowrap;
+}
+.howto-back { display: none; background: transparent; }
+@media (max-width: 620px) {
+  .help-btn { font-size: .68rem; padding: .28rem .5rem; }
+}
+
+/* The countdown is the thing people come back for, so it sits directly under the
+   result line and is sized to be read, not squinted at. */
+.modal-countdown {
+  margin: .15rem 0 .9rem; font-size: 1.05rem; color: var(--muted);
+}
+.modal-countdown strong {
+  color: var(--ink); font-size: 1.35rem; font-weight: 800;
+  font-variant-numeric: tabular-nums; letter-spacing: .02em;
+}
+
+/* The `hidden` attribute is display:none in the UA stylesheet, but .hint-row sets
+   display:flex, which wins on specificity — so hiding the row needs saying twice. */
+.hint-row[hidden] { display: none; }
+
+/* ---------------- header nav + hamburger ---------------- */
+.topnav {
+  position: absolute; top: 50%; right: calc(clamp(2rem, 9vw, 9rem) + 2.6rem);
+  transform: translateY(-50%); display: flex; gap: .4rem; align-items: center;
+}
+.nav-btn {
+  border: 1px solid var(--line); background: none; color: var(--ink);
+  border-radius: 1rem; padding: .3rem .7rem; cursor: pointer;
+  font: 700 .74rem/1 system-ui; letter-spacing: .04em; white-space: nowrap;
+  text-decoration: none; display: inline-block;
+}
+.nav-btn:hover { background: rgba(63, 44, 26, .1); }
+.menu-btn { display: none; }
+
+@media (max-width: 700px) {
+  /* Below 700px the two nav buttons collapse behind a hamburger. The account
+     icon deliberately stays outside it — it's the one control people reach for
+     without thinking, so hiding it behind a menu costs more than it saves. */
+  .menu-btn {
+    display: flex; flex-direction: column; justify-content: center; gap: 4px;
+    position: absolute; top: 50%; transform: translateY(-50%);
+    right: calc(clamp(2rem, 9vw, 9rem) + 2.5rem);
+    width: 2rem; height: 2rem; padding: 0 .3rem;
+    background: none; border: none; cursor: pointer;
+  }
+  .menu-btn span { display: block; height: 2px; background: var(--ink); border-radius: 2px; }
+  .topnav {
+    display: none; position: absolute; top: 100%; right: clamp(1rem, 6vw, 4rem);
+    transform: none; flex-direction: column; align-items: stretch; gap: .3rem;
+    background: #f4ead8; border: 1px solid var(--line); border-radius: .5rem;
+    padding: .45rem; box-shadow: 0 10px 26px rgba(0, 0, 0, .18); z-index: 20;
+  }
+  .topnav.open { display: flex; }
+  .nav-btn { border: none; text-align: left; padding: .5rem .8rem; font-size: .85rem; }
+}
+
+/* ---------------- streak flame ---------------- */
+.ms-streak .ms-value { display: flex; align-items: center; justify-content: center; gap: .25rem; }
+.ms-streak .flame {
+  font-size: .95em; filter: grayscale(1); opacity: .35;
+  transition: filter .45s ease, opacity .45s ease, transform .45s ease;
+}
+.ms-streak.lit .flame { filter: none; opacity: 1; animation: flame-pop .55s ease; }
+@keyframes flame-pop {
+  0%   { transform: scale(.7) translateY(3px); }
+  55%  { transform: scale(1.35) translateY(-2px); }
+  100% { transform: scale(1) translateY(0); }
+}
+.ms-streak.lit .ms-value { animation: streak-bump .45s ease; }
+@keyframes streak-bump {
+  0% { transform: scale(1); } 50% { transform: scale(1.18); } 100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ms-streak.lit .flame, .ms-streak.lit .ms-value { animation: none; }
+}
+
+/* ---------------- account: streak as the hero number ---------------- */
+.streak-hero {
+  display: flex; flex-direction: column; align-items: center;
+  margin: .1rem 0 1.1rem;
+}
+.streak-hero-value {
+  display: flex; align-items: center; justify-content: center; gap: .4rem;
+  font-size: 3.4rem; font-weight: 800; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.streak-hero-value .flame { font-size: .8em; }
+.streak-hero-label {
+  font-size: .74rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--muted); margin-top: .35rem;
+}
+/* six tiles now, not seven */
+.account-stats { grid-template-columns: repeat(3, 1fr); row-gap: .9rem; }
+
+/* Two- and three-tile popups shouldn't stretch across a four-column grid. */
+.stats-centred { display: flex; justify-content: center; gap: 2.2rem; }
+
+/* ---------------- endless: mode header + score tiles ---------------- */
+body.endless .animal-no {
+  text-align: center; font-size: 2.1rem; letter-spacing: .01em; margin-bottom: .1rem;
+}
+.endless-hud {
+  display: flex; justify-content: center; gap: .5rem; margin: 0 0 1.1rem;
+}
+.eh-tile {
+  flex: 1 1 0; max-width: 7rem; text-align: center;
+  background: #f4ead8; border: 1px solid rgba(122, 100, 68, .3);
+  border-radius: .5rem; padding: .5rem .4rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55);
+}
+.eh-value {
+  font-size: 1.6rem; font-weight: 800; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.eh-label {
+  font-size: .64rem; text-transform: uppercase; letter-spacing: .09em;
+  color: var(--muted); margin-top: .25rem;
+}
+.eh-best { background: #efe3c6; }
+.eh-best .eh-value { color: #8a6a1f; }
+
+/* ---------------- endless intro card ---------------- */
+.endless-intro {
+  list-style: none; margin: .3rem 0 1.1rem; padding: 0;
+  display: flex; flex-direction: column; gap: .65rem; text-align: left;
+}
+.endless-intro li { display: flex; gap: .6rem; align-items: flex-start; font-size: .9rem; }
+.ei-icon { font-size: 1.05rem; line-height: 1.3; flex: 0 0 1.4rem; text-align: center; }
+
+/* Endless has no daily deadline, so the countdown line is hidden outright. */
+body.endless .countdown { display: none; }
+.endless-sub {
+  text-align: center; color: var(--muted); opacity: .72;
+  font-size: .84rem; margin: .1rem 0 .9rem;
+}
+
+/* ---------------- endless HUD: score is the headline tile ---------------- */
+.eh-score {
+  flex: 1.45 1 0; max-width: 9.5rem; padding: .7rem .5rem;
+  background: #f7eeda; border-color: rgba(122, 100, 68, .45);
+}
+.eh-score .eh-value { font-size: 2.3rem; color: #3d6224; }
+.eh-score .eh-label { font-size: .68rem; letter-spacing: .11em; }
+
+/* ---------------- endless win popup: the reward moment ---------------- */
+.score-hero {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  margin: .4rem 0 .2rem;
+}
+.sh-value {
+  font-size: 3.8rem; font-weight: 800; line-height: 1; color: #3d6224;
+  font-variant-numeric: tabular-nums; position: relative; z-index: 1;
+}
+.sh-label {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .13em;
+  color: var(--muted); margin-top: .3rem;
+}
+
+/* The number is the payout, so it lands with weight: an overshoot on the digit
+   and a ring pushing outward behind it. Both are transform/opacity only, so this
+   stays on the compositor and costs nothing on a weak device. */
+.score-hero.bumped .sh-value { animation: score-pop .55s cubic-bezier(.2, 1.5, .4, 1); }
+@keyframes score-pop {
+  0%   { transform: scale(1) translateY(0); }
+  40%  { transform: scale(1.42) translateY(-7px); }
+  100% { transform: scale(1) translateY(0); }
+}
+.score-hero::before {
+  content: ''; position: absolute; top: .1rem; left: 50%;
+  width: 4.6rem; height: 4.6rem; margin-left: -2.3rem; border-radius: 50%;
+  background: radial-gradient(circle, rgba(61, 98, 36, .26) 0%, rgba(61, 98, 36, 0) 70%);
+  opacity: 0; transform: scale(.4); pointer-events: none;
+}
+.score-hero.bumped::before { animation: score-ring .7s ease-out; }
+@keyframes score-ring {
+  0%   { opacity: 0;   transform: scale(.4); }
+  35%  { opacity: 1;   transform: scale(1); }
+  100% { opacity: 0;   transform: scale(1.7); }
+}
+
+.rounds-row {
+  display: flex; align-items: baseline; justify-content: center; gap: .4rem;
+  margin: .1rem 0 1.1rem; color: var(--muted);
+}
+.rr-value {
+  font-size: 1.15rem; font-weight: 800; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.rr-label { font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .score-hero.bumped .sh-value, .score-hero.bumped::before { animation: none; }
+}
+
+/* Four tiles need a tighter gap than three or the run summary overflows. */
+.stats-four { gap: clamp(.9rem, 4vw, 1.6rem); flex-wrap: wrap; }
+
+/* =====================================================================
+   RESPONSIVE HEADER
+   The desktop header centres the wordmark and hangs the controls off the
+   right edge absolutely. That works until the title grows into them — at
+   390px the wordmark ran from 155-303px and the hamburger started at 283px,
+   so they overlapped by 20px. Below 900px the bar becomes a real flex row
+   instead, which makes overlap structurally impossible rather than a matter
+   of picking the right font size.
+   ===================================================================== */
+@media (max-width: 900px) {
+  .topbar {
+    justify-content: space-between;
+    padding: .6rem clamp(.75rem, 4vw, 1.5rem);
+    gap: .5rem;
+  }
+  .topbar h1 { font-size: 1.5rem; letter-spacing: .3px; }
+  .topbar-mark svg { height: 2rem; }
+  /* out of the absolute corner, into the flow */
+  .account-btn, .menu-btn, .topnav {
+    position: static; transform: none; right: auto; top: auto;
+  }
+  .topbar .spacer { flex: 1; }
+  .menu-btn { margin-left: auto; }
+  .topnav.open {
+    position: absolute; top: 100%; right: .75rem;
+    z-index: 30;
+  }
+}
+
+@media (max-width: 420px) {
+  .topbar h1 { font-size: 1.25rem; }
+  .topbar-mark svg { height: 1.7rem; }
+  .topbar { gap: .35rem; }
+  .account-btn { padding: .2rem; }
+}
+
+/* Very narrow phones: the wordmark is the first thing to give way, since the
+   skull already identifies the site. */
+@media (max-width: 340px) {
+  .topbar h1 { font-size: 1.05rem; }
+}
+
+/* When treeView decides fitting would make labels illegible it sets
+   data-scroll="on" and gives the SVG an explicit pixel size. The pane then
+   scrolls instead of shrinking the text. Touch scrolling is enabled only in
+   that case, so desktop keeps its no-scrollbar guarantee untouched. */
+/* The scroller is absolutely positioned so a deliberately oversized SVG can
+   never widen its grid track. Without this the explicit pixel width leaked out
+   and stretched the whole left column — on a 390px phone the guess input came
+   out 593px wide. Out of flow, the overflow simply scrolls. */
+.tree-frame { position: relative; }
+.tree-scroll {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.tree-scroll:has(#tree[data-scroll="on"]) {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  align-items: flex-start; justify-content: flex-start;
+}
+#tree[data-scroll="on"] { flex: 0 0 auto; }
+
+/* Genus names in this game are long — Paraceratherium, Carcharodontosaurus,
+   Pachycephalosaurus — and at 320px the answer name ran straight off the card.
+   Flex children default to min-width:auto, so the text refused to shrink. */
+.modal-answer { min-width: 0; }
+.modal-answer > div { min-width: 0; }
+.modal-animal, .modal-sci { overflow-wrap: anywhere; }
+
+@media (max-width: 420px) {
+  /* Stack the photo above the name so the name gets the full card width. */
+  .modal-answer { flex-direction: column; align-items: center; text-align: center; gap: .6rem; }
+  .modal-animal { font-size: 1.2rem; line-height: 1.2; }
+  .modal-stats { gap: .5rem; }
+  .ms-value { font-size: 1.4rem; }
+  .ms-label { font-size: .6rem; letter-spacing: .06em; }
+  .modal-card { padding: 1.1rem 1rem 1rem; }
+}
+
+/* Image credit. Wikipedia palaeoart is mostly CC BY-SA and naming the author is a
+   licence condition, so this sits under the source link rather than in a tooltip. */
+.lca-credit {
+  margin: .25rem 0 0; font-size: .7rem; color: var(--muted); line-height: 1.35;
+}
+.lca-credit a { color: inherit; }
+.lca-credit[hidden] { display: none; }
+
+/* ---------------- footer ---------------- */
+.site-footer {
+  text-align: center; padding: 1.6rem clamp(1rem, 5vw, 3rem) 2.2rem;
+  color: var(--muted); font-size: .78rem; line-height: 1.6;
+}
+.site-footer p { margin: 0; }
+.site-footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.site-footer a:hover { color: var(--ink); }
+.footer-fine { margin-top: .35rem; opacity: .8; font-size: .72rem; }
+
+/* ---------------- support link ---------------- */
+/* Warm and inviting but quieter than the share button, and nowhere near the
+   end-game popup. Uses the site's own ochre rather than the Buy Me a Coffee
+   brand yellow, which would fight the earth palette. */
+.support-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  margin: .2rem auto .4rem; padding: .5rem 1.1rem;
+  /* 44px is the minimum comfortable touch target on a phone; the natural height
+     of this button was 34px, which is a miss on the one control people tap with
+     a thumb rather than a cursor. */
+  min-height: 2.75rem; box-sizing: border-box;
+  border: 1px solid var(--gold); border-radius: 1.4rem;
+  background: transparent; color: var(--ink);
+  font: 700 .85rem/1 system-ui; text-decoration: none;
+  transition: background .15s ease, color .15s ease;
+}
+.support-btn:hover { background: var(--gold); color: #2a1f08; }
+.support-cup { font-size: 1rem; }
+.support-note {
+  margin: 0 auto 1rem; max-width: 22rem;
+  font-size: .74rem; line-height: 1.5; color: var(--muted);
+}
