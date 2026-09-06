@@ -6,6 +6,7 @@ import { fetchTaxonImage, isRedirect } from './wiki';
 import type { EndlessStats } from '../storage/stats';
 import { SUPPORT_URL } from '../config';
 import { msUntilNextAnimal } from '../game/dailyAnimal';
+import { track } from '../analytics';
 
 const $ = (id: string) => document.getElementById(id)!;
 
@@ -265,6 +266,7 @@ export class Renderer {
         ($('modal-close') as HTMLButtonElement).onclick = () => this.modal.classList.remove('open');
         ($('endless-again') as HTMLButtonElement).onclick = () => location.reload();
         ($('share-btn') as HTMLButtonElement).onclick = async () => {
+            track('share-clicked');
             const text = buildEndlessShareText(score, attempted, stats.bestScore, missed, solved);
             try {
                 await navigator.clipboard.writeText(text);
@@ -399,6 +401,7 @@ export class Renderer {
         this.modal.onclick = (ev) => { if (ev.target === this.modal) close(); };
 
         ($('share-btn') as HTMLButtonElement).onclick = async () => {
+            track('share-clicked');
             const text = buildShareText(won, guessCount, warmths, puzzleNo, stats.streak);
             try {
                 await navigator.clipboard.writeText(text);

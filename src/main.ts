@@ -11,6 +11,7 @@ import { loadStats, loadGame, saveGame, recordResult, clearStats,
          loadEndlessStats } from './storage/stats';
 import { runEndless } from './endlessMode';
 import { SUPPORT_URL, SOURCE_URL } from './config';
+import { track } from './analytics';
 
 // Mode lives in the URL rather than in a variable, so switching is a navigation.
 // That keeps exactly one GameState per page load — no re-wiring of the dozen
@@ -97,6 +98,7 @@ async function main() {
 
     const finish = (won: boolean) => {
         const stats = recordResult(key, won, state.guesses.length);
+        track(won ? 'game-won' : 'game-lost');
         renderer.lockInput();
         refreshControls();
         persist();

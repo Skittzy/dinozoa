@@ -19,6 +19,7 @@ import { getAnswerPool } from './game/dailyAnimal';
 import { Renderer } from './ui/render';
 import { TreeView } from './ui/treeView';
 import { loadEndlessStats, recordEndlessRun } from './storage/stats';
+import { track } from './analytics';
 
 export interface EndlessHandles {
     renderer: Renderer;
@@ -113,6 +114,7 @@ export function runEndless(h: EndlessHandles): void {
 
     const endRun = () => {
         const stats = recordEndlessRun(score, attempted);
+        track('endless-run-ended');
         renderer.lockInput();
         void renderer.showEndlessSummary(score, attempted, stats, missed, solved);
     };
