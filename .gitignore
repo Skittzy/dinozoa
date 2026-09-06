@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------------------
+# Dinozoa — what git should never track.
+#
+# The rule of thumb: if a file can be regenerated from what is here, or if it
+# only means something on one particular computer, it does not belong in the
+# repository.
+# ---------------------------------------------------------------------------
+
+# Installed packages. Thousands of files, recreated by `npm ci` from
+# package-lock.json anywhere in the world.
+node_modules/
+
+# The baked site. Cloudflare Pages builds this fresh on every push, so a copy
+# in here is only ever out of date.
+dist/
+dist-ssr/
+*.local
+
+# macOS Finder droppings.
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows equivalents, in case anyone clones this on one.
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editors.
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# Logs.
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python leftovers from tools/.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Local environment overrides only.
+#
+# .env.production is COMMITTED on purpose: it holds nothing but the public site
+# address, which Vite substitutes into index.html at build time. It is printed
+# in the page source of every visitor's browser, so it is not a secret. Anything
+# that genuinely is one belongs in Cloudflare's environment variables, never in
+# a file here.
+.env
+.env.local
+.env.*.local
+
+# Test and coverage output.
+coverage/
+.nyc_output/
