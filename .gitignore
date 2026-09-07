@@ -62,3 +62,12 @@ env/
 # Test and coverage output.
 coverage/
 .nyc_output/
+
+# Playwright leftovers. tools/screenshots.mjs only uses the library, so it writes
+# none of these today — but if it ever grows into a test suite these appear, and
+# they are large, machine-specific and regenerated every run. The browsers
+# themselves live in ~/Library/Caches/ms-playwright, outside the repo entirely.
+test-results/
+playwright-report/
+blob-report/
+.playwright/
