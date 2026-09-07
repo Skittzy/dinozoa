@@ -122,10 +122,12 @@
           <div class="guess-row">
             <!-- A placeholder is not a label: screen readers announce the field as
                  unlabelled, and the hint disappears as soon as you type. -->
-            <input id="guess-input" type="text" list="guess-datalist"
+            <!-- The suggestion list is built by src/ui/suggest.ts and inserted
+                 here at runtime. It used to be a <datalist>, which showed nothing
+                 at all on iOS. -->
+            <input id="guess-input" type="text"
                    aria-label="Guess a prehistoric animal"
                    placeholder="e.g. Velociraptor" autocomplete="off" />
-            <datalist id="guess-datalist"></datalist>
             <button type="submit" id="guess-btn">Guess</button>
           </div>
         </form>

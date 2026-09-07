@@ -831,3 +831,48 @@ body.endless .countdown { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .install-strip { transition: none; }
 }
+
+/* ---------------- guess suggestions ----------------
+   Replaces the browser's <datalist> dropdown, which drew nothing on iOS. Because
+   this is real DOM it needs real positioning: the input is wrapped so the list can
+   be measured against the FIELD rather than against .guess-row, which also holds
+   the Guess button and would make the list too wide. */
+.suggest-wrap { position: relative; flex: 1; min-width: 0; }
+/* #guess-input carried flex:1 while it was a direct child of .guess-row. Inside
+   the wrapper it is no longer a flex item, so that rule is inert and the width
+   has to be stated. */
+.suggest-wrap > #guess-input { width: 100%; }
+
+.suggest {
+  position: absolute; top: calc(100% + .25rem); left: 0; right: 0; z-index: 40;
+  margin: 0; padding: .25rem; list-style: none;
+  max-height: 18rem; overflow-y: auto;
+  background: var(--card); color: var(--ink);
+  border: 2px solid #9db4c8; border-radius: .35rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .16);
+  -webkit-overflow-scrolling: touch;
+}
+.suggest[hidden] { display: none; }
+
+.suggest li {
+  display: flex; align-items: baseline; gap: .45rem;
+  padding: .5rem .55rem; border-radius: .25rem;
+  cursor: pointer; line-height: 1.25;
+}
+/* Hover is a desktop idea; on a touch screen it sticks after a tap. */
+@media (hover: hover) {
+  .suggest li:hover { background: var(--card-2); }
+}
+.suggest li.on { background: var(--green); color: #fff; }
+.suggest li.on .s-hint { color: rgba(255, 255, 255, .8); }
+
+.s-main { font-size: .95rem; }
+.s-main b { font-weight: 800; }        /* the part you have actually typed */
+.s-hint { font-size: .82rem; color: var(--muted); }
+
+/* Apple's minimum comfortable target is 44px; the desktop rows are deliberately
+   tighter so eight of them do not fill half the screen. */
+@media (pointer: coarse) {
+  .suggest li { padding: .7rem .6rem; min-height: 44px; align-items: center; }
+  .suggest { max-height: 17rem; }
+}

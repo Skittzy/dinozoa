@@ -14,6 +14,7 @@ import { runEndless } from './endlessMode';
 import { SUPPORT_URL, SOURCE_URL } from './config';
 import { track } from './analytics';
 import { offerInstallAfterModal } from './ui/installPrompt';
+import { attachSuggest } from './ui/suggest';
 
 // Mode lives in the URL rather than in a variable, so switching is a navigation.
 // That keeps exactly one GameState per page load — no re-wiring of the dozen
@@ -59,15 +60,23 @@ async function main() {
     document.getElementById('animal-no')!.textContent =
         puzzleNo >= 1 ? `Animal #${puzzleNo}` : `Preview — launches ${launchDateLabel()}`;
 
-    const datalist = document.getElementById('guess-datalist') as HTMLDataListElement;
-    // Canonical names first, then the slang, each labelled with what it maps to
-    // so the dropdown reads "trex -> Tyrannosaurus" rather than looking duplicated.
-    datalist.innerHTML =
-        guessableNames.map((n) => `<option value="${n}"></option>`).join('') +
-        altNames.map((a) => `<option value="${a.typed}" label="${a.maps}"></option>`).join('');
-
     const form = document.getElementById('guess-form') as HTMLFormElement;
     const input = document.getElementById('guess-input') as HTMLInputElement;
+
+    // Canonical names first, then the slang, each labelled with the genus it maps
+    // to so a row reads "trex -> Tyrannosaurus" rather than looking duplicated.
+    //
+    // Wired HERE, above the ENDLESS branch further down, so both modes get it. The
+    // old <datalist> lived up here for the same reason; anything below that branch
+    // simply does not exist in an endless run.
+    attachSuggest(input, [
+        ...guessableNames.map((n) => {
+            // guessableNames are "Scientific (common)" when the two differ.
+            const m = n.match(/^(.*?)\s*\((.*)\)\s*$/);
+            return m ? { value: n, main: m[1], hint: m[2] } : { value: n, main: n };
+        }),
+        ...altNames.map((a) => ({ value: a.typed, main: a.typed, hint: `\u2192 ${a.maps}` })),
+    ]);
     const hintBtn = document.getElementById('hint-btn') as HTMLButtonElement;
 
     // "Scientific (common)" from the autocomplete -> try each part
