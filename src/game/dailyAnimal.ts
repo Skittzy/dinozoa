@@ -26,8 +26,15 @@ function createSeededRNG(seed: number) {
 
 // Day 1 of Dinozoa. Puzzle numbers count from here and never reset, so "Dinozoa
 // #412" keeps rising instead of dropping back to #1 every January.
-// 1 August 2026 is puzzle #1. The <= 0 guards downstream are kept anyway — they
-// cost nothing and stop a negative number reaching the UI if this ever moves.
+//
+// This line is the ONLY place the launch date is written down. It has already
+// drifted from the prose around it twice: a comment said 1 August and the page
+// header said 1 October while the real value was neither. So anything that needs
+// to show the date derives it from here through launchDateLabel() rather than
+// spelling it out again. Months are zero-indexed — 8 is September.
+//
+// The <= 0 guards downstream are kept anyway: they cost nothing and stop a
+// negative number reaching the UI if this ever moves.
 const EPOCH = Date.UTC(2026, 8, 15);
 const ONE_DAY = 1000 * 60 * 60 * 24;
 
@@ -42,6 +49,15 @@ export function getDayNumber(date: Date = new Date()): number {
 // The puzzle number players see and share. 1-based, monotonic.
 export function getPuzzleNumber(date: Date = new Date()): number {
     return getDayNumber(date) + 1;
+}
+
+// The launch date as players see it, read off EPOCH instead of typed out a
+// second time. Formatted in UTC to match the epoch itself, so it cannot show a
+// different day to someone west of Greenwich than the countdown does.
+export function launchDateLabel(): string {
+    return new Date(EPOCH).toLocaleDateString('en-GB', {
+        day: 'numeric', month: 'long', timeZone: 'UTC',
+    });
 }
 
 // Kept for the existing tests and any caller that still wants a day-of-year.

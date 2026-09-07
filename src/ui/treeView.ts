@@ -955,6 +955,70 @@ export class TreeView {
     }
 
     // one labelled box, fading in the moment its branch arrives
+    // Bring the tree into view on a stacked (phone) layout.
+    //
+    // On a wide screen the tree sits beside the input and a guess is visible the
+    // instant it lands. On a phone the panes stack, so the tree is below the fold
+    // and a guess appears somewhere the player cannot see — they have to scroll
+    // down to find out what happened, every single turn.
+    //
+    // Returns whether it actually scrolled, so the caller can decide whether to
+    // drop the soft keyboard: leaving it up would cover the thing we just
+    // scrolled to. Does nothing on a wide screen, where this would be a jolt for
+    // no reason.
+    revealOnNarrow(): boolean {
+        if (!window.matchMedia('(max-width: 900px)').matches) return false;
+        const target = this.svg.closest('.tree-frame') ?? this.svg;
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // update() has just re-laid-out the SVG and it may have grown a row. Wait
+        // one frame so we scroll to where the tree ends up, not where it was.
+        requestAnimationFrame(() => {
+            target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        });
+        return true;
+    }
+
+    // A small excavation flag, planted on the answer once it has been found.
+    //
+    // Deliberately NOT drawn on the hidden "?" box: marking the thing you are
+    // hunting before you have found it turns a discovery into a signpost. The
+    // flag is the reward, so it appears only at the moment the animal is dug up.
+    //
+    // Drawn in the answer colours rather than a new constant, so it inherits any
+    // theme automatically, and kept to ~11px: the row above sits ROW_H (80) away
+    // and MARGIN (26) clears the top of the drawing, so it can neither collide
+    // nor be clipped.
+    private answerFlag(w: number): SVGGElement {
+        const g = document.createElementNS(SVG_NS, 'g');
+        // Planted at the top-RIGHT corner, not centred: the branch line from the
+        // parent clade comes down into the middle of the box's top edge, and a
+        // centred flag sits directly on top of it.
+        g.setAttribute('transform', `translate(${w / 2 - 7},${-BOX_H / 2 - 2})`);
+        // Never steal the click: the box underneath owns it, and on the hidden
+        // answer there is deliberately no click to steal.
+        g.setAttribute('style', 'pointer-events:none');
+
+        const pole = document.createElementNS(SVG_NS, 'line');
+        pole.setAttribute('x1', '0');
+        pole.setAttribute('y1', '0');
+        pole.setAttribute('x2', '0');
+        pole.setAttribute('y2', '-11');
+        pole.setAttribute('stroke', THEME.wonStroke);
+        pole.setAttribute('stroke-width', '1.6');
+        pole.setAttribute('stroke-linecap', 'round');
+
+        const pennant = document.createElementNS(SVG_NS, 'path');
+        pennant.setAttribute('d', 'M0,-11 L7.5,-8.2 L0,-5.4 Z');
+        pennant.setAttribute('stroke', THEME.wonStroke);
+        pennant.setAttribute('stroke-width', '1.4');
+        pennant.setAttribute('stroke-linejoin', 'round');
+        pennant.setAttribute('fill', THEME.wonFill);
+
+        g.appendChild(pole);
+        g.appendChild(pennant);
+        return g;
+    }
+
     private nodeEl(node: RNode, begin: number, reduced: boolean, isRoot: boolean): SVGGElement {
         const g = document.createElementNS(SVG_NS, 'g');
         g.setAttribute('transform', `translate(${node.x},${node.y})`);
@@ -1016,6 +1080,9 @@ export class TreeView {
         g.appendChild(rect);
         g.appendChild(text);
         g.appendChild(title);
+        if (node.kind === 'answerRevealed') {
+            g.appendChild(this.answerFlag(node.w));
+        }
 
         // Every clade and every animal can be clicked to read about it. The one
         // exception is the hidden answer: clicking "?" must not give the game away.

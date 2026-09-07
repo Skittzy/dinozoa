@@ -174,6 +174,44 @@
             <rect x="217" y="22" width="86" height="26" rx="5" fill="#b6231f"/>
             <text x="260" y="40" class="hd-t hd-on">Animalia</text>
           </g>
+          <!-- The hidden answer, hanging off the deepest clade currently known to
+               contain it — exactly what the real tree does. It stays in the same
+               lineage: under Animalia, then Dinosauria, then Ceratopsidae, where
+               Triceratops finally replaces it. Separate groups rather than one,
+               because a panel can only show or hide a group, not move it.
+
+               On the very first panel it hangs straight down from Animalia, being
+               the only child there is. When megalodon joins that row on panel 1 the
+               tree rebalances and the "?" shifts right to make room, after which it
+               holds the same column all the way down. -->
+          <g class="hd" data-step="0" data-until="0">
+            <path d="M260 48 L260 97" fill="none" stroke="#7d6f5c"
+                  stroke-width="2" stroke-dasharray="5 4" opacity=".6"/>
+            <rect x="238" y="97" width="44" height="26" rx="3" fill="#fffdf8"
+                  stroke="#218329" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="260" y="115" class="hd-t">?</text>
+          </g>
+          <g class="hd" data-step="1" data-until="1">
+            <path d="M260 48 C260 72 452 72 452 97" fill="none" stroke="#7d6f5c"
+                  stroke-width="2" stroke-dasharray="5 4" opacity=".6"/>
+            <rect x="430" y="97" width="44" height="26" rx="3" fill="#fffdf8"
+                  stroke="#218329" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="452" y="115" class="hd-t">?</text>
+          </g>
+          <g class="hd" data-step="2" data-until="2">
+            <path d="M330 123 C330 147 452 147 452 172" fill="none" stroke="#7d6f5c"
+                  stroke-width="2" stroke-dasharray="5 4" opacity=".6"/>
+            <rect x="430" y="172" width="44" height="26" rx="3" fill="#fffdf8"
+                  stroke="#218329" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="452" y="190" class="hd-t">?</text>
+          </g>
+          <g class="hd" data-step="3" data-until="5">
+            <path d="M395 198 C395 222 452 222 452 247" fill="none" stroke="#7d6f5c"
+                  stroke-width="2" stroke-dasharray="5 4" opacity=".6"/>
+            <rect x="430" y="247" width="44" height="26" rx="3" fill="#fffdf8"
+                  stroke="#218329" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="452" y="265" class="hd-t">?</text>
+          </g>
           <g class="hd" data-step="1">
             <path d="M260 48 C260 72 110 72 110 97" fill="none" stroke="#b6231f" stroke-width="3"/>
             <rect x="63" y="97" width="94" height="26" rx="5" fill="#fffdf8" stroke="#b6231f" stroke-width="2"/>
@@ -195,10 +233,50 @@
             <rect x="247" y="247" width="126" height="26" rx="5" fill="#fffdf8" stroke="#218329" stroke-width="2"/>
             <text x="310" y="265" class="hd-t">Styracosaurus</text>
           </g>
-          <g class="hd" data-step="4">
+          <!-- The info panel, following the closest shared clade by itself. -->
+          <g class="hd" data-step="4" data-until="4">
+            <rect x="332" y="168" width="126" height="34" rx="8" fill="none"
+                  stroke="#8a2d20" stroke-width="2" stroke-dasharray="5 4"/>
+            <path d="M158 205 C240 222 305 224 350 200" fill="none" stroke="#7d6f5c"
+                  stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="8" y="150" width="150" height="112" rx="6" fill="#fbf3e4"
+                  stroke="#e0cdbd" stroke-width="1.5"/>
+            <text x="83" y="170" class="hd-t">Ceratopsidae</text>
+            <rect x="18" y="180" width="48" height="40" rx="3" fill="#f3e6d2" stroke="#e0cdbd"/>
+            <rect x="74" y="184" width="68" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="74" y="195" width="60" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="74" y="206" width="66" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="18" y="230" width="124" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="18" y="241" width="106" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="18" y="252" width="118" height="5" rx="2.5" fill="#e0cdbd"/>
+          </g>
+          <!-- The same panel following a box the player tapped. Drawn in exactly the
+               same place on purpose: this is one panel changing, not a second one. -->
+          <g class="hd" data-step="5" data-until="5">
+            <rect x="243" y="243" width="134" height="34" rx="8" fill="none"
+                  stroke="#8a2d20" stroke-width="2" stroke-dasharray="5 4"/>
+            <path d="M158 243 L247 258" fill="none" stroke="#7d6f5c"
+                  stroke-width="2" stroke-dasharray="4 3"/>
+            <rect x="8" y="150" width="150" height="112" rx="6" fill="#fbf3e4"
+                  stroke="#e0cdbd" stroke-width="1.5"/>
+            <text x="83" y="170" class="hd-t">Styracosaurus</text>
+            <rect x="18" y="180" width="48" height="40" rx="3" fill="#f3e6d2" stroke="#e0cdbd"/>
+            <rect x="74" y="184" width="68" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="74" y="195" width="60" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="74" y="206" width="66" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="18" y="230" width="124" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="18" y="241" width="106" height="5" rx="2.5" fill="#e0cdbd"/>
+            <rect x="18" y="252" width="118" height="5" rx="2.5" fill="#e0cdbd"/>
+          </g>
+          <g class="hd" data-step="6">
             <path d="M395 198 C395 222 452 222 452 247" fill="none" stroke="#218329" stroke-width="3"/>
             <rect x="397" y="247" width="110" height="26" rx="5" fill="#f5c542" stroke="#b8860b" stroke-width="2"/>
             <text x="452" y="265" class="hd-t">Triceratops</text>
+            <!-- the same excavation flag the real tree plants the moment you find it -->
+            <line x1="500" y1="247" x2="500" y2="236" stroke="#b8860b" stroke-width="1.6"
+                  stroke-linecap="round"/>
+            <path d="M500,236 L507,238.6 L500,241.2 Z" fill="#f5c542" stroke="#b8860b"
+                  stroke-width="1.4" stroke-linejoin="round"/>
           </g>
         </svg>
 
@@ -207,7 +285,7 @@
           <button type="button" id="howto-next" class="modal-btn howto-next">Show me</button>
           <button type="button" id="howto-play" class="modal-btn howto-play">Play</button>
         </div>
-        <p class="howto-dots"><span data-dot="0"></span><span data-dot="1"></span><span data-dot="2"></span><span data-dot="3"></span><span data-dot="4"></span></p>
+        <p class="howto-dots"><span data-dot="0"></span><span data-dot="1"></span><span data-dot="2"></span><span data-dot="3"></span><span data-dot="4"></span><span data-dot="5"></span><span data-dot="6"></span></p>
       </div>
     </div>
     <footer class="site-footer">

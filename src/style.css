@@ -799,3 +799,35 @@ body.endless .countdown { display: none; }
   margin: 0 auto 1rem; max-width: 22rem;
   font-size: .74rem; line-height: 1.5; color: var(--muted);
 }
+
+/* ---------------- add to home screen ----------------
+   A strip, not a modal. It appears only after the end-game modal has been
+   dismissed, and ignoring it completely has to be effortless — so it sits at the
+   bottom, where a thumb already is on a phone, and never blocks the page. */
+.install-strip {
+  position: fixed; left: .75rem; right: .75rem; bottom: .75rem; z-index: 60;
+  display: flex; align-items: center; gap: .7rem;
+  padding: .7rem .8rem;
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
+  transform: translateY(140%); opacity: 0;
+  transition: transform .28s ease, opacity .28s ease;
+}
+.install-strip.in { transform: translateY(0); opacity: 1; }
+.install-text { flex: 1; min-width: 0; line-height: 1.35; }
+.install-text strong { display: block; font-size: .92rem; color: var(--ink); }
+.install-text span { display: block; font-size: .82rem; color: var(--muted); }
+.install-text svg { vertical-align: -3px; }
+.install-add {
+  flex: none; padding: .45rem .9rem; border-radius: 8px; cursor: pointer;
+  background: var(--green); color: #fff; border: 1px solid var(--green);
+  font: inherit; font-size: .88rem;
+}
+.install-close {
+  flex: none; background: none; border: 0; cursor: pointer;
+  font-size: 1.4rem; line-height: 1; color: var(--muted); padding: 0 .25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .install-strip { transition: none; }
+}

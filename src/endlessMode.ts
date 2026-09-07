@@ -166,6 +166,10 @@ export function runEndless(h: EndlessHandles): void {
 
         tree.update(state);
         input.value = '';
+        // Phone only: show the player where their guess landed instead of making
+        // them scroll for it. Skipped once the game is over, because the end-game
+        // modal is about to cover the screen anyway.
+        if (!state.over && tree.revealOnNarrow()) input.blur();
 
         if (outcome.status === 'win') {
             void renderer.showLca(state.answerNode, { solved: true });

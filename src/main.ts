@@ -2,7 +2,8 @@
 
 import './style.css';
 import { loadDatabase, guessableNames, nodeLookup, rootId, altNames } from './data/loadTree';
-import { getDailyAnimalId, dateKey, getPuzzleNumber, msUntilNextAnimal } from './game/dailyAnimal';
+import { getDailyAnimalId, dateKey, getPuzzleNumber, msUntilNextAnimal,
+         launchDateLabel } from './game/dailyAnimal';
 import { GameState, MAX_GUESSES, HINT_COST } from './game/gameState';
 import type { GuessOutcome } from './game/gameState';
 import { Renderer } from './ui/render';
@@ -12,6 +13,7 @@ import { loadStats, loadGame, saveGame, recordResult, clearStats,
 import { runEndless } from './endlessMode';
 import { SUPPORT_URL, SOURCE_URL } from './config';
 import { track } from './analytics';
+import { offerInstallAfterModal } from './ui/installPrompt';
 
 // Mode lives in the URL rather than in a variable, so switching is a navigation.
 // That keeps exactly one GameState per page load — no re-wiring of the dozen
@@ -49,11 +51,13 @@ async function main() {
         },
     );
 
-    // Puzzle #1 is 1 Oct 2026. Before then the count is <= 0, so show that plainly
-    // rather than printing "Animal #-38" at anyone testing early.
+    // Before launch the count is <= 0, so say so plainly rather than printing
+    // "Animal #-8" at anyone testing early. The date is derived from EPOCH and
+    // never written here — hardcoding it is exactly how the header ended up
+    // advertising a launch two weeks after the real one.
     const puzzleNo = getPuzzleNumber(today);
     document.getElementById('animal-no')!.textContent =
-        puzzleNo >= 1 ? `Animal #${puzzleNo}` : 'Preview — launches 1 Oct';
+        puzzleNo >= 1 ? `Animal #${puzzleNo}` : `Preview — launches ${launchDateLabel()}`;
 
     const datalist = document.getElementById('guess-datalist') as HTMLDataListElement;
     // Canonical names first, then the slang, each labelled with what it maps to
@@ -105,6 +109,9 @@ async function main() {
         const warmths = state.guesses.map((g) => g.info.warmth);
         setTimeout(() => void renderer.showEndModal(
             won, state.answerNode, state.guesses.length, stats, warmths, puzzleNo), 700);
+        // Armed now, shown only once the end screen has been opened and closed —
+        // see installPrompt.ts for why it must not appear beside the share button.
+        offerInstallAfterModal(document.getElementById('modal')!);
     };
 
     // ---- countdown to the next animal ----
@@ -148,9 +155,11 @@ async function main() {
         //   - Dinosauria is a CLADE, not a family. (Ceratopsidae genuinely is a
         //     family, so the green line was already correct and kept as written.)
         'Guess the hidden prehistoric animal of the day! You get 20 guesses.',
-        'Guess anything! A bad guess only shares the kingdom Animalia — red means the answer is far away.',
-        'Warmer colours mean a closer relative! Stegosaurus at least shares the Dinosauria clade.',
-        'Bright green means you are almost there! Styracosaurus shares the same family, Ceratopsidae.',
+        'Guess anything! A bad guess only shares the base kingdom Animalia — red means the answer is far away.',
+        'Warmer colours mean a closer relative! Stegosaurus at least shares the Dinosauria clade with the answer!',
+        'Green means you are almost there! Styracosaurus shares the same family Ceratopsidae with the answer!',
+        'The information panel always describes the closest clade your guess shares with the answer. Read it for clues about the hidden animal!',
+        'Tap any animal or clade in the tree to read about it instead!',
         'Find the answer and complete the tree!',
     ];
 
@@ -158,14 +167,20 @@ async function main() {
     const showStep = (n: number) => {
         step = n;
         howtoStep.textContent = LINES[n];
-        groups.forEach((g) => g.classList.toggle('on', Number(g.dataset.step) <= n));
+        // data-until lets a group DISAPPEAR again — the hidden "?" gives way to
+        // the answer, and each info-panel example gives way to the next.
+        groups.forEach((g) => {
+            const from = Number(g.dataset.step);
+            const until = g.dataset.until === undefined ? Infinity : Number(g.dataset.until);
+            g.classList.toggle('on', from <= n && n <= until);
+        });
         dots.forEach((d, i) => d.classList.toggle('on', i <= n));
         const last = n >= LINES.length - 1;
         // Explicit values on all three. Clearing the inline style instead would
         // fall back to the stylesheet, where .howto-play and .howto-back default
         // to display:none, so they'd never appear at all.
         nextBtn.style.display = last ? 'none' : 'inline-block';
-        nextBtn.textContent = n === 0 ? 'Show me' : 'Next';
+        nextBtn.textContent = n === 0 ? 'Tutorial' : 'Next';
         playBtn.style.display = last ? 'inline-block' : 'none';
         backBtn.style.display = n > 0 ? 'inline-block' : 'none';
     };
@@ -297,6 +312,10 @@ async function main() {
 
         tree.update(state);
         input.value = '';
+        // Phone only: show the player where their guess landed instead of making
+        // them scroll for it. Skipped once the game is over, because the end-game
+        // modal is about to cover the screen anyway.
+        if (!state.over && tree.revealOnNarrow()) input.blur();
 
         if (outcome.status === 'win') {
             void renderer.showLca(state.answerNode, { solved: true });
