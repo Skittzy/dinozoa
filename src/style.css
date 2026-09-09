@@ -876,3 +876,59 @@ body.endless .countdown { display: none; }
   .suggest li { padding: .7rem .6rem; min-height: 44px; align-items: center; }
   .suggest { max-height: 17rem; }
 }
+
+/* ---------------- about / FAQ ----------------
+   Lives inside the footer and is meant to read as one more item in it, next to
+   Privacy and Source, rather than as a block of its own. Closed by default: the
+   board is what people came for. It is here so a search engine has something to
+   read, and so a curious visitor can find out what the game is.
+
+   Google indexes what is inside <details> and does not count a click to open as
+   hiding, which is the difference between this and display:none. */
+.about { margin: 0 0 .5rem; }
+
+.about > summary {
+  display: inline-block;
+  cursor: pointer;
+  padding: .1rem .1rem;
+  /* Matches the footer's own links so it sits among them rather than beside them. */
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  list-style: none;
+}
+.about > summary::-webkit-details-marker { display: none; }
+/* A chevron, because everything else in this row navigates away and this one does
+   not. Without it people expect a new page. */
+.about > summary::after {
+  content: "\203A";
+  display: inline-block;
+  /* A parent's underline is drawn through its descendants and a child cannot turn
+     it off, so the chevron is nudged clear of the text rather than fought with. */
+  margin-left: .4em;
+  transition: transform .2s ease;
+}
+.about[open] > summary::after { transform: rotate(90deg); }
+.about > summary:hover { color: var(--ink); }
+.about > summary:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: .2rem; }
+
+/* The footer is centred and tiny. Four hundred words of prose cannot be either, so
+   the body resets both. */
+.about-body {
+  max-width: 44rem;
+  margin: .9rem auto 1.4rem;
+  padding-top: .9rem;
+  border-top: 1px solid var(--line);
+  text-align: left;
+  font-size: .88rem;
+  line-height: 1.65;
+}
+.about-body p { margin: 0 0 .8rem; }
+.about-body strong { color: var(--ink); }
+.faq { margin: 1.2rem 0 0; }
+.faq dt { margin: .9rem 0 .25rem; font-weight: 700; color: var(--ink); }
+.faq dd { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .about > summary::after { transition: none; }
+}

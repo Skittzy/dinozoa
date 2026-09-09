@@ -20,6 +20,124 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dinozoa — daily prehistoric animal game</title>
+
+    <!-- Structured data. Tells Google and the AI answer engines what this page IS,
+         rather than leaving them to infer it from a page that is mostly canvas and
+         buttons. URLs use %VITE_SITE_URL% for the same reason the canonical tag
+         does: one place to change the address. -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "%VITE_SITE_URL%/#author",
+      "name": "Matej Krsteski",
+      "url": "https://github.com/Skittzy"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "%VITE_SITE_URL%/#website",
+      "url": "%VITE_SITE_URL%/",
+      "name": "Dinozoa",
+      "description": "Dinozoa is a free daily browser game. One hidden prehistoric animal a day, the same one for everybody. Every guess is placed on the taxonomic tree of life and shows the closest ancestor it shares with the answer, so even a wrong guess narrows things down.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "%VITE_SITE_URL%/#author"
+      }
+    },
+    {
+      "@type": "VideoGame",
+      "@id": "%VITE_SITE_URL%/#game",
+      "name": "Dinozoa",
+      "alternateName": "Dinozoa daily prehistoric animal game",
+      "url": "%VITE_SITE_URL%/",
+      "description": "Dinozoa is a free daily browser game. One hidden prehistoric animal a day, the same one for everybody. Every guess is placed on the taxonomic tree of life and shows the closest ancestor it shares with the answer, so even a wrong guess narrows things down.",
+      "image": "%VITE_SITE_URL%/og-image.png",
+      "applicationCategory": "GameApplication",
+      "genre": [
+        "Puzzle",
+        "Educational game",
+        "Daily game"
+      ],
+      "gamePlatform": "Web browser",
+      "operatingSystem": "Any (web browser)",
+      "playMode": "SinglePlayer",
+      "isAccessibleForFree": true,
+      "inLanguage": "en",
+      "author": {
+        "@id": "%VITE_SITE_URL%/#author"
+      },
+      "isPartOf": {
+        "@id": "%VITE_SITE_URL%/#website"
+      },
+      "sameAs": [
+        "https://github.com/Skittzy/dinozoa"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "%VITE_SITE_URL%/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Dinozoa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dinozoa is a free daily browser game about prehistoric animals. Each day there is one hidden animal, the same one for every player, and you get 20 guesses to work out what it is. Every guess is placed on a taxonomic tree that shows how closely related it is to the answer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you play Dinozoa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Type the name of any prehistoric animal. Dinozoa finds the closest ancestor your guess shares with the hidden answer and draws it on a tree. Distant guesses come out red, close relatives come out green. Use the shared ancestors to narrow things down before your 20 guesses run out."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Dinozoa free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It is free, there is no account to make, and it all runs in your browser. There are no adverts, and no tracking beyond a simple visitor count that does not identify anyone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I play Dinozoa more than once a day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Endless Mode gives you random prehistoric animals one after another for as long as you like, and it does not touch your daily streak or your statistics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is the game called Dinozoa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The name puts dinosaur together with the zoa ending that turns up all over animal taxonomy, because the game covers the whole tree of life and not just dinosaurs. Dinozoa is also a scientific name for a group of microscopic algae, which has nothing to do with this game."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where do the animals and pictures come from?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The taxonomy, the descriptions and the images all come from Wikipedia and Wikimedia Commons, under their own licences. Dinozoa is not affiliated with Wikimedia."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
     <meta name="description" content="A new prehistoric animal every day. Guess it in 20 tries and watch the tree of life grow with every guess." />
     <meta name="theme-color" content="#f0e4d0" />
     <link rel="manifest" href="manifest.json" />
@@ -290,7 +408,48 @@
         <p class="howto-dots"><span data-dot="0"></span><span data-dot="1"></span><span data-dot="2"></span><span data-dot="3"></span><span data-dot="4"></span><span data-dot="5"></span><span data-dot="6"></span></p>
       </div>
     </div>
+
     <footer class="site-footer">
+      <!-- Collapsed on purpose.
+           The game is buttons and an SVG, which leaves a search engine almost nothing
+           to read, so this text is here to give it something. Collapsing it keeps the
+           board uncluttered. Google indexes content inside <details> and does not treat
+           a click to open as hiding, which display:none would be.
+
+           The questions are duplicated as FAQPage data in <head>. Google wants the
+           markup to match what a visitor can see, so edit both or neither. -->
+      <details class="about" id="about">
+        <summary>About Dinozoa</summary>
+        <div class="about-body">
+          <p>
+            <strong>Dinozoa</strong> is a free daily game you play in the browser. Every
+            day there is one hidden prehistoric animal, the same one for everybody, and
+            you get 20 guesses to work out what it is.
+          </p>
+          <p>
+            A wrong guess still tells you something. Each one gets placed on a taxonomic
+            tree beside the answer, showing the closest ancestor the two of them share.
+            Guess a shark when the answer is a marine reptile and all you have in common
+            is the kingdom Animalia, so the branch draws long and red. Guess something
+            closer and it comes out short and green. The tree fills in as you go, until
+            you find the animal or run out of guesses.
+          </p>
+          <dl class="faq">
+          <dt>What is Dinozoa?</dt>
+          <dd>Dinozoa is a free daily browser game about prehistoric animals. Each day there is one hidden animal, the same one for every player, and you get 20 guesses to work out what it is. Every guess is placed on a taxonomic tree that shows how closely related it is to the answer.</dd>
+          <dt>How do you play Dinozoa?</dt>
+          <dd>Type the name of any prehistoric animal. Dinozoa finds the closest ancestor your guess shares with the hidden answer and draws it on a tree. Distant guesses come out red, close relatives come out green. Use the shared ancestors to narrow things down before your 20 guesses run out.</dd>
+          <dt>Is Dinozoa free?</dt>
+          <dd>Yes. It is free, there is no account to make, and it all runs in your browser. There are no adverts, and no tracking beyond a simple visitor count that does not identify anyone.</dd>
+          <dt>Can I play Dinozoa more than once a day?</dt>
+          <dd>Yes. <a href="?endless">Endless Mode</a> gives you random prehistoric animals one after another for as long as you like, and it does not touch your daily streak or your statistics.</dd>
+          <dt>Why is the game called Dinozoa?</dt>
+          <dd>The name puts dinosaur together with the zoa ending that turns up all over animal taxonomy, because the game covers the whole tree of life and not just dinosaurs. Dinozoa is also a scientific name for a group of microscopic algae, which has nothing to do with this game.</dd>
+          <dt>Where do the animals and pictures come from?</dt>
+          <dd>The taxonomy, the descriptions and the images all come from Wikipedia and Wikimedia Commons, under their own licences. Dinozoa is not affiliated with Wikimedia.</dd>
+          </dl>
+        </div>
+      </details>
       <p>
         &copy; 2026 Matej Krsteski ·
         <a href="privacy.html">Privacy</a> ·
