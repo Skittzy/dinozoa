@@ -12,7 +12,7 @@ import { loadStats, loadGame, saveGame, recordResult, clearStats,
          loadEndlessStats } from './storage/stats';
 import { runEndless } from './endlessMode';
 import { SUPPORT_URL, SOURCE_URL } from './config';
-import { track } from './analytics';
+import { track, retentionBand } from './analytics';
 import { offerInstallAfterModal } from './ui/installPrompt';
 import { attachSuggest } from './ui/suggest';
 
@@ -31,7 +31,7 @@ async function main() {
     const state = new GameState(answerId);
     const saved = loadGame(key);
     if (saved && saved.answerId === answerId) {
-        state.restore(saved.guessIds ?? [], saved.revealedIds ?? []);
+        state.restore(saved.guessIds ?? [], saved.revealedIds ?? [], saved.surrendered ?? false);
     }
 
     const renderer = new Renderer();
@@ -78,6 +78,17 @@ async function main() {
         ...altNames.map((a) => ({ value: a.typed, main: a.typed, hint: `\u2192 ${a.maps}` })),
     ]);
     const hintBtn = document.getElementById('hint-btn') as HTMLButtonElement;
+    const giveUpBtn = document.getElementById('giveup-btn') as HTMLButtonElement;
+
+    // Half the budget SPENT, not half the guesses typed. Hints are paid for out
+    // of the same twenty, so three hints and one guess is ten gone with only one
+    // entry in state.guesses — and somebody who has been buying help is, if
+    // anything, more stuck than somebody who has just been guessing.
+    //
+    // Late enough either way that surrendering is a considered decision about a
+    // puzzle you have engaged with, rather than the first exit offered to
+    // somebody who has not started.
+    const GIVE_UP_AFTER = 10;
 
     // "Scientific (common)" from the autocomplete -> try each part
     const candidates = (raw: string): string[] => {
@@ -92,10 +103,12 @@ async function main() {
         guessIds: state.guesses.map((g) => g.guessId),
         revealedIds: [...state.revealedIds],
         finished: state.over,
+        surrendered: state.surrendered,
     });
 
     const refreshControls = () => {
         renderer.setRemaining(state.remaining);
+        giveUpBtn.hidden = state.over || state.guessesUsed < GIVE_UP_AFTER;
         if (state.over) {
             renderer.setHint(false, '');   // hides the row; status carries the outcome
             return;
@@ -109,9 +122,13 @@ async function main() {
         }
     };
 
-    const finish = (won: boolean) => {
+    const finish = (won: boolean, gaveUp = false) => {
         const stats = recordResult(key, won, state.guesses.length);
-        track(won ? 'game-won' : 'game-lost');
+        track(won ? 'game-won' : gaveUp ? 'game-gave-up' : 'game-lost');
+        // Sent on every finished game, so a day's dashboard shows the mix: how
+        // many of the people who played today were here for the first time, and
+        // how many have been coming back for weeks.
+        track(retentionBand(stats.gamesPlayed));
         renderer.lockInput();
         refreshControls();
         persist();
@@ -121,6 +138,46 @@ async function main() {
         // Armed now, shown only once the end screen has been opened and closed —
         // see installPrompt.ts for why it must not appear beside the share button.
         offerInstallAfterModal(document.getElementById('modal')!);
+    };
+
+    // ---- giving up ----
+    // Without this, somebody stuck at guess twelve has two options: grind out
+    // eight blind guesses, or close the tab. The second is worse for everyone.
+    // They never see the answer, never reach the share button, and never appear
+    // in the day's numbers at all.
+    //
+    // It records as a loss. An unrecorded surrender would be a free way to keep a
+    // streak alive on a day you could not solve, which would quietly make the
+    // streak meaningless. It is tracked as its OWN event though, because running
+    // out at twenty and quitting at ten are different failures: the first says the
+    // puzzle was hard, the second says it was opaque, and only one of those is
+    // worth changing the answer pool over.
+    let armedAt = 0;
+    const disarm = () => {
+        armedAt = 0;
+        giveUpBtn.textContent = 'Give up';
+        giveUpBtn.classList.remove('armed');
+    };
+    giveUpBtn.onclick = () => {
+        if (state.over) return;
+        // Two taps rather than a confirm dialog. Losing the day's game to a
+        // mis-tap on a phone is a miserable way to discover this button exists.
+        if (Date.now() - armedAt > 4000) {
+            armedAt = Date.now();
+            giveUpBtn.textContent = 'Sure?';
+            giveUpBtn.classList.add('armed');
+            setTimeout(() => { if (!state.over) disarm(); }, 4000);
+            return;
+        }
+        disarm();
+        state.surrendered = true;
+        persist();
+        tree.update(state);
+        // Same view as running out of guesses: the end screen names the animal,
+        // so this path does not need to reveal it twice.
+        void renderer.showLca(nodeLookup[state.bestKnownId()]);
+        renderer.setStatus('Gave up for today.', 'bad');
+        finish(false, true);
     };
 
     // ---- countdown to the next animal ----
