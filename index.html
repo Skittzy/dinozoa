@@ -253,6 +253,8 @@
         <div class="hint-row">
           <p class="hint-note" id="hint-note">Need a hint? Exchange 3 guesses to reveal a rank!</p>
           <button type="button" id="hint-btn" class="hint-btn">Hint</button>
+          <!-- Revealed by main.ts once half the guesses are gone. -->
+          <button type="button" id="giveup-btn" class="giveup-btn" hidden>Give up</button>
         </div>
 
         <p id="status" data-tone="info"></p>

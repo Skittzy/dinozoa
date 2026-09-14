@@ -51,6 +51,8 @@ export class GameState {
     readonly guesses: GuessRecord[] = [];
     readonly revealedIds: number[] = [];   // ranks bought with hints
     won = false;
+    /** Set when the player chooses to stop early. Counts as a loss, see `lost`. */
+    surrendered = false;
 
     private byId = new Map<number, GuessRecord>();
 
@@ -77,7 +79,7 @@ export class GameState {
     }
 
     get lost(): boolean {
-        return !this.won && this.remaining <= 0;
+        return !this.won && (this.surrendered || this.remaining <= 0);
     }
 
     get over(): boolean {
@@ -160,7 +162,11 @@ export class GameState {
     }
 
     // Rebuild from saved ids when restoring today's game.
-    restore(guessIds: number[], revealedIds: number[]): void {
+    restore(guessIds: number[], revealedIds: number[], surrendered = false): void {
+        // Has to come back with the guesses. Without it a reload would quietly
+        // hand a surrendered game back as playable, which is both a bug and a way
+        // to take a surrender back after seeing the answer.
+        this.surrendered = surrendered;
         for (const id of revealedIds) {
             if (nodeLookup[id] !== undefined) this.revealedIds.push(id);
         }

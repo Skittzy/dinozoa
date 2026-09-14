@@ -932,3 +932,27 @@ body.endless .countdown { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .about > summary::after { transition: none; }
 }
+
+/* ---------------- give up ----------------
+   Deliberately the quietest control on the page. It only appears halfway through
+   a game, and it must never look like the obvious thing to press. */
+.giveup-btn {
+  padding: .4rem .75rem;
+  font-size: .85rem;
+  border-color: var(--line);
+  color: var(--muted);
+}
+.giveup-btn:hover:not(:disabled) {
+  background: var(--muted);
+  color: #fff;
+  border-color: var(--muted);
+}
+/* Armed, waiting for the confirming second tap. */
+.giveup-btn.armed {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.giveup-btn.armed:hover:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+}

@@ -18,6 +18,8 @@ export interface SavedGame {
     guessIds: number[];
     revealedIds: number[];
     finished: boolean;
+    /** Optional: absent in games saved before the give up button existed. */
+    surrendered?: boolean;
 }
 
 const STATS_KEY = 'dinozoa.stats';
