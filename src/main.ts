@@ -159,6 +159,14 @@ async function main() {
         giveUpBtn.classList.remove('armed');
     };
     giveUpBtn.onclick = () => {
+        // GOTCHA 1. This handler is registered above the `if (ENDLESS) return`
+        // below, so it exists in endless runs too, closing over the DAILY state,
+        // the DAILY persist and the DAILY finish. Right now nothing unhides the
+        // button in endless so it can never fire there, but that is a property of
+        // code in another function rather than anything stated here. Without this
+        // line, one change to how the hint row is shown turns an endless player
+        // tapping a stray button into a surrendered daily game.
+        if (ENDLESS) return;
         if (state.over) return;
         // Two taps rather than a confirm dialog. Losing the day's game to a
         // mis-tap on a phone is a miserable way to discover this button exists.
