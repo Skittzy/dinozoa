@@ -367,13 +367,30 @@ export class TreeView {
         this.svg.appendChild(this.edgesG);   // ...then branches...
         this.svg.appendChild(this.nodesG);   // ...so boxes always cover the line ends
 
-        // Re-fit when the window changes shape. (The viewBox already rescales on its own;
-        // this just refreshes the zoom clamp, which depends on the container's size.)
+        // Re-fit when the window changes SHAPE, which is not the same as every
+        // resize event.
+        //
+        // A phone fires resize constantly while you scroll, because the URL bar
+        // slides in and out and moves the viewport height by sixty-odd pixels each
+        // time. Redrawing on that meant the tree re-animated every time you
+        // scrolled down to look at it, which was the most irritating thing the
+        // game did on a phone.
+        //
+        // WIDTH is the honest signal. It changes on rotation and on a real window
+        // resize, both of which need a re-fit, and it does not change when a URL
+        // bar appears. Height alone is ignored.
+        //
+        // The redraw is also instant now. A re-fit is not new information, so
+        // replaying the growing animation was wrong even on desktop: dragging a
+        // window edge should not look like you just made a guess.
         let resizeTimer = 0;
+        let lastWidth = window.innerWidth;
         window.addEventListener('resize', () => {
+            if (window.innerWidth === lastWidth) return;
+            lastWidth = window.innerWidth;
             window.clearTimeout(resizeTimer);
             resizeTimer = window.setTimeout(() => {
-                if (this.lastState) this.update(this.lastState);
+                if (this.lastState) this.update(this.lastState, { instant: true });
             }, 120);
         });
     }

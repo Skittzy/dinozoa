@@ -384,6 +384,14 @@ async function main() {
         }
         if (outcome.status === 'over') return;
 
+        // The denominator. Visits count bots, bounces and people who read the
+        // About box and left; this counts someone who actually played. Without it
+        // "forty games finished" is a number with nothing to divide by.
+        //
+        // First guess of the day only. A restored game comes back with its
+        // guesses already in it, so a reload cannot count the same player twice.
+        if (state.guesses.length === 1) track('game-started');
+
         tree.update(state);
         input.value = '';
         // Phone only: show the player where their guess landed instead of making
