@@ -37,7 +37,7 @@ function createSeededRNG(seed: number) {
 const EPOCH = Date.UTC(2026, 8, 15);
 const ONE_DAY = 1000 * 60 * 60 * 24;
 
-const FEATURED_ANIMAL = { date: '2026-09-29', scientific: 'Dakotaraptor' };
+const FEATURED_ANIMAL = { date: '2026-09-29', scientific: 'Allosaurus' };
 
 // How many whole days since the epoch. Computed in UTC on purpose: the old version
 // used the device's local calendar, which meant changing the system clock handed you
