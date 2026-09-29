@@ -6,11 +6,10 @@
 // guaranteed no answer repeated inside a year — but only by needing 365+ distinct
 // answers, which forced the pool to include genera almost nobody recognises.
 //
-// Now the deck is the ~213 RECOGNISABLE animals. We deal straight through it, one
+// Now the deck is the answer-eligible animals. We deal straight through it, one
 // card a day; when it runs out we reshuffle with a new seed and deal again. So an
-// answer can repeat across cycles (roughly twice a year) but NEVER inside one —
-// the soonest a repeat can come back is a full pool-length later. Allowing that
-// repeat is exactly what buys us a pool of animals players have heard of.
+// answer can repeat across cycles but NEVER inside one. Two different cycles
+// can put the same animal near their shared boundary.
 
 import { nodeLookup } from '../data/loadTree';
 
@@ -37,6 +36,8 @@ function createSeededRNG(seed: number) {
 // negative number reaching the UI if this ever moves.
 const EPOCH = Date.UTC(2026, 8, 15);
 const ONE_DAY = 1000 * 60 * 60 * 24;
+
+const FEATURED_ANIMAL = { date: '2026-09-29', scientific: 'Dakotaraptor' };
 
 // How many whole days since the epoch. Computed in UTC on purpose: the old version
 // used the device's local calendar, which meant changing the system clock handed you
@@ -68,7 +69,7 @@ export function getDayOfYear(date: Date): number {
 }
 
 // The answer pool = every leaf flagged answer=true, i.e. the recognisable ones.
-// The other ~258 leaves stay fully guessable — an expert can still triangulate with
+// The other leaves stay fully guessable — an expert can still triangulate with
 // Secodontosaurus, they just won't be asked to name it.
 export function getAnswerPool(): number[] {
     const pool: number[] = [];
@@ -95,6 +96,18 @@ export function getDailyAnimalId(date: Date = new Date()): number {
     for (let i = pool.length - 1; i > 0; i--) {
         const j = Math.floor(shuffle() * (i + 1));
         [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+
+    const featuredDay = getDayNumber(new Date(`${FEATURED_ANIMAL.date}T00:00:00Z`));
+    if (cycle === Math.floor(featuredDay / pool.length)) {
+        const featuredPosition = ((featuredDay % pool.length) + pool.length) % pool.length;
+        // Resolve the name instead of pinning an id that a database rebuild can change.
+        const animalPosition = pool.findIndex(id =>
+            nodeLookup[id].scientific === FEATURED_ANIMAL.scientific);
+        if (animalPosition >= featuredPosition) {
+            [pool[featuredPosition], pool[animalPosition]] =
+                [pool[animalPosition], pool[featuredPosition]];
+        }
     }
 
     return pool[position];

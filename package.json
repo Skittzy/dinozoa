@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "tsx rules_test.ts && tsx stats_test.ts && tsx wiki_test.ts"
+    "test": "tsx dailyAnimal_test.ts && tsx rules_test.ts && tsx stats_test.ts && tsx wiki_test.ts"
   },
   "devDependencies": {
     "tsx": "^4.23.1",

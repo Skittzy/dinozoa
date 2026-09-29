@@ -124,17 +124,17 @@ gradient on its own.
 ## Selecting the daily animal
 
 There is no server, so every browser has to arrive at the same animal independently. The
-date is used as the seed for a Mulberry32 pseudo-random generator, which drives a
+cycle number is used as the seed for a Mulberry32 pseudo-random generator, which drives a
 Fisher-Yates shuffle of the answer pool. Identical seed, identical order, on every machine.
 
-Day numbers are counted in UTC from 1 August 2026. An earlier version used the device's
+Day numbers are counted in UTC from 15 September 2026. An earlier version used the device's
 local calendar, which meant changing the system clock produced the next day's answer and
 crossing a time zone could break a streak.
 
 The pool holds 129 animals, so answers must repeat over a year. Rather than repeating at
 random, the shuffled pool is dealt through completely before being reshuffled with a new
-seed. No answer can recur until all 129 have been used, and each pass through the pool is
-in a different order.
+seed. Each answer appears exactly once per cycle, and each pass through the pool is
+in a different order. Repeats can still occur close together across a cycle boundary.
 
 ## Drawing the tree
 
@@ -246,11 +246,12 @@ used, so the fallback is the original behaviour.
 npm test
 ```
 
-Three suites run against the real modules in Node, with `fetch` stubbed to read the JSON
+Four suites run against the real modules in Node, with `fetch` stubbed to read the JSON
 from disk.
 
 | Suite | Covers | Assertions |
 |---|---|---|
+| `dailyAnimal_test.ts` | daily selection, UTC rollover, schedule stability, cycle uniqueness | Node assertions |
 | `rules_test.ts` | guess limit, hint cost, win and lose, save and restore | 22 |
 | `stats_test.ts` | persistence, streak arithmetic, reset, storage failure | 19 |
 | `wiki_test.ts` | image selection scoring, accuracy label | 38 |
