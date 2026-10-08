@@ -36,6 +36,9 @@ export interface TaxonImage {
      *  mostly CC BY-SA, where crediting the author is a licence condition. */
     artist: string | null;
     fileUrl: string | null;
+    imageTitle: string | null;
+    licenseName: string | null;
+    licenseUrl: string | null;
 }
 
 // Keyed by title AND mode. A given taxon is only ever fetched one way in practice
@@ -50,6 +53,8 @@ const cache = new Map<string, Promise<TaxonImage>>();
 interface CachedEntry {
     extract?: string; imageUrl?: string; pageUrl?: string;
     artist?: string; fileUrl?: string; articleTitle?: string;
+    fallbackUrl?: string; imageTitle?: string;
+    licenseName?: string; licenseUrl?: string;
 }
 let wikiCache: Record<string, CachedEntry> | null = null;
 let overrides: Record<string, CachedEntry> | null = null;
@@ -207,11 +212,18 @@ interface ImageInfoPage {
     index?: number;
     imageinfo?: Array<{
         thumburl?: string; url?: string; descriptionurl?: string;
-        extmetadata?: { Artist?: { value?: string }; LicenseShortName?: { value?: string } };
+        extmetadata?: {
+            Artist?: { value?: string };
+            LicenseShortName?: { value?: string };
+            LicenseUrl?: { value?: string };
+        };
     }>;
 }
 
-export interface LifeImage { url: string; artist: string | null; fileUrl: string | null; }
+export interface LifeImage {
+    url: string; fallbackUrl: string; artist: string | null; fileUrl: string | null;
+    imageTitle: string; licenseName: string | null; licenseUrl: string | null;
+}
 
 /** A candidate must carry at least one genuine "this is a life restoration"
  *  signal (worth 30) to beat the article's own lead image. */
@@ -222,7 +234,7 @@ export const MIN_ACCEPT = 30;
 function plainArtist(html?: string): string | null {
     if (!html) return null;
     const text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-    return text.length > 0 && text.length < 120 ? text : null;
+    return text || null;
 }
 
 // One request returns every image on the page WITH its URL, so we can score and
@@ -263,8 +275,12 @@ async function bestLifeImage(title: string, names: string[]): Promise<LifeImage 
                 score,
                 img: {
                     url: src,
+                    fallbackUrl: info?.url ?? src,
                     artist: plainArtist(info?.extmetadata?.Artist?.value),
                     fileUrl: info?.descriptionurl ?? null,
+                    imageTitle: name.replace(/^File:/, ''),
+                    licenseName: info?.extmetadata?.LicenseShortName?.value ?? null,
+                    licenseUrl: info?.extmetadata?.LicenseUrl?.value ?? null,
                 },
             };
         }
@@ -289,59 +305,44 @@ export function fetchTaxonImage(title: string, preferRestoration = false,
         try {
             const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
 
-            // Both requests go out together; hunting for a restoration must never
-            // delay the blurb. Either can fail without taking the other down.
-            // A cache hit skips the network entirely.
             await loadCache();
-            const hit = overrides?.[title] ?? wikiCache?.[title];
-            if (hit && hit.imageUrl) {
-                return {
-                    imageUrl: hit.imageUrl,
-                    fallbackUrl: hit.imageUrl,
-                    extract: hit.extract ?? null,
-                    pageUrl: hit.pageUrl ?? null,
-                    artist: hit.artist ?? null,
-                    fileUrl: hit.fileUrl ?? null,
-                    articleTitle: hit.articleTitle ?? null,
-                };
-            }
+            const stored = wikiCache?.[title];
+            // Curated animal images do not replace the lead images used for clades.
+            const override = preferRestoration ? overrides?.[title] : undefined;
+            const picked = override?.imageUrl ? override : stored?.imageUrl ? stored : undefined;
 
-            const [summaryRes, life] = await Promise.all([
-                fetch(summaryUrl).catch(() => null),
-                preferRestoration
+            // Image overrides only replace the image and its credits. Keep the
+            // cached article, or fetch it if this animal has not been cached yet.
+            // A failed article request must not discard a curated image.
+            const [data, life] = await Promise.all([
+                picked && (override?.extract || stored?.extract)
+                    ? Promise.resolve(null)
+                    : fetch(summaryUrl)
+                        .then((r) => r.ok ? r.json() : null).catch(() => null),
+                preferRestoration && !picked
                     ? bestLifeImage(title, [title, ...altNames]).catch(() => null)
                     : Promise.resolve(null),
             ]);
 
-            if (!summaryRes || !summaryRes.ok) {
-                return {
-                    imageUrl: life?.url ?? null, fallbackUrl: life?.url ?? null,
-                    extract: null, pageUrl: null, articleTitle: null,
-                    artist: life?.artist ?? null, fileUrl: life?.fileUrl ?? null,
-                };
-            }
-            const data = await summaryRes.json();
             const lead: string | null = data?.thumbnail?.source ?? data?.originalimage?.source ?? null;
-
-            // Prefer the restoration; keep the lead image as the <img> onerror fallback
-            // so a bad pick degrades to the OLD behaviour rather than to nothing.
-            const chosen = life?.url ?? (lead ? widen(lead) : null);
             return {
-                imageUrl: chosen,
-                fallbackUrl: lead,
-                extract: data?.extract ?? null,
-                pageUrl: data?.content_urls?.desktop?.page ?? null,
-                // Only claim an artist for the image we actually chose. The lead image
-                // came from a different endpoint and its author is unknown here.
-                artist: life ? life.artist : null,
-                fileUrl: life ? life.fileUrl : null,
-                // Wikipedia follows redirects silently, so the article we got back
-                // is not necessarily the one we asked for.
-                articleTitle: data?.titles?.canonical ?? data?.title ?? null,
+                imageUrl: picked?.imageUrl ?? life?.url ?? (lead ? widen(lead) : null),
+                // Use another size of the SAME image so the credits stay correct.
+                fallbackUrl: picked?.fallbackUrl ?? picked?.imageUrl ?? life?.fallbackUrl ?? lead,
+                extract: override?.extract ?? stored?.extract ?? data?.extract ?? null,
+                pageUrl: override?.pageUrl ?? stored?.pageUrl ?? data?.content_urls?.desktop?.page ?? null,
+                articleTitle: override?.articleTitle ?? stored?.articleTitle
+                    ?? data?.titles?.canonical ?? data?.title ?? null,
+                artist: picked ? picked.artist ?? null : life?.artist ?? null,
+                fileUrl: picked ? picked.fileUrl ?? null : life?.fileUrl ?? null,
+                imageTitle: picked ? picked.imageTitle ?? null : life?.imageTitle ?? null,
+                licenseName: picked ? picked.licenseName ?? null : life?.licenseName ?? null,
+                licenseUrl: picked ? picked.licenseUrl ?? null : life?.licenseUrl ?? null,
             };
         } catch {
             return { imageUrl: null, fallbackUrl: null, extract: null,
-                     pageUrl: null, artist: null, fileUrl: null, articleTitle: null };
+                     pageUrl: null, artist: null, fileUrl: null, articleTitle: null,
+                     imageTitle: null, licenseName: null, licenseUrl: null };
         }
     })();
 

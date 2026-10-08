@@ -1,36 +1,1788 @@
 {
   "_readme": [
-    "Hand-picked images that beat everything else: checked before the cache and",
-    "before any live Wikipedia lookup, and never overwritten by a regeneration.",
-    "",
-    "Use this when an automatic pick is wrong. Filename scoring cannot tell a life",
-    "restoration from a diagram of an animal's tail muscles, so a handful of taxa",
-    "will always need a human.",
-    "",
-    "HOW TO ADD ONE",
-    "  1. Open the animal's Wikipedia page and find an image you want.",
-    "  2. Click it, then 'More details' to reach its Commons file page.",
-    "  3. Right-click the picture, 'Copy image address'. That is imageUrl.",
-    "  4. The Commons page address is fileUrl, and the Author field is artist.",
-    "",
-    "Key must be the SCIENTIFIC name exactly as it appears in the database.",
-    "Delete this _readme entry at any time; the game ignores keys it never asks for.",
-    "",
-    "EXAMPLE (delete or replace):",
-    "  \"Carnotaurus\": {",
-    "    \"imageUrl\": \"https://upload.wikimedia.org/.../Carnotaurus.jpg\",",
-    "    \"artist\": \"Fred Wierum\",",
-    "    \"fileUrl\": \"https://commons.wikimedia.org/wiki/File:Carnotaurus.jpg\"",
-    "  }"
+    "Curated images for individual animals; clade images are unchanged.",
+    "File URLs, artists and licences were verified against Wikimedia Commons imageinfo metadata.",
+    "Images remain hosted on Wikimedia under their individual licences; this file contains links and credits.",
+    "Keys are exact scientific names from dinosaur-database.json. These picks override wiki-cache.json and live image selection.",
+    "An override changes the image without removing the cached Wikipedia description.",
+    "To change a pick, update imageUrl, fallbackUrl (another size of the SAME file), imageTitle, artist, fileUrl, licenseName and licenseUrl together.",
+    "depicts identifies the illustrated taxon.",
+    "Cache regeneration does not overwrite this file."
   ],
-  "Tylosaurus": {
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Tylosaurus_pembinensis_1DB.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
-    "artist": "Dmitry Bogdanov - dmitrchel@mail.ru",
-    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Tylosaurus_pembinensis_1DB.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+  "Achillobator": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/Achillobator_reconstruction.png/960px-Achillobator_reconstruction.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Achillobator_reconstruction.png/500px-Achillobator_reconstruction.png",
+    "imageTitle": "Achillobator reconstruction",
+    "artist": "PaleoNeolitic",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Achillobator_reconstruction.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Achillobator giganticus"
+  },
+  "Acrocanthosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Acrocanthosaurus_atokensis.png/960px-Acrocanthosaurus_atokensis.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Acrocanthosaurus_atokensis.png/500px-Acrocanthosaurus_atokensis.png",
+    "imageTitle": "Acrocanthosaurus atokensis",
+    "artist": "Petr Menshikov ( https://twitter.com/Petr75113553 ; https://vk.com/prehistoricproduction )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Acrocanthosaurus_atokensis.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Acrocanthosaurus atokensis"
+  },
+  "Aegirocassis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/20191205_Aegirocassis_benmoulai_Aegirocassis_benmoulae.png/960px-20191205_Aegirocassis_benmoulai_Aegirocassis_benmoulae.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/20191205_Aegirocassis_benmoulai_Aegirocassis_benmoulae.png/500px-20191205_Aegirocassis_benmoulai_Aegirocassis_benmoulae.png",
+    "imageTitle": "20191205 Aegirocassis benmoulai Aegirocassis benmoulae",
+    "artist": "Junnn11",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:20191205_Aegirocassis_benmoulai_Aegirocassis_benmoulae.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Aegirocassis benmoulai"
+  },
+  "Aenocyon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Aenocyon_dirus_restoration_%26_skeleton.jpg/960px-Aenocyon_dirus_restoration_%26_skeleton.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Aenocyon_dirus_restoration_%26_skeleton.jpg/500px-Aenocyon_dirus_restoration_%26_skeleton.jpg",
+    "imageTitle": "Aenocyon dirus restoration & skeleton",
+    "artist": "Erwin S. Christman",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Aenocyon_dirus_restoration_%26_skeleton.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Aenocyon dirus"
+  },
+  "Aepyornis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Aepyornis_maximus_reconstruction.jpg/960px-Aepyornis_maximus_reconstruction.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Aepyornis_maximus_reconstruction.jpg/500px-Aepyornis_maximus_reconstruction.jpg",
+    "imageTitle": "Aepyornis maximus reconstruction",
+    "artist": "Brianj996b",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Aepyornis_maximus_reconstruction.jpg",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Aepyornis maximus"
+  },
+  "Albertosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Albertosaurus_TD.png/960px-Albertosaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Albertosaurus_TD.png/500px-Albertosaurus_TD.png",
+    "imageTitle": "Albertosaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Albertosaurus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Albertosaurus sarcophagus"
+  },
+  "Allosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Allosaurus_Revised.jpg/960px-Allosaurus_Revised.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Allosaurus_Revised.jpg/500px-Allosaurus_Revised.jpg",
+    "imageTitle": "Allosaurus Revised",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Allosaurus_Revised.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Allosaurus fragilis"
+  },
+  "Amargasaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Amargasaurus_reconstruction.jpg/960px-Amargasaurus_reconstruction.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Amargasaurus_reconstruction.jpg/500px-Amargasaurus_reconstruction.jpg",
+    "imageTitle": "Amargasaurus reconstruction",
+    "artist": "Mario Lanzas",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Amargasaurus_reconstruction.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Amargasaurus cazaui"
+  },
+  "Ambulocetus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Ambulocetus_new_NT_small.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Ambulocetus_new_NT_small.jpg/500px-Ambulocetus_new_NT_small.jpg",
+    "imageTitle": "Ambulocetus new NT small",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Ambulocetus_new_NT_small.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Ambulocetus natans"
+  },
+  "Ankylosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Ankylosaurus_magniventris_reconstruction_nomargin.png/960px-Ankylosaurus_magniventris_reconstruction_nomargin.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ankylosaurus_magniventris_reconstruction_nomargin.png/500px-Ankylosaurus_magniventris_reconstruction_nomargin.png",
+    "imageTitle": "Ankylosaurus magniventris reconstruction nomargin",
+    "artist": "Emily Willoughby (e.deinonychus@gmail.com, https://emilywilloughby.com ); modifications by FunkMonk",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Ankylosaurus_magniventris_reconstruction_nomargin.png",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Ankylosaurus magniventris"
+  },
+  "Anomalocaris": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/20191203_Anomalocaris_canadensis.png/960px-20191203_Anomalocaris_canadensis.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/20191203_Anomalocaris_canadensis.png/500px-20191203_Anomalocaris_canadensis.png",
+    "imageTitle": "20191203 Anomalocaris canadensis",
+    "artist": "Junnn11",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:20191203_Anomalocaris_canadensis.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Anomalocaris gigantea"
+  },
+  "Anurognathus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/AnurognathusDB_white_background.jpg/960px-AnurognathusDB_white_background.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/AnurognathusDB_white_background.jpg/500px-AnurognathusDB_white_background.jpg",
+    "imageTitle": "AnurognathusDB white background",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:AnurognathusDB_white_background.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Anurognathus ammoni"
+  },
+  "Anzu": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Anzu_TD.png/960px-Anzu_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Anzu_TD.png/500px-Anzu_TD.png",
+    "imageTitle": "Anzu TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Anzu_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Anzu wyliei"
+  },
+  "Apatosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Apatosaurus_TD.png/960px-Apatosaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Apatosaurus_TD.png/500px-Apatosaurus_TD.png",
+    "imageTitle": "Apatosaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Apatosaurus_TD.png",
+    "licenseName": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "depicts": "Apatosaurus louisae"
+  },
+  "Archaeopteryx": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Naturkundemuseum_London_Archaeopteryx_1.jpg/960px-Naturkundemuseum_London_Archaeopteryx_1.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Naturkundemuseum_London_Archaeopteryx_1.jpg/500px-Naturkundemuseum_London_Archaeopteryx_1.jpg",
+    "imageTitle": "Naturkundemuseum London Archaeopteryx 1",
+    "artist": "Michael Fiegle",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Naturkundemuseum_London_Archaeopteryx_1.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Archaeopteryx lithographica"
+  },
+  "Arctodus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/ArctodusSimusReconstruct.jpg/960px-ArctodusSimusReconstruct.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/ArctodusSimusReconstruct.jpg/500px-ArctodusSimusReconstruct.jpg",
+    "imageTitle": "ArctodusSimusReconstruct",
+    "artist": "Dantheman9758",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:ArctodusSimusReconstruct.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "depicts": "Arctodus simus"
+  },
+  "Argentavis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Argentavis_magnificens.png/960px-Argentavis_magnificens.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Argentavis_magnificens.png/500px-Argentavis_magnificens.png",
+    "imageTitle": "Argentavis magnificens",
+    "artist": "Connor Ashbridge",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Argentavis_magnificens.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Argentavis magnificens"
+  },
+  "Argentinosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Argentinosaurus_TD.png/960px-Argentinosaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Argentinosaurus_TD.png/500px-Argentinosaurus_TD.png",
+    "imageTitle": "Argentinosaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Argentinosaurus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Argentinosaurus huinculensis"
+  },
+  "Arsinoitherium": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Arsinoitherium_scale_NSF.jpg/960px-Arsinoitherium_scale_NSF.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Arsinoitherium_scale_NSF.jpg/500px-Arsinoitherium_scale_NSF.jpg",
+    "imageTitle": "Arsinoitherium scale NSF",
+    "artist": "Trent Schindler / National Science Foundation",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Arsinoitherium_scale_NSF.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Arsinoitherium zitteli"
+  },
+  "Arthropleura": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/20211224_Arthropleura_armata_diagrammatic_reconstruction.png/960px-20211224_Arthropleura_armata_diagrammatic_reconstruction.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/20211224_Arthropleura_armata_diagrammatic_reconstruction.png/500px-20211224_Arthropleura_armata_diagrammatic_reconstruction.png",
+    "imageTitle": "20211224 Arthropleura armata diagrammatic reconstruction",
+    "artist": "Junnn11",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:20211224_Arthropleura_armata_diagrammatic_reconstruction.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Arthropleura armata"
+  },
+  "Austroraptor": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Austroraptor_Restoration.png/960px-Austroraptor_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Austroraptor_Restoration.png/500px-Austroraptor_Restoration.png",
+    "imageTitle": "Austroraptor Restoration",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Austroraptor_Restoration.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Austroraptor cabazai"
+  },
+  "Basilosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Basilosaurus_cetoides.png/960px-Basilosaurus_cetoides.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Basilosaurus_cetoides.png/500px-Basilosaurus_cetoides.png",
+    "imageTitle": "Basilosaurus cetoides",
+    "artist": "Dominik Hammelsbruch",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Basilosaurus_cetoides.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Basilosaurus cetoides"
+  },
+  "Bison": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Bison_latifrons_fossil_buffalo_%28Pleistocene%3B_North_America%29_4_%2815444089002%29.jpg/960px-Bison_latifrons_fossil_buffalo_%28Pleistocene%3B_North_America%29_4_%2815444089002%29.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bison_latifrons_fossil_buffalo_%28Pleistocene%3B_North_America%29_4_%2815444089002%29.jpg/500px-Bison_latifrons_fossil_buffalo_%28Pleistocene%3B_North_America%29_4_%2815444089002%29.jpg",
+    "imageTitle": "Bison latifrons fossil buffalo (Pleistocene; North America) 4 (15444089002)",
+    "artist": "James St. John",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Bison_latifrons_fossil_buffalo_(Pleistocene;_North_America)_4_(15444089002).jpg",
+    "licenseName": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "depicts": "Bison latifrons"
+  },
+  "Borealopelta": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Borealopelta_NT.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Borealopelta_NT.jpg/500px-Borealopelta_NT.jpg",
+    "imageTitle": "Borealopelta NT",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Borealopelta_NT.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Borealopelta markmitchelli"
+  },
+  "Brachiosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Brachiosaurus_altithorax_side_profile.png/960px-Brachiosaurus_altithorax_side_profile.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Brachiosaurus_altithorax_side_profile.png/500px-Brachiosaurus_altithorax_side_profile.png",
+    "imageTitle": "Brachiosaurus altithorax side profile",
+    "artist": "Charles Nye",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Brachiosaurus_altithorax_side_profile.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Brachiosaurus altithorax"
+  },
+  "Brontosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Brontosaurus_NT_small.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Brontosaurus_NT_small.jpg/500px-Brontosaurus_NT_small.jpg",
+    "imageTitle": "Brontosaurus NT small",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Brontosaurus_NT_small.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Brontosaurus excelsus"
+  },
+  "Cameroceras": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Cameroceras_trentonese.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Cameroceras_trentonese.jpg/500px-Cameroceras_trentonese.jpg",
+    "imageTitle": "Cameroceras trentonese",
+    "artist": "The original uploader was Apokryltaros at English Wikipedia .",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Cameroceras_trentonese.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "depicts": "Cameroceras trentonense"
+  },
+  "Carcharodontosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Carcharodontosaurus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Carcharodontosaurus_BW.jpg/500px-Carcharodontosaurus_BW.jpg",
+    "imageTitle": "Carcharodontosaurus BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Carcharodontosaurus_BW.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Carcharodontosaurus saharicus"
+  },
+  "Carnotaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Carnotaurus_Reconstruction_%282022%29.png/960px-Carnotaurus_Reconstruction_%282022%29.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Carnotaurus_Reconstruction_%282022%29.png/500px-Carnotaurus_Reconstruction_%282022%29.png",
+    "imageTitle": "Carnotaurus Reconstruction (2022)",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Carnotaurus_Reconstruction_(2022).png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Carnotaurus sastrei"
+  },
+  "Castoroides": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Castoroides_dilophidus.png/960px-Castoroides_dilophidus.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Castoroides_dilophidus.png/500px-Castoroides_dilophidus.png",
+    "imageTitle": "Castoroides dilophidus",
+    "artist": "Olmagon",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Castoroides_dilophidus.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Castoroides dilophidus"
+  },
+  "Ceratosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Ceratosaurus_nasicornis_DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Ceratosaurus_nasicornis_DB.jpg/500px-Ceratosaurus_nasicornis_DB.jpg",
+    "imageTitle": "Ceratosaurus nasicornis DB",
+    "artist": "DiBgd at English Wikipedia , Bogdanov dmitrchel@mail.ru",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Ceratosaurus_nasicornis_DB.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Ceratosaurus nasicornis"
+  },
+  "Chalicotherium": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/ChalicotheriumDB1.jpg/960px-ChalicotheriumDB1.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/ChalicotheriumDB1.jpg/500px-ChalicotheriumDB1.jpg",
+    "imageTitle": "ChalicotheriumDB1",
+    "artist": "The original uploader was DiBgd at English Wikipedia .",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:ChalicotheriumDB1.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "depicts": "Chalicotherium wetzleri"
+  },
+  "Coelodonta": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Coelodonta_antiquitatis_by_Benjamin_Langlois.jpg/960px-Coelodonta_antiquitatis_by_Benjamin_Langlois.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Coelodonta_antiquitatis_by_Benjamin_Langlois.jpg/500px-Coelodonta_antiquitatis_by_Benjamin_Langlois.jpg",
+    "imageTitle": "Coelodonta antiquitatis by Benjamin Langlois",
+    "artist": "Mr Langlois10",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Coelodonta_antiquitatis_by_Benjamin_Langlois.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Coelodonta antiquitatis"
+  },
+  "Coelophysis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Coelophysis_TD.png/960px-Coelophysis_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Coelophysis_TD.png/500px-Coelophysis_TD.png",
+    "imageTitle": "Coelophysis TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Coelophysis_TD.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Coelophysis bauri"
+  },
+  "Concavenator": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Concavenator_TD.png/960px-Concavenator_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Concavenator_TD.png/500px-Concavenator_TD.png",
+    "imageTitle": "Concavenator TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Concavenator_TD.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Concavenator corcovatus"
+  },
+  "Corythosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Corythosaurus_TD.png/960px-Corythosaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Corythosaurus_TD.png/500px-Corythosaurus_TD.png",
+    "imageTitle": "Corythosaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Corythosaurus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Corythosaurus casuarius"
+  },
+  "Cotylorhynchus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Cotylorhynchus_NT_small.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Cotylorhynchus_NT_small.jpg/500px-Cotylorhynchus_NT_small.jpg",
+    "imageTitle": "Cotylorhynchus NT small",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/ http://paleoexhibit.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Cotylorhynchus_NT_small.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Cotylorhynchus romeri"
+  },
+  "Cryolophosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Cryolophosaurus_ellioti_2.jpg/960px-Cryolophosaurus_ellioti_2.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Cryolophosaurus_ellioti_2.jpg/500px-Cryolophosaurus_ellioti_2.jpg",
+    "imageTitle": "Cryolophosaurus ellioti 2",
+    "artist": "McBlackneck (Daniel Goitom)",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Cryolophosaurus_ellioti_2.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Cryolophosaurus ellioti"
+  },
+  "Cryptoclidus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Cryptoclidus_eurymerus_SW.png/960px-Cryptoclidus_eurymerus_SW.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cryptoclidus_eurymerus_SW.png/500px-Cryptoclidus_eurymerus_SW.png",
+    "imageTitle": "Cryptoclidus eurymerus SW",
+    "artist": "Slate Weasel",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Cryptoclidus_eurymerus_SW.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Cryptoclidus eurymerus"
+  },
+  "Cynognathus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Cynognathus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Cynognathus_BW.jpg/500px-Cynognathus_BW.jpg",
+    "imageTitle": "Cynognathus BW",
+    "artist": "Nobu Tamura ( https://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Cynognathus_BW.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Cynognathus"
+  },
+  "Daeodon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Daeodon_shoshonensis_2.png/960px-Daeodon_shoshonensis_2.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Daeodon_shoshonensis_2.png/500px-Daeodon_shoshonensis_2.png",
+    "imageTitle": "Daeodon shoshonensis 2",
+    "artist": "Max Bellomio",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Daeodon_shoshonensis_2.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Daeodon"
+  },
+  "Deinocheirus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Deinocheirus_Restoration.png/960px-Deinocheirus_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Deinocheirus_Restoration.png/500px-Deinocheirus_Restoration.png",
+    "imageTitle": "Deinocheirus Restoration",
+    "artist": "PaleoNeolitic",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Deinocheirus_Restoration.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Deinocheirus mirificus"
+  },
+  "Deinonychus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Deinonychus_Restoration.png/960px-Deinonychus_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Deinonychus_Restoration.png/500px-Deinonychus_Restoration.png",
+    "imageTitle": "Deinonychus Restoration",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Deinonychus_Restoration.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Deinonychus antirrhopus"
+  },
+  "Deinosuchus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Deinosuchus_illustration_Andrey_Atuchin.jpg/960px-Deinosuchus_illustration_Andrey_Atuchin.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Deinosuchus_illustration_Andrey_Atuchin.jpg/500px-Deinosuchus_illustration_Andrey_Atuchin.jpg",
+    "imageTitle": "Deinosuchus illustration Andrey Atuchin",
+    "artist": "Andrey Atuchin",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Deinosuchus_illustration_Andrey_Atuchin.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Deinosuchus rugosus"
+  },
+  "Deinotherium": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Naturhistorisches_Museum_Mainz-_%282%29-Deinotherium_Giganteum.jpg/960px-Naturhistorisches_Museum_Mainz-_%282%29-Deinotherium_Giganteum.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Naturhistorisches_Museum_Mainz-_%282%29-Deinotherium_Giganteum.jpg/500px-Naturhistorisches_Museum_Mainz-_%282%29-Deinotherium_Giganteum.jpg",
+    "imageTitle": "Naturhistorisches Museum Mainz- (2)-Deinotherium Giganteum",
+    "artist": "Bodow",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Naturhistorisches_Museum_Mainz-_(2)-Deinotherium_Giganteum.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Deinotherium giganteum"
+  },
+  "Desmatosuchus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Desmatosuchus_spurensis.jpg/960px-Desmatosuchus_spurensis.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Desmatosuchus_spurensis.jpg/500px-Desmatosuchus_spurensis.jpg",
+    "imageTitle": "Desmatosuchus spurensis",
+    "artist": "Petrified Forest from Petrified Forest, USA",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Desmatosuchus_spurensis.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Desmatosuchus spurensis"
+  },
+  "Diabloceratops": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Diabloceratops_NT.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Diabloceratops_NT.jpg/500px-Diabloceratops_NT.jpg",
+    "imageTitle": "Diabloceratops NT",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com www.palaeocritti.com",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Diabloceratops_NT.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Diabloceratops eatoni"
+  },
+  "Dilophosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Dilophosaurus.jpg/960px-Dilophosaurus.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Dilophosaurus.jpg/500px-Dilophosaurus.jpg",
+    "imageTitle": "Dilophosaurus",
+    "artist": "No machine-readable author provided. ArthurWeasley~commonswiki assumed (based on copyright claims).",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Dilophosaurus.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Dilophosaurus wetherilli"
+  },
+  "Dimetrodon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Dimetrodon_grandis_3D_Model_Reconstruction.png/960px-Dimetrodon_grandis_3D_Model_Reconstruction.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Dimetrodon_grandis_3D_Model_Reconstruction.png/500px-Dimetrodon_grandis_3D_Model_Reconstruction.png",
+    "imageTitle": "Dimetrodon grandis 3D Model Reconstruction",
+    "artist": "Max Bellomio",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Dimetrodon_grandis_3D_Model_Reconstruction.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Dimetrodon grandis"
+  },
+  "Dinornis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Extinctbirds1907_P42_Dinornis_ingens0375.png/960px-Extinctbirds1907_P42_Dinornis_ingens0375.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Extinctbirds1907_P42_Dinornis_ingens0375.png/500px-Extinctbirds1907_P42_Dinornis_ingens0375.png",
+    "imageTitle": "Extinctbirds1907 P42 Dinornis ingens0375",
+    "artist": "Frederick William Frohawk",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Extinctbirds1907_P42_Dinornis_ingens0375.png",
+    "licenseName": "Public domain",
+    "depicts": "Dinornis novaezealandiae"
+  },
+  "Diplocaulus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/Diplocaulus_recon.png/960px-Diplocaulus_recon.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Diplocaulus_recon.png/500px-Diplocaulus_recon.png",
+    "imageTitle": "Diplocaulus recon",
+    "artist": "Entelognathus",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Diplocaulus_recon.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Diplocaulus magnicornis"
+  },
+  "Diprotodon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Diprotodon_optatum_%282%29.jpg/960px-Diprotodon_optatum_%282%29.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Diprotodon_optatum_%282%29.jpg/500px-Diprotodon_optatum_%282%29.jpg",
+    "imageTitle": "Diprotodon optatum (2)",
+    "artist": "Creator:Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Diprotodon_optatum_(2).jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Diprotodon optatum"
+  },
+  "Doedicurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Glyptodonts.jpg/960px-Glyptodonts.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Glyptodonts.jpg/500px-Glyptodonts.jpg",
+    "imageTitle": "Glyptodonts",
+    "artist": "ABelov2014",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Glyptodonts.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Doedicurus clavicaudatus"
+  },
+  "Dorudon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Dorudon_atrox.png/960px-Dorudon_atrox.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Dorudon_atrox.png/500px-Dorudon_atrox.png",
+    "imageTitle": "Dorudon atrox",
+    "artist": "TerribleReptiles77",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Dorudon_atrox.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Dorudon atrox"
+  },
+  "Dreadnoughtus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Dreadnoughtus_NT_small.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Dreadnoughtus_NT_small.jpg/500px-Dreadnoughtus_NT_small.jpg",
+    "imageTitle": "Dreadnoughtus NT small",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Dreadnoughtus_NT_small.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Dreadnoughtus schrani"
+  },
+  "Edaphosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Edaphosaurus_pogonias.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Edaphosaurus_pogonias.jpg/500px-Edaphosaurus_pogonias.jpg",
+    "imageTitle": "Edaphosaurus pogonias",
+    "artist": "ДиБгд at Russian Wikipedia",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Edaphosaurus_pogonias.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Edaphosaurus pogonias"
+  },
+  "Edestus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Edestus_recon.png/960px-Edestus_recon.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Edestus_recon.png/500px-Edestus_recon.png",
+    "imageTitle": "Edestus recon",
+    "artist": "Entelognathus",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Edestus_recon.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Edestus heinrichi"
+  },
+  "Edmontonia": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Edmontonia_TD.png/960px-Edmontonia_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Edmontonia_TD.png/500px-Edmontonia_TD.png",
+    "imageTitle": "Edmontonia TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Edmontonia_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Edmontonia longiceps"
+  },
+  "Edmontosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Edmontosaurus_reconstruction.jpg/960px-Edmontosaurus_reconstruction.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Edmontosaurus_reconstruction.jpg/500px-Edmontosaurus_reconstruction.jpg",
+    "imageTitle": "Edmontosaurus reconstruction",
+    "artist": "Die Infografen UG (haftungsbeschränkt)",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Edmontosaurus_reconstruction.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Edmontosaurus regalis"
+  },
+  "Elasmosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Elasmosaurus_platyurus.png/960px-Elasmosaurus_platyurus.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Elasmosaurus_platyurus.png/500px-Elasmosaurus_platyurus.png",
+    "imageTitle": "Elasmosaurus platyurus",
+    "artist": "Connor Ashbridge",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Elasmosaurus_platyurus.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Elasmosaurus platyurus"
+  },
+  "Elasmotherium": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Elasmotherium_sibiricum.png/960px-Elasmotherium_sibiricum.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Elasmotherium_sibiricum.png/500px-Elasmotherium_sibiricum.png",
+    "imageTitle": "Elasmotherium sibiricum",
+    "artist": "Ddinodan",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Elasmotherium_sibiricum.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Elasmotherium sibiricum"
+  },
+  "Eremotherium": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/A-Pleistocene-meso-megamammals-from-Sergipe-Brazil.jpg/960px-A-Pleistocene-meso-megamammals-from-Sergipe-Brazil.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/A-Pleistocene-meso-megamammals-from-Sergipe-Brazil.jpg/500px-A-Pleistocene-meso-megamammals-from-Sergipe-Brazil.jpg",
+    "imageTitle": "A-Pleistocene-meso-megamammals-from-Sergipe-Brazil",
+    "artist": "Julio Lacerda",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:A-Pleistocene-meso-megamammals-from-Sergipe-Brazil.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Eremotherium laurillardi"
+  },
+  "Eryops": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Eryops1DB.jpg/960px-Eryops1DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Eryops1DB.jpg/500px-Eryops1DB.jpg",
+    "imageTitle": "Eryops1DB",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Eryops1DB.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Eryops megacephalus"
+  },
+  "Estemmenosuchus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Estemmenosuchus_mirabilis.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Estemmenosuchus_mirabilis.jpg",
+    "imageTitle": "Estemmenosuchus mirabilis",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Estemmenosuchus_mirabilis.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Estemmenosuchus mirabilis"
+  },
+  "Euoplocephalus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Euoplocephalus_TD.png/960px-Euoplocephalus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Euoplocephalus_TD.png/500px-Euoplocephalus_TD.png",
+    "imageTitle": "Euoplocephalus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Euoplocephalus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Euoplocephalus tutus"
+  },
+  "Europasaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Europasaurus_TD.png/960px-Europasaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Europasaurus_TD.png/500px-Europasaurus_TD.png",
+    "imageTitle": "Europasaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Europasaurus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Europasaurus holgeri"
+  },
+  "Fasolasuchus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/PN_Talampaya%2C_La_Rioja..JPG/960px-PN_Talampaya%2C_La_Rioja..JPG",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/PN_Talampaya%2C_La_Rioja..JPG/500px-PN_Talampaya%2C_La_Rioja..JPG",
+    "imageTitle": "PN Talampaya, La Rioja.",
+    "artist": "Shenbe",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:PN_Talampaya,_La_Rioja..JPG",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Fasolasuchus tenax"
+  },
+  "Gallimimus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Gallimimus_Restoration.png/960px-Gallimimus_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Gallimimus_Restoration.png/500px-Gallimimus_Restoration.png",
+    "imageTitle": "Gallimimus Restoration",
+    "artist": "PaleoNeolitic",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Gallimimus_Restoration.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Gallimimus bullatus"
+  },
+  "Gastonia": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Gastonia_burgei_dinosaur.png/960px-Gastonia_burgei_dinosaur.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Gastonia_burgei_dinosaur.png/500px-Gastonia_burgei_dinosaur.png",
+    "imageTitle": "Gastonia burgei dinosaur",
+    "artist": "Mariana Ruiz LadyofHats",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Gastonia_burgei_dinosaur.png",
+    "licenseName": "Public domain",
+    "depicts": "Gastonia burgei"
+  },
+  "Gastornis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Gastornis.png/960px-Gastornis.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Gastornis.png/500px-Gastornis.png",
+    "imageTitle": "Gastornis",
+    "artist": "Tim Bertelink",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Gastornis.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Gastornis parisiensis"
+  },
+  "Giganotosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Chop_it%21_%2842641570%29.jpg/960px-Chop_it%21_%2842641570%29.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Chop_it%21_%2842641570%29.jpg/500px-Chop_it%21_%2842641570%29.jpg",
+    "imageTitle": "Chop it! (42641570)",
+    "artist": "Jes from Melbourne, Australia",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Chop_it!_(42641570).jpg",
+    "licenseName": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "depicts": "Giganotosaurus carolinii"
+  },
+  "Globidens": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/GlobidensDB2.jpg/960px-GlobidensDB2.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/GlobidensDB2.jpg/500px-GlobidensDB2.jpg",
+    "imageTitle": "GlobidensDB2",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:GlobidensDB2.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Globidens alabamaensis"
+  },
+  "Glyptodon": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Glyptodon_sculpture_made_by_Jaap_Roos_art.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Glyptodon_sculpture_made_by_Jaap_Roos_art.jpg/500px-Glyptodon_sculpture_made_by_Jaap_Roos_art.jpg",
+    "imageTitle": "Glyptodon sculpture made by Jaap Roos art",
+    "artist": "Jaaproosart",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Glyptodon_sculpture_made_by_Jaap_Roos_art.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Glyptodon clavipes"
+  },
+  "Gomphotherium": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Gomphotherium_NT_small.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gomphotherium_NT_small.jpg/500px-Gomphotherium_NT_small.jpg",
+    "imageTitle": "Gomphotherium NT small",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Gomphotherium_NT_small.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Gomphotherium angustidens"
+  },
+  "Gorgosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Gorgosaurus_2022_Life_Reconstruction.png/960px-Gorgosaurus_2022_Life_Reconstruction.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Gorgosaurus_2022_Life_Reconstruction.png/500px-Gorgosaurus_2022_Life_Reconstruction.png",
+    "imageTitle": "Gorgosaurus 2022 Life Reconstruction",
+    "artist": "Leoomas",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Gorgosaurus_2022_Life_Reconstruction.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Gorgosaurus libratus"
+  },
+  "Hatzegopteryx": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Hatzegopteryx.png/960px-Hatzegopteryx.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Hatzegopteryx.png/500px-Hatzegopteryx.png",
+    "imageTitle": "Hatzegopteryx",
+    "artist": "Mark Witton",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Hatzegopteryx.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Hatzegopteryx thambema"
+  },
+  "Helicoprion": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Helicoprion_-_sculpture_Australian_Museum_2022_-_4.jpg/960px-Helicoprion_-_sculpture_Australian_Museum_2022_-_4.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Helicoprion_-_sculpture_Australian_Museum_2022_-_4.jpg/500px-Helicoprion_-_sculpture_Australian_Museum_2022_-_4.jpg",
+    "imageTitle": "Helicoprion - sculpture Australian Museum 2022 - 4",
+    "artist": "Xyxyzyz",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Helicoprion_-_sculpture_Australian_Museum_2022_-_4.jpg",
+    "licenseName": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "depicts": "Helicoprion bessonowi"
+  },
+  "Henodus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Henodus_chelyops_life_restoration.jpg/960px-Henodus_chelyops_life_restoration.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Henodus_chelyops_life_restoration.jpg/500px-Henodus_chelyops_life_restoration.jpg",
+    "imageTitle": "Henodus chelyops life restoration",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.ca/ )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Henodus_chelyops_life_restoration.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Henodus chelyops"
+  },
+  "Hesperornis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Hesperornis_TD.png/960px-Hesperornis_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Hesperornis_TD.png/500px-Hesperornis_TD.png",
+    "imageTitle": "Hesperornis TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Hesperornis_TD.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Hesperornis regalis"
+  },
+  "Hieraaetus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Giant_Haasts_eagle_attacking_New_Zealand_moa.jpg/960px-Giant_Haasts_eagle_attacking_New_Zealand_moa.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Giant_Haasts_eagle_attacking_New_Zealand_moa.jpg/500px-Giant_Haasts_eagle_attacking_New_Zealand_moa.jpg",
+    "imageTitle": "Giant Haasts eagle attacking New Zealand moa",
+    "artist": "John Megahan",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Giant_Haasts_eagle_attacking_New_Zealand_moa.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Hieraaetus moorei"
+  },
+  "Homotherium": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Homotherium_serum.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Homotherium_serum.jpg/500px-Homotherium_serum.jpg",
+    "imageTitle": "Homotherium serum",
+    "artist": "Sergiodlarosa (Sergio De La Rosa)",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Homotherium_serum.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Homotherium serum"
+  },
+  "Hyracotherium": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Escala_comparativa_de_Hyracotherium.png/960px-Escala_comparativa_de_Hyracotherium.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Escala_comparativa_de_Hyracotherium.png/500px-Escala_comparativa_de_Hyracotherium.png",
+    "imageTitle": "Escala comparativa de Hyracotherium",
+    "artist": "Caz41985",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Escala_comparativa_de_Hyracotherium.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Hyracotherium leporinum"
+  },
+  "Ichthyornis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Ichthyornis_restoration.jpeg/960px-Ichthyornis_restoration.jpeg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Ichthyornis_restoration.jpeg/500px-Ichthyornis_restoration.jpeg",
+    "imageTitle": "Ichthyornis restoration",
+    "artist": "El fosilmaníaco",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Ichthyornis_restoration.jpeg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Ichthyornis dispar"
+  },
+  "Ichthyosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Ichthyosaurus_communis_2.JPG/960px-Ichthyosaurus_communis_2.JPG",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Ichthyosaurus_communis_2.JPG/500px-Ichthyosaurus_communis_2.JPG",
+    "imageTitle": "Ichthyosaurus communis 2",
+    "artist": "Ghedoghedo",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Ichthyosaurus_communis_2.JPG",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Ichthyosaurus communis"
+  },
+  "Ichthyostega": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Ichthyostega_stensioei.png/960px-Ichthyostega_stensioei.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ichthyostega_stensioei.png/500px-Ichthyostega_stensioei.png",
+    "imageTitle": "Ichthyostega stensioei",
+    "artist": "SeismicShrimp",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Ichthyostega_stensioei.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Ichthyostega stensioei"
+  },
+  "Iguanodon": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/Iguanodon_new_NT.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Iguanodon_new_NT.jpg/500px-Iguanodon_new_NT.jpg",
+    "imageTitle": "Iguanodon new NT",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Iguanodon_new_NT.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Iguanodon bernissartensis"
+  },
+  "Inostrancevia": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Inostrancevia_DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Inostrancevia_DB.jpg/500px-Inostrancevia_DB.jpg",
+    "imageTitle": "Inostrancevia DB",
+    "artist": "DiBgd at English Wikipedia",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Inostrancevia_DB.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "depicts": "Inostrancevia alexandri"
+  },
+  "Irritator": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Irritator_Life_Reconstruction.jpg/960px-Irritator_Life_Reconstruction.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Irritator_Life_Reconstruction.jpg/500px-Irritator_Life_Reconstruction.jpg",
+    "imageTitle": "Irritator Life Reconstruction",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Irritator_Life_Reconstruction.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Irritator challengeri"
+  },
+  "Jaekelopterus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Jaekelopterus_rhenaniae_reconstruction.jpg/960px-Jaekelopterus_rhenaniae_reconstruction.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Jaekelopterus_rhenaniae_reconstruction.jpg/500px-Jaekelopterus_rhenaniae_reconstruction.jpg",
+    "imageTitle": "Jaekelopterus rhenaniae reconstruction",
+    "artist": "ДиБгд",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Jaekelopterus_rhenaniae_reconstruction.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Jaekelopterus rhenaniae"
+  },
+  "Kaprosuchus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kaprosuchus.png/960px-Kaprosuchus.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Kaprosuchus.png/500px-Kaprosuchus.png",
+    "imageTitle": "Kaprosuchus",
+    "artist": "LiterallyMiguel",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Kaprosuchus.png",
+    "licenseName": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "depicts": "Kaprosuchus saharicus"
+  },
+  "Kelenken": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Kelenken.jpg/960px-Kelenken.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Kelenken.jpg/500px-Kelenken.jpg",
+    "imageTitle": "Kelenken",
+    "artist": "FunkMonk",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Kelenken.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Kelenken guillermoi"
+  },
+  "Kentrosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Kentosaurus_size_comparison_with_human.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Kentosaurus_size_comparison_with_human.png/500px-Kentosaurus_size_comparison_with_human.png",
+    "imageTitle": "Kentosaurus size comparison with human",
+    "artist": "Dinosaur Zoo",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Kentosaurus_size_comparison_with_human.png",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Kentrosaurus aethiopicus"
+  },
+  "Koolasuchus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Koolasuchus.png/960px-Koolasuchus.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Koolasuchus.png/500px-Koolasuchus.png",
+    "imageTitle": "Koolasuchus",
+    "artist": "Tim Bertelink",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Koolasuchus.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Koolasuchus cleelandi"
+  },
+  "Kosmoceratops": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Kosmoceratops_NT_small_%282%29.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Kosmoceratops_NT_small_%282%29.jpg/500px-Kosmoceratops_NT_small_%282%29.jpg",
+    "imageTitle": "Kosmoceratops NT small (2)",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/ http://paleoexhibit.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Kosmoceratops_NT_small_(2).jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Kosmoceratops richardsoni"
+  },
+  "Leedsichthys": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Leedsichthys_paleoart.jpg/960px-Leedsichthys_paleoart.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Leedsichthys_paleoart.jpg/500px-Leedsichthys_paleoart.jpg",
+    "imageTitle": "Leedsichthys paleoart",
+    "artist": "LiterallyMiguel",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Leedsichthys_paleoart.jpg",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Leedsichthys problematicus"
   },
   "Liopleurodon": {
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Liopleurodon_after_Tarlo.jpg/1920px-Liopleurodon_after_Tarlo.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "artist": "By DiBgd - Own work",
-    "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Liopleurodon_after_Tarlo.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Liopleurodon_after_Tarlo.jpg/960px-Liopleurodon_after_Tarlo.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Liopleurodon_after_Tarlo.jpg/500px-Liopleurodon_after_Tarlo.jpg",
+    "imageTitle": "Liopleurodon after Tarlo",
+    "artist": "DiBgd",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Liopleurodon_after_Tarlo.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Liopleurodon ferox"
+  },
+  "Livyatan": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Livyatan_melvillei.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Livyatan_melvillei.jpg/500px-Livyatan_melvillei.jpg",
+    "imageTitle": "Livyatan melvillei",
+    "artist": "Apokryltaros",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Livyatan_melvillei.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Livyatan melvillei"
+  },
+  "Lystrosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Lystrosaurus_murrayi.jpg/960px-Lystrosaurus_murrayi.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Lystrosaurus_murrayi.jpg/500px-Lystrosaurus_murrayi.jpg",
+    "imageTitle": "Lystrosaurus murrayi",
+    "artist": "FunkMonk",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Lystrosaurus_murrayi.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Lystrosaurus murrayi"
+  },
+  "Majungasaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Majungasaurus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Majungasaurus_BW.jpg/500px-Majungasaurus_BW.jpg",
+    "imageTitle": "Majungasaurus BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Majungasaurus_BW.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Majungasaurus crenatissimus"
+  },
+  "Mammut": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Mammut_americanum_Sergiodlarosa.jpg/960px-Mammut_americanum_Sergiodlarosa.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mammut_americanum_Sergiodlarosa.jpg/500px-Mammut_americanum_Sergiodlarosa.jpg",
+    "imageTitle": "Mammut americanum Sergiodlarosa",
+    "artist": "Sergiodlarosa",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Mammut_americanum_Sergiodlarosa.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "depicts": "Mammut americanum"
+  },
+  "Mammuthus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Woolly_mammoth_model_Royal_BC_Museum_in_Victoria.jpg/960px-Woolly_mammoth_model_Royal_BC_Museum_in_Victoria.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Woolly_mammoth_model_Royal_BC_Museum_in_Victoria.jpg/500px-Woolly_mammoth_model_Royal_BC_Museum_in_Victoria.jpg",
+    "imageTitle": "Woolly mammoth model Royal BC Museum in Victoria",
+    "artist": "Thomas Quine",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Woolly_mammoth_model_Royal_BC_Museum_in_Victoria.jpg",
+    "licenseName": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "depicts": "Mammuthus primigenius"
+  },
+  "Mapusaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Mapusaurus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Mapusaurus_BW.jpg/500px-Mapusaurus_BW.jpg",
+    "imageTitle": "Mapusaurus BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Mapusaurus_BW.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Mapusaurus roseae"
+  },
+  "Mastodonsaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Mastodonsaurus_DB.jpg/960px-Mastodonsaurus_DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Mastodonsaurus_DB.jpg/500px-Mastodonsaurus_DB.jpg",
+    "imageTitle": "Mastodonsaurus DB",
+    "artist": "ДиБгд at Russian Wikipedia",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Mastodonsaurus_DB.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Mastodonsaurus"
+  },
+  "Medusaceratops": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Medusaceratops_NT.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Medusaceratops_NT.jpg/500px-Medusaceratops_NT.jpg",
+    "imageTitle": "Medusaceratops NT",
+    "artist": "Nobu Tamura ( https://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Medusaceratops_NT.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Medusaceratops lokii"
+  },
+  "Megacerops": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Megacerops-coloradensis.jpg/960px-Megacerops-coloradensis.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Megacerops-coloradensis.jpg/500px-Megacerops-coloradensis.jpg",
+    "imageTitle": "Megacerops-coloradensis",
+    "artist": "Creator:Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Megacerops-coloradensis.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Megacerops"
+  },
+  "Megaloceros": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/%C3%9Cberseemuseum_Bremen_2009_250.JPG/960px-%C3%9Cberseemuseum_Bremen_2009_250.JPG",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/%C3%9Cberseemuseum_Bremen_2009_250.JPG/500px-%C3%9Cberseemuseum_Bremen_2009_250.JPG",
+    "imageTitle": "Überseemuseum Bremen 2009 250",
+    "artist": "Sterilgutassistentin",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:%C3%9Cberseemuseum_Bremen_2009_250.JPG",
+    "licenseName": "GPL",
+    "licenseUrl": "https://www.gnu.org/licenses/gpl.html",
+    "depicts": "Megaloceros giganteus"
+  },
+  "Meganeura": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Meganeura.png/960px-Meganeura.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Meganeura.png/500px-Meganeura.png",
+    "imageTitle": "Meganeura",
+    "artist": "Qohelet12",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Meganeura.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Meganeura monyi"
+  },
+  "Megatherium": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Megatherum_DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Megatherum_DB.jpg/500px-Megatherum_DB.jpg",
+    "imageTitle": "Megatherum DB",
+    "artist": "ДиБгд at Russian Wikipedia",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Megatherum_DB.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Megatherium americanum"
+  },
+  "Microraptor": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Microraptor_Restoration.png/960px-Microraptor_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Microraptor_Restoration.png/500px-Microraptor_Restoration.png",
+    "imageTitle": "Microraptor Restoration",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Microraptor_Restoration.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Microraptor zhaoianus"
+  },
+  "Moeritherium": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Moeritherium_NT_small.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Moeritherium_NT_small.jpg/500px-Moeritherium_NT_small.jpg",
+    "imageTitle": "Moeritherium NT small",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Moeritherium_NT_small.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Moeritherium lyonsi"
+  },
+  "Mosasaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Mosasaurus_hoffmannii_-_skeleton.jpg/960px-Mosasaurus_hoffmannii_-_skeleton.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Mosasaurus_hoffmannii_-_skeleton.jpg/500px-Mosasaurus_hoffmannii_-_skeleton.jpg",
+    "imageTitle": "Mosasaurus hoffmannii - skeleton",
+    "artist": "Ghedoghedo",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Mosasaurus_hoffmannii_-_skeleton.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Mosasaurus hoffmannii"
+  },
+  "Nigersaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Nigersaurus_TD.png/960px-Nigersaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Nigersaurus_TD.png/500px-Nigersaurus_TD.png",
+    "imageTitle": "Nigersaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Nigersaurus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Nigersaurus taqueti"
+  },
+  "Nyctosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Nyctosaurus_DB.jpg/960px-Nyctosaurus_DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Nyctosaurus_DB.jpg/500px-Nyctosaurus_DB.jpg",
+    "imageTitle": "Nyctosaurus DB",
+    "artist": "Creator:Dmitry Bogdanov Crest fixed by FunkMonk .",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Nyctosaurus_DB.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Nyctosaurus gracilis"
+  },
+  "Ornithomimus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Ornithomimus_based_on_Scott_Hartman_skeletal.jpg/960px-Ornithomimus_based_on_Scott_Hartman_skeletal.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ornithomimus_based_on_Scott_Hartman_skeletal.jpg/500px-Ornithomimus_based_on_Scott_Hartman_skeletal.jpg",
+    "imageTitle": "Ornithomimus based on Scott Hartman skeletal",
+    "artist": "Stegotyranno",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Ornithomimus_based_on_Scott_Hartman_skeletal.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Ornithomimus velox"
+  },
+  "Otodus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/O._megalodon_reconstruction_2025.png/960px-O._megalodon_reconstruction_2025.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/O._megalodon_reconstruction_2025.png/500px-O._megalodon_reconstruction_2025.png",
+    "imageTitle": "O. megalodon reconstruction 2025",
+    "artist": "EvolutionIncarnate",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:O._megalodon_reconstruction_2025.png",
+    "licenseName": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "depicts": "Otodus megalodon"
+  },
+  "Oviraptor": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Oviraptor_TD.png/960px-Oviraptor_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Oviraptor_TD.png/500px-Oviraptor_TD.png",
+    "imageTitle": "Oviraptor TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Oviraptor_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Oviraptor philoceratops"
+  },
+  "Oxalaia": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Oxalaia_quilombensis_Skeletal_by_PaleoGeek.png/960px-Oxalaia_quilombensis_Skeletal_by_PaleoGeek.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Oxalaia_quilombensis_Skeletal_by_PaleoGeek.png/500px-Oxalaia_quilombensis_Skeletal_by_PaleoGeek.png",
+    "imageTitle": "Oxalaia quilombensis Skeletal by PaleoGeek",
+    "artist": "PaleoGeekSquared",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Oxalaia_quilombensis_Skeletal_by_PaleoGeek.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Oxalaia quilombensis"
+  },
+  "Pachycephalosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Pachycephalosaurus_Reconstruction.jpg/960px-Pachycephalosaurus_Reconstruction.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Pachycephalosaurus_Reconstruction.jpg/500px-Pachycephalosaurus_Reconstruction.jpg",
+    "imageTitle": "Pachycephalosaurus Reconstruction",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Pachycephalosaurus_Reconstruction.jpg",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Pachycephalosaurus wyomingensis"
+  },
+  "Pachyrhinosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Pachyrhinosaurus_TD.png/960px-Pachyrhinosaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Pachyrhinosaurus_TD.png/500px-Pachyrhinosaurus_TD.png",
+    "imageTitle": "Pachyrhinosaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Pachyrhinosaurus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Pachyrhinosaurus canadensis"
+  },
+  "Pakicetus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Pakicetus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Pakicetus_BW.jpg/500px-Pakicetus_BW.jpg",
+    "imageTitle": "Pakicetus BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Pakicetus_BW.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Pakicetus inachus"
+  },
+  "Paraceratherium": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Indricotherium11.jpg/960px-Indricotherium11.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Indricotherium11.jpg/500px-Indricotherium11.jpg",
+    "imageTitle": "Indricotherium11",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Indricotherium11.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Paraceratherium linxiaense"
+  },
+  "Parasaurolophus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Parasaurolophus_TD.png/960px-Parasaurolophus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Parasaurolophus_TD.png/500px-Parasaurolophus_TD.png",
+    "imageTitle": "Parasaurolophus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Parasaurolophus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Parasaurolophus walkeri"
+  },
+  "Placerias": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Placerias1DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Placerias1DB.jpg/500px-Placerias1DB.jpg",
+    "imageTitle": "Placerias1DB",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Placerias1DB.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Placerias hesternus"
+  },
+  "Placodus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Placodus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Placodus_BW.jpg/500px-Placodus_BW.jpg",
+    "imageTitle": "Placodus BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Placodus_BW.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Placodus gigas"
+  },
+  "Postosuchus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Postosuchus_kirkpatricki_flipped.jpg/960px-Postosuchus_kirkpatricki_flipped.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Postosuchus_kirkpatricki_flipped.jpg/500px-Postosuchus_kirkpatricki_flipped.jpg",
+    "imageTitle": "Postosuchus kirkpatricki flipped",
+    "artist": "Petrified Forest from Petrified Forest, USA",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Postosuchus_kirkpatricki_flipped.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Postosuchus kirkpatricki"
+  },
+  "Prionosuchus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Prionosuchus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Prionosuchus_BW.jpg/500px-Prionosuchus_BW.jpg",
+    "imageTitle": "Prionosuchus BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Prionosuchus_BW.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Prionosuchus plummeri"
+  },
+  "Procoptodon": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Procoptodon_goliah_NT.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Procoptodon_goliah_NT.png/500px-Procoptodon_goliah_NT.png",
+    "imageTitle": "Procoptodon goliah NT",
+    "artist": "Nobu Tamura",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Procoptodon_goliah_NT.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Procoptodon goliah"
+  },
+  "Protoceratops": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Protoceratops_andrewsi_Restoration.png/960px-Protoceratops_andrewsi_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Protoceratops_andrewsi_Restoration.png/500px-Protoceratops_andrewsi_Restoration.png",
+    "imageTitle": "Protoceratops andrewsi Restoration",
+    "artist": "PaleoNeolitic",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Protoceratops_andrewsi_Restoration.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Protoceratops andrewsi"
+  },
+  "Pteranodon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Pteranodon_TD.png/960px-Pteranodon_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Pteranodon_TD.png/500px-Pteranodon_TD.png",
+    "imageTitle": "Pteranodon TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Pteranodon_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Pteranodon longiceps"
+  },
+  "Pterygotus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/20201227_Pterygotus_anglicus.png/960px-20201227_Pterygotus_anglicus.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/20201227_Pterygotus_anglicus.png/500px-20201227_Pterygotus_anglicus.png",
+    "imageTitle": "20201227 Pterygotus anglicus",
+    "artist": "Junnn11",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:20201227_Pterygotus_anglicus.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Pterygotus"
+  },
+  "Purussaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Purussaurus_life_reconstruction.png/960px-Purussaurus_life_reconstruction.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Purussaurus_life_reconstruction.png/500px-Purussaurus_life_reconstruction.png",
+    "imageTitle": "Purussaurus life reconstruction",
+    "artist": "LiterallyMiguel",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Purussaurus_life_reconstruction.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Purussaurus brasiliensis"
+  },
+  "Rajasaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Rajasaurus_restoration.jpg/960px-Rajasaurus_restoration.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Rajasaurus_restoration.jpg/500px-Rajasaurus_restoration.jpg",
+    "imageTitle": "Rajasaurus restoration",
+    "artist": "Paleocolour",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Rajasaurus_restoration.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Rajasaurus narmadensis"
+  },
+  "Raphus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Dronte_dodo_Raphus_cucullatus.jpg/960px-Dronte_dodo_Raphus_cucullatus.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Dronte_dodo_Raphus_cucullatus.jpg/500px-Dronte_dodo_Raphus_cucullatus.jpg",
+    "imageTitle": "Dronte dodo Raphus cucullatus",
+    "artist": "Jebulon",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Dronte_dodo_Raphus_cucullatus.jpg",
+    "licenseName": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "depicts": "Raphus cucullatus"
+  },
+  "Rhamphorhynchus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Rhamphorhynchus_DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Rhamphorhynchus_DB.jpg/500px-Rhamphorhynchus_DB.jpg",
+    "imageTitle": "Rhamphorhynchus DB",
+    "artist": "ДиБгд at Russian Wikipedia",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Rhamphorhynchus_DB.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Rhamphorhynchus muensteri"
+  },
+  "Rugops": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Rugops_%28cropped%29.png/960px-Rugops_%28cropped%29.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Rugops_%28cropped%29.png/500px-Rugops_%28cropped%29.png",
+    "imageTitle": "Rugops (cropped)",
+    "artist": "Liam Elward",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Rugops_(cropped).png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Rugops primus"
+  },
+  "Sarcosuchus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Sarcosuchus_Illustration.jpg/960px-Sarcosuchus_Illustration.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Sarcosuchus_Illustration.jpg/500px-Sarcosuchus_Illustration.jpg",
+    "imageTitle": "Sarcosuchus Illustration",
+    "artist": "Rhunevild",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Sarcosuchus_Illustration.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Sarcosuchus imperator"
+  },
+  "Saurosuchus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Saurosuchus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Saurosuchus_BW.jpg/500px-Saurosuchus_BW.jpg",
+    "imageTitle": "Saurosuchus BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Saurosuchus_BW.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Saurosuchus galilei"
+  },
+  "Scutosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Scutosaurus_restoration_%28cropped%29.jpg/960px-Scutosaurus_restoration_%28cropped%29.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Scutosaurus_restoration_%28cropped%29.jpg/500px-Scutosaurus_restoration_%28cropped%29.jpg",
+    "imageTitle": "Scutosaurus restoration (cropped)",
+    "artist": "Marco Romano, Fabio Manucci, Bruce Rubidge and Marc J. Van den Brandt",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Scutosaurus_restoration_(cropped).jpg",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Scutosaurus karpinskii"
+  },
+  "Secodontosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Secodontosaurus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Secodontosaurus_BW.jpg/500px-Secodontosaurus_BW.jpg",
+    "imageTitle": "Secodontosaurus BW",
+    "artist": "Nobu Tamura ( https://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Secodontosaurus_BW.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Secodontosaurus"
+  },
+  "Shonisaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Shonisaurus.png/960px-Shonisaurus.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Shonisaurus.png/500px-Shonisaurus.png",
+    "imageTitle": "Shonisaurus",
+    "artist": "GabrielRiehl",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Shonisaurus.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Shonisaurus popularis"
+  },
+  "Shunosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Shunosaurus_life_restoration.jpg/960px-Shunosaurus_life_restoration.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Shunosaurus_life_restoration.jpg/500px-Shunosaurus_life_restoration.jpg",
+    "imageTitle": "Shunosaurus life restoration",
+    "artist": "User:Smokeybjb (Edits by User:Paleocolour )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Shunosaurus_life_restoration.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Shunosaurus lii"
+  },
+  "Simosuchus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Simosuchus.jpg/960px-Simosuchus.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Simosuchus.jpg/500px-Simosuchus.jpg",
+    "imageTitle": "Simosuchus",
+    "artist": "Smokeybjb",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Simosuchus.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Simosuchus clarki"
+  },
+  "Sivatherium": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/MEPAN_Sivatherium.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/MEPAN_Sivatherium.jpg/500px-MEPAN_Sivatherium.jpg",
+    "imageTitle": "MEPAN Sivatherium",
+    "artist": "Hiuppo",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:MEPAN_Sivatherium.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Sivatherium giganteum"
+  },
+  "Skorpiovenator": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Skorpiovenator_bustingorryi.jpg/960px-Skorpiovenator_bustingorryi.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Skorpiovenator_bustingorryi.jpg/500px-Skorpiovenator_bustingorryi.jpg",
+    "imageTitle": "Skorpiovenator bustingorryi",
+    "artist": "Coloured by Paleocolour . Lineart was drawn by D-Juan of Deviant Art. https://d-juan.deviantart.com/ Coloured and uploaded with permission.",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Skorpiovenator_bustingorryi.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Skorpiovenator bustingorryi"
+  },
+  "Smilodon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Smilodon_pop2_15.jpg/960px-Smilodon_pop2_15.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Smilodon_pop2_15.jpg/500px-Smilodon_pop2_15.jpg",
+    "imageTitle": "Smilodon pop2 15",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Smilodon_pop2_15.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Smilodon populator"
+  },
+  "Smilosuchus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Smilosuchus-reconstructions-Jeff-Martz-600-px-tiny-Oct-2014-Tetrapod-Zoology_adamanensis.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Smilosuchus-reconstructions-Jeff-Martz-600-px-tiny-Oct-2014-Tetrapod-Zoology_adamanensis.png/500px-Smilosuchus-reconstructions-Jeff-Martz-600-px-tiny-Oct-2014-Tetrapod-Zoology_adamanensis.png",
+    "imageTitle": "Smilosuchus-reconstructions-Jeff-Martz-600-px-tiny-Oct-2014-Tetrapod-Zoology adamanensis",
+    "artist": "Remove \"cropped\" from file name and see original file",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Smilosuchus-reconstructions-Jeff-Martz-600-px-tiny-Oct-2014-Tetrapod-Zoology_adamanensis.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Smilosuchus gregorii"
+  },
+  "Sphenacodon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Sphenacodon_britannicus.jpg/960px-Sphenacodon_britannicus.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Sphenacodon_britannicus.jpg/500px-Sphenacodon_britannicus.jpg",
+    "imageTitle": "Sphenacodon britannicus",
+    "artist": "No machine-readable author provided. Karkemish assumed (based on copyright claims).",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Sphenacodon_britannicus.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Sphenacodon ferox"
+  },
+  "Spinosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Spinosaurus_aegyptiacus_by_PaleoGeek.png/960px-Spinosaurus_aegyptiacus_by_PaleoGeek.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Spinosaurus_aegyptiacus_by_PaleoGeek.png/500px-Spinosaurus_aegyptiacus_by_PaleoGeek.png",
+    "imageTitle": "Spinosaurus aegyptiacus by PaleoGeek",
+    "artist": "PaleoGeekSquared",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Spinosaurus_aegyptiacus_by_PaleoGeek.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Spinosaurus aegyptiacus"
+  },
+  "Stagonolepis": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Stagonolepis_Warsaw.jpg/960px-Stagonolepis_Warsaw.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Stagonolepis_Warsaw.jpg/500px-Stagonolepis_Warsaw.jpg",
+    "imageTitle": "Stagonolepis Warsaw",
+    "artist": "Shalom",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Stagonolepis_Warsaw.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Stagonolepis robertsoni"
+  },
+  "Stegosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Stegosaurus_stenops_Life_Reconstruction.png/960px-Stegosaurus_stenops_Life_Reconstruction.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Stegosaurus_stenops_Life_Reconstruction.png/500px-Stegosaurus_stenops_Life_Reconstruction.png",
+    "imageTitle": "Stegosaurus stenops Life Reconstruction",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Stegosaurus_stenops_Life_Reconstruction.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Stegosaurus stenops"
+  },
+  "Stethacanthus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Stethacanthus1DB.jpg/960px-Stethacanthus1DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Stethacanthus1DB.jpg/500px-Stethacanthus1DB.jpg",
+    "imageTitle": "Stethacanthus1DB",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Stethacanthus1DB.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Stethacanthus productus"
+  },
+  "Suchomimus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Suchomimus_tenerensis_by_PaleoGeek.png/960px-Suchomimus_tenerensis_by_PaleoGeek.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Suchomimus_tenerensis_by_PaleoGeek.png/500px-Suchomimus_tenerensis_by_PaleoGeek.png",
+    "imageTitle": "Suchomimus tenerensis by PaleoGeek",
+    "artist": "PaleoGeekSquared",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Suchomimus_tenerensis_by_PaleoGeek.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Suchomimus tenerensis"
+  },
+  "Supersaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Supersaurus_dinosaur.png/960px-Supersaurus_dinosaur.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Supersaurus_dinosaur.png/500px-Supersaurus_dinosaur.png",
+    "imageTitle": "Supersaurus dinosaur",
+    "artist": "LadyofHats",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Supersaurus_dinosaur.png",
+    "licenseName": "Public domain",
+    "depicts": "Supersaurus vivianae"
+  },
+  "Tarbosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Tarbosaurus_TD.png/960px-Tarbosaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Tarbosaurus_TD.png/500px-Tarbosaurus_TD.png",
+    "imageTitle": "Tarbosaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Tarbosaurus_TD.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Tarbosaurus bataar"
+  },
+  "Tarchia": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Tarchia_TD.png/960px-Tarchia_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Tarchia_TD.png/500px-Tarchia_TD.png",
+    "imageTitle": "Tarchia TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Tarchia_TD.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Tarchia tumanovae"
+  },
+  "Temnodontosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Temnodontosaurus_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Temnodontosaurus_BW.jpg/500px-Temnodontosaurus_BW.jpg",
+    "imageTitle": "Temnodontosaurus BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Temnodontosaurus_BW.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Temnodontosaurus trigonodon"
+  },
+  "Thalassodromeus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Thalassodromeus.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Thalassodromeus.jpg/500px-Thalassodromeus.jpg",
+    "imageTitle": "Thalassodromeus",
+    "artist": "PWNZ3R Dragon",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Thalassodromeus.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Thalassodromeus sethi"
+  },
+  "Therizinosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Therizinosaurus_Restoration.png/960px-Therizinosaurus_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Therizinosaurus_Restoration.png/500px-Therizinosaurus_Restoration.png",
+    "imageTitle": "Therizinosaurus Restoration",
+    "artist": "PaleoNeolitic",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Therizinosaurus_Restoration.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Therizinosaurus cheloniformis"
+  },
+  "Thrinaxodon": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Thrinaxodon_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Thrinaxodon_BW.jpg/500px-Thrinaxodon_BW.jpg",
+    "imageTitle": "Thrinaxodon BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Thrinaxodon_BW.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Thrinaxodon liorhinus"
+  },
+  "Thylacinus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Thylacinus.jpg/960px-Thylacinus.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Thylacinus.jpg/500px-Thylacinus.jpg",
+    "imageTitle": "'Tasmanian \"Zebra Wolf\"' Thylacinus in Washington D.C. National Zoo",
+    "artist": "Baker; E.J. Keller.",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Thylacinus.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Thylacinus cynocephalus"
+  },
+  "Thylacosmilus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tylacosmilus_DB.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tylacosmilus_DB.jpg/500px-Tylacosmilus_DB.jpg",
+    "imageTitle": "Tylacosmilus DB",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Tylacosmilus_DB.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Thylacosmilus atrox"
+  },
+  "Tiktaalik": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Tiktaalik_roseae_life_restor.jpg/960px-Tiktaalik_roseae_life_restor.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Tiktaalik_roseae_life_restor.jpg/500px-Tiktaalik_roseae_life_restor.jpg",
+    "imageTitle": "Tiktaalik roseae life restor",
+    "artist": "Zina Deretsky , National Science Foundation",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Tiktaalik_roseae_life_restor.jpg",
+    "licenseName": "Public domain",
+    "depicts": "Tiktaalik roseae"
+  },
+  "Titanichthys": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Titanichthys_agassizi.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Titanichthys_agassizi.jpg/500px-Titanichthys_agassizi.jpg",
+    "imageTitle": "Titanichthys agassizi",
+    "artist": "Apokryltaros",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Titanichthys_agassizi.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Titanichthys agassizi"
+  },
+  "Titanis": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/Life_reconstruction_of_the_terror_bird_Titanis_walleri.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Life_reconstruction_of_the_terror_bird_Titanis_walleri.jpg/500px-Life_reconstruction_of_the_terror_bird_Titanis_walleri.jpg",
+    "imageTitle": "Life reconstruction of the terror bird Titanis walleri",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_the_terror_bird_Titanis_walleri.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Titanis walleri"
+  },
+  "Titanoboa": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Titanoboa_NT.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Titanoboa_NT.jpg/500px-Titanoboa_NT.jpg",
+    "imageTitle": "Titanoboa NT",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com www.palaeocritti.com",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Titanoboa_NT.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Titanoboa cerrejonens"
+  },
+  "Torosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Torosaurus_TD.png/960px-Torosaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Torosaurus_TD.png/500px-Torosaurus_TD.png",
+    "imageTitle": "Torosaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Torosaurus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Torosaurus latus"
+  },
+  "Triceratops": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Triceratops_BW.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Triceratops_BW.jpg/500px-Triceratops_BW.jpg",
+    "imageTitle": "Triceratops BW",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Triceratops_BW.jpg",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "depicts": "Triceratops horridus"
+  },
+  "Troodon": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Troodon.jpg/960px-Troodon.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Troodon.jpg/500px-Troodon.jpg",
+    "imageTitle": "Troodon",
+    "artist": "Elekes Andor",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Troodon.jpg",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Troodon formosus"
+  },
+  "Tropeognathus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/TropeognathusDB22.jpg/960px-TropeognathusDB22.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/TropeognathusDB22.jpg/500px-TropeognathusDB22.jpg",
+    "imageTitle": "TropeognathusDB22",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:TropeognathusDB22.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Tropeognathus mesembrinus"
+  },
+  "Tupandactylus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Tapejara_weln_DB2.jpg/960px-Tapejara_weln_DB2.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Tapejara_weln_DB2.jpg/500px-Tapejara_weln_DB2.jpg",
+    "imageTitle": "Tapejara weln DB2",
+    "artist": "Dmitry Bogdanov",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Tapejara_weln_DB2.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Tupandactylus imperator"
+  },
+  "Tylosaurus": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Tylosaurus_nepaeolicus_NT.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Tylosaurus_nepaeolicus_NT.png/500px-Tylosaurus_nepaeolicus_NT.png",
+    "imageTitle": "Tylosaurus nepaeolicus NT",
+    "artist": "Nobu Tamura email:nobu.tamura@yahoo.com http://spinops.blogspot.com/",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Tylosaurus_nepaeolicus_NT.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Tylosaurus rex"
+  },
+  "Tyrannosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Tyrannosaurus-rex-Profile-steveoc86.png/960px-Tyrannosaurus-rex-Profile-steveoc86.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Tyrannosaurus-rex-Profile-steveoc86.png/500px-Tyrannosaurus-rex-Profile-steveoc86.png",
+    "imageTitle": "Tyrannosaurus-rex-Profile-steveoc86",
+    "artist": "Steveoc 86",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Tyrannosaurus-rex-Profile-steveoc86.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Tyrannosaurus rex"
+  },
+  "Utahceratops": {
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Utahceratops_gettyi.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Utahceratops_gettyi.jpg/500px-Utahceratops_gettyi.jpg",
+    "imageTitle": "Utahceratops gettyi",
+    "artist": "Nobu Tamura ( http://spinops.blogspot.com )",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Utahceratops_gettyi.jpg",
+    "licenseName": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "depicts": "Utahceratops gettyi"
+  },
+  "Utahraptor": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Utahraptor_Restoration.png/960px-Utahraptor_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Utahraptor_Restoration.png/500px-Utahraptor_Restoration.png",
+    "imageTitle": "Utahraptor Restoration",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Utahraptor_Restoration.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Utahraptor ostrommaysi"
+  },
+  "Velociraptor": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Velociraptor_Restoration.png/960px-Velociraptor_Restoration.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Velociraptor_Restoration.png/500px-Velociraptor_Restoration.png",
+    "imageTitle": "Velociraptor Restoration",
+    "artist": "Fred Wierum",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Velociraptor_Restoration.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Velociraptor mongoliensis"
+  },
+  "Xenacanthus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Xenacanth.png/960px-Xenacanth.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Xenacanth.png/500px-Xenacanth.png",
+    "imageTitle": "Xenacanth",
+    "artist": "Gasmasque",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Xenacanth.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Xenacanthus ragonhai"
+  },
+  "Xiphactinus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Xiphactinus_by_johnson_mortimer-dae88nl.jpg/960px-Xiphactinus_by_johnson_mortimer-dae88nl.jpg",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Xiphactinus_by_johnson_mortimer-dae88nl.jpg/500px-Xiphactinus_by_johnson_mortimer-dae88nl.jpg",
+    "imageTitle": "Xiphactinus by johnson mortimer-dae88nl",
+    "artist": "Johnson Mortimer",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Xiphactinus_by_johnson_mortimer-dae88nl.jpg",
+    "licenseName": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "depicts": "Xiphactinus audax"
+  },
+  "Yutyrannus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Yutyrannus_TD.png/960px-Yutyrannus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Yutyrannus_TD.png/500px-Yutyrannus_TD.png",
+    "imageTitle": "Yutyrannus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Yutyrannus_TD.png",
+    "licenseName": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "depicts": "Yutyrannus huali"
+  },
+  "Zuul": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Zuul_TD.png/960px-Zuul_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Zuul_TD.png/500px-Zuul_TD.png",
+    "imageTitle": "Zuul TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Zuul_TD.png",
+    "licenseName": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "depicts": "Zuul crurivastator"
   }
 }

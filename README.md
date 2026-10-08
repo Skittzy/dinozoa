@@ -315,6 +315,17 @@ Three defences, in the order the game checks them:
    image, on the grounds that a Wikipedia editor chose it deliberately and the
    heuristic did not.
 
+The overrides include 179 curated animal images from Wikimedia Commons and
+apply only to leaf animals. Their titles, artists, file pages and licences
+were verified with the Commons API. Each entry records the illustrated taxon.
+Credits and licence links appear on animal cards and in daily/endless result dialogs.
+
+Image overrides preserve cached descriptions and fetch a Wikipedia summary when
+none is cached. When replacing a picture, update its title, artist, file page and
+licence together. A fallback URL must show the same image at another size so its
+credits remain correct. Third-party images retain their individual licences, as
+described in `LICENSE-DATA.md`.
+
 Run it after `build_db.py`, and again whenever the answer pool changes. Set `USER_AGENT` at
 the top of the script to real contact details first, as Wikimedia asks scripts to identify
 themselves.

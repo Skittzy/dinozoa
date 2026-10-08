@@ -3,6 +3,7 @@
 import type { DinoNode } from '../data/loadTree';
 import type { Stats } from '../storage/stats';
 import { fetchTaxonImage, isRedirect } from './wiki';
+import type { TaxonImage } from './wiki';
 import type { EndlessStats } from '../storage/stats';
 import { SUPPORT_URL } from '../config';
 import { msUntilNextAnimal } from '../game/dailyAnimal';
@@ -19,6 +20,26 @@ function trimBlurb(text: string, max = 460): string {
     const cut = text.slice(0, max);
     const stop = cut.lastIndexOf('. ');
     return (stop > 120 ? cut.slice(0, stop + 1) : cut) + ' …';
+}
+
+/** Credits for the selected file, shared by the info card and result dialogs. */
+export function imageCreditHtml(data: Pick<TaxonImage,
+    'artist' | 'fileUrl' | 'imageTitle' | 'licenseName' | 'licenseUrl'>): string {
+    const link = (label: string, url: string | null): string =>
+        url && /^https?:\/\//i.test(url)
+            ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`
+            : escapeHtml(label);
+    const parts: string[] = [];
+    if (data.imageTitle) {
+        parts.push(link(data.imageTitle, data.fileUrl)
+            + (data.artist ? ` — ${escapeHtml(data.artist)}` : ''));
+    } else if (data.artist) {
+        parts.push(link(data.artist, data.fileUrl));
+    } else if (data.fileUrl) {
+        parts.push(link('Source', data.fileUrl));
+    }
+    if (data.licenseName) parts.push(link(data.licenseName, data.licenseUrl));
+    return parts.length ? `Image: ${parts.join(' · ')}` : '';
 }
 
 export class Renderer {
@@ -62,13 +83,21 @@ export class Renderer {
 
     // Shared photo loader for both end-of-game popups.
     private async fillMedia(answer: DinoNode): Promise<void> {
-        const data = await fetchTaxonImage(answer.scientific, true, [answer.common]);   // always a leaf
         const media = document.getElementById('modal-media');
-        if (!media || !data.imageUrl) return;
+        const credit = document.getElementById('modal-credit');
+        const data = await fetchTaxonImage(answer.scientific, true, [answer.common]);
+        if (!media?.isConnected || !data.imageUrl) return;
         const img = new Image();
         img.alt = answer.scientific;
         img.className = 'lca-img';
-        img.onload = () => { media.innerHTML = ''; media.appendChild(img); };
+        img.onload = () => {
+            media.innerHTML = '';
+            media.appendChild(img);
+            if (credit?.isConnected) {
+                credit.innerHTML = imageCreditHtml(data);
+                credit.hidden = !credit.innerHTML;
+            }
+        };
         img.onerror = () => {
             img.onerror = null;
             if (data.fallbackUrl && img.src !== data.fallbackUrl) img.src = data.fallbackUrl;
@@ -101,11 +130,12 @@ export class Renderer {
         // Leaves get a life restoration; clades keep Wikipedia's lead image, which
         // for a group is usually a composite plate covering several of its members.
         const isLeaf = node.children.length === 0;
-        const data = await fetchTaxonImage(node.scientific, isLeaf, [node.common]);
         const blurb = document.getElementById('lca-blurb');
         const media = document.getElementById('lca-media');
         const source = document.getElementById('lca-source') as HTMLAnchorElement | null;
-        if (!blurb || !media) return; // panel was replaced by a newer guess
+        const credit = document.getElementById('lca-credit');
+        const data = await fetchTaxonImage(node.scientific, isLeaf, [node.common]);
+        if (!blurb?.isConnected || !media?.isConnected) return;
 
         // Many minor clades have no Wikipedia article and redirect to a parent, so
         // the extract describes the PARENT. Showing it unlabelled under this
@@ -128,20 +158,9 @@ export class Renderer {
         }
         if (source && data.pageUrl) source.href = data.pageUrl;
 
-        // Wikipedia palaeoart is largely CC BY-SA, under which crediting the author
-        // is a licence condition rather than a courtesy. Shown only when the API
-        // actually told us who made it; the row stays hidden otherwise.
-        const credit = document.getElementById('lca-credit');
         if (credit) {
-            if (data.artist) {
-                const who = escapeHtml(data.artist);
-                credit.innerHTML = data.fileUrl
-                    ? `Image: <a href="${escapeHtml(data.fileUrl)}" target="_blank" rel="noopener">${who}</a>`
-                    : `Image: ${who}`;
-                credit.hidden = false;
-            } else {
-                credit.hidden = true;
-            }
+            credit.innerHTML = imageCreditHtml(data);
+            credit.hidden = !credit.innerHTML;
         }
         if (data.imageUrl) {
             const img = new Image();
@@ -203,7 +222,8 @@ export class Renderer {
             `<div class="modal-answer">` +
             `<div class="modal-media" id="modal-media"><span class="lca-fallback">🦕</span></div>` +
             `<div><div class="modal-animal">${escapeHtml(common || answer.scientific)}</div>` +
-            `<div class="modal-sci">${escapeHtml(answer.scientific)}</div></div>` +
+            `<div class="modal-sci">${escapeHtml(answer.scientific)}</div>` +
+            `<p class="lca-credit" id="modal-credit" hidden></p></div>` +
             `</div>` +
             // Stacked, not side by side: score is the reward and gets its own row.
             `<div class="score-hero" id="score-hero">` +
@@ -365,7 +385,8 @@ export class Renderer {
             `<div class="modal-answer">` +
             `<div class="modal-media" id="modal-media"><span class="lca-fallback">🦕</span></div>` +
             `<div><div class="modal-animal">${escapeHtml(common || answer.scientific)}</div>` +
-            `<div class="modal-sci">${escapeHtml(answer.scientific)}</div></div>` +
+            `<div class="modal-sci">${escapeHtml(answer.scientific)}</div>` +
+            `<p class="lca-credit" id="modal-credit" hidden></p></div>` +
             `</div>` +
             `<div class="modal-stats">` +
             `<div><div class="ms-value">${stats.gamesPlayed}</div><div class="ms-label">Plays</div></div>` +
@@ -414,19 +435,7 @@ export class Renderer {
             }
         };
 
-        const data = await fetchTaxonImage(answer.scientific, true, [answer.common]);   // always a leaf
-        const media = document.getElementById('modal-media');
-        if (media && data.imageUrl) {
-            const img = new Image();
-            img.alt = answer.scientific;
-            img.className = 'lca-img';
-            img.onload = () => { media.innerHTML = ''; media.appendChild(img); };
-            img.onerror = () => {
-                img.onerror = null;
-                if (data.fallbackUrl && img.src !== data.fallbackUrl) img.src = data.fallbackUrl;
-            };
-            img.src = data.imageUrl;
-        }
+        await this.fillMedia(answer);
     }
 }
 

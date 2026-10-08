@@ -763,6 +763,7 @@ body.endless .countdown { display: none; }
    licence condition, so this sits under the source link rather than in a tooltip. */
 .lca-credit {
   margin: .25rem 0 0; font-size: .7rem; color: var(--muted); line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 .lca-credit a { color: inherit; }
 .lca-credit[hidden] { display: none; }
