@@ -1,7 +1,6 @@
 // endlessMode.ts — the Endless run loop.
 //
-// A run is a chain of randomly chosen animals. You get 10 guesses and 3 free
-// hints each. Solving one raises your score; failing one does NOT end the run —
+// A run is a chain of randomly chosen animals. You get 10 guesses per animal with the same hint prices as Daily. Solving one raises your score; failing one does NOT end the run —
 // it just moves you straight on to the next animal. There are no lives and no
 // death, so the only way a run ends is by choosing to end it.
 //
@@ -18,7 +17,9 @@ import type { GuessOutcome } from './game/gameState';
 import { getAnswerPool } from './game/dailyAnimal';
 import { Renderer } from './ui/render';
 import { TreeView } from './ui/treeView';
-import { loadEndlessStats, recordEndlessRun } from './storage/stats';
+import { loadEndlessStats, recordEndlessRun, loadEndlessRun, saveEndlessRun, clearEndlessRun } from './storage/stats';
+import { HintUI } from './ui/hints';
+import { EMPTY_HINT_COUNTS, type HintCounts } from './game/hintTypes';
 import { track } from './analytics';
 
 export interface EndlessHandles {
@@ -38,14 +39,28 @@ export function runEndless(h: EndlessHandles): void {
     // should surface them at the same rate the daily would.
     const pool = getAnswerPool();
 
-    let score = 0;         // animals solved — this IS the score
-    let attempted = 0;     // animals seen
+    const saved = loadEndlessRun();
+    let score = saved?.score ?? 0;
+    let attempted = saved?.attempted ?? 0;     // animals seen
     // Per-round outcomes. Accuracy only needs the two counters above, but the
     // missed list is what the DEMO DATABASE TEST block in render.ts consumes, so
     // it is recorded either way — it costs one array push per round.
-    const missed: string[] = [];
-    const solved: string[] = [];
-    let state = new GameState(pickAnimal(), ENDLESS_RULES);
+    const missed: string[] = saved?.missed ?? [];
+    const solved: string[] = saved?.solved ?? [];
+    const runHints: HintCounts = { ...EMPTY_HINT_COUNTS };
+    for (const kind of ['clade', 'factual', 'name'] as const) {
+        const count = saved?.hintCounts?.[kind];
+        if (Number.isInteger(count) && count! >= 0) runHints[kind] = count!;
+    }
+    let state = new GameState(saved && pool.includes(saved.game.answerId) ? saved.game.answerId : pickAnimal(), ENDLESS_RULES);
+    if (saved && state.answerId === saved.game.answerId) {
+        state.restore(saved.game.guessIds, saved.game.revealedIds, saved.game.surrendered, saved.game);
+    }
+    const persist = () => saveEndlessRun({ version: 1, score, attempted, missed, solved, hintCounts: runHints,
+        game: { answerId: state.answerId, guessIds: state.guesses.map(g => g.guessId),
+            revealedIds: [...state.revealedIds], finished: state.over, surrendered: state.surrendered,
+            ...state.hintProgress() } });
+    const hintUI = new HintUI(() => state, () => { persist(); refreshControls(); });
 
     function pickAnimal(): number {
         return pool[Math.floor(Math.random() * pool.length)];
@@ -87,15 +102,12 @@ export function runEndless(h: EndlessHandles): void {
 
     const refreshControls = () => {
         renderer.setRemaining(state.remaining);
+        hintUI.refresh();
+        hintBtn.hidden = state.reachedFinalClade;
         if (state.over) { renderer.setHint(false, ''); return; }
-        if (state.nextHintId() === null) {
-            renderer.setHint(false, 'No more ranks left to reveal.');
-        } else if (state.hintsLeft <= 0) {
-            renderer.setHint(false, 'No hints left for this animal.');
-        } else {
-            renderer.setHint(true,
-                `${state.hintsLeft} free hint${state.hintsLeft === 1 ? '' : 's'} left for this animal.`);
-        }
+        renderer.setHint(state.canHint(), state.reachedFinalClade ? 'Extra hints unlocked below.'
+            : state.remaining <= state.rules.hintCost ? 'A clade hint costs 3 guesses. Keep one guess to answer.'
+            : 'Exchange 3 guesses to reveal the next clade.');
     };
 
     // Move to the next animal. Called both after a win (via Continue) and
@@ -109,28 +121,32 @@ export function runEndless(h: EndlessHandles): void {
         refreshControls();
         void renderer.showLca(nodeLookup[rootId], { intro: true });
         renderer.setStatus('New animal. Guess anything to begin.', 'info');
+        persist();
         input.focus();
     };
 
     const endRun = () => {
         const stats = recordEndlessRun(score, attempted);
         track('endless-run-ended');
+        clearEndlessRun();
         renderer.lockInput();
-        void renderer.showEndlessSummary(score, attempted, stats, missed, solved);
+        void renderer.showEndlessSummary(score, attempted, stats, missed, solved, runHints);
     };
 
     const finishAnimal = (won: boolean) => {
         attempted += 1;
+        for (const kind of ['clade', 'factual', 'name'] as const) runHints[kind] += state.hintCounts[kind];
         const name = state.answerNode.common || state.answerNode.scientific;
         if (won) { score += 1; solved.push(name); } else { missed.push(name); }
         renderer.lockInput();
         refreshControls();
         setHeader();
+        persist();
 
         setTimeout(() => {
             void renderer.showEndlessRoundModal(
                 won, state.answerNode, state.guesses.length, score, attempted,
-                nextAnimal, endRun);
+                nextAnimal, endRun, state.hintCounts);
         }, 700);
     };
 
@@ -138,8 +154,14 @@ export function runEndless(h: EndlessHandles): void {
     tree.update(state);
     setHeader();
     refreshControls();
-    void renderer.showLca(nodeLookup[rootId], { intro: true });
-    renderer.setStatus('Round 1 — good luck.', 'info');
+    void renderer.showLca(nodeLookup[state.over ? state.answerId : state.bestKnownId()], { solved: state.over });
+    renderer.setStatus(saved ? 'Run restored. Keep narrowing it down.' : 'Round 1 — good luck.', 'info');
+    if (state.over) {
+        renderer.lockInput();
+        renderer.showEndlessRoundModal(state.won, state.answerNode, state.guesses.length,
+            score, attempted, nextAnimal, endRun, state.hintCounts);
+    }
+    persist();
 
     // ---- guessing ----
     form.addEventListener('submit', (ev) => {
@@ -189,6 +211,7 @@ export function runEndless(h: EndlessHandles): void {
         void renderer.showLca(outcome.record.info.lcaNode, {});
         renderer.setStatus(`Shared clade: ${outcome.record.info.lcaNode.scientific}.`, 'info');
         refreshControls();
+        persist();
     });
 
     // ---- hints ----
@@ -200,16 +223,17 @@ export function runEndless(h: EndlessHandles): void {
         refreshControls();
         void renderer.showLca(nodeLookup[revealed], { picked: true });
         renderer.setStatus(`Hint: the answer is inside ${nodeLookup[revealed].scientific}.`, 'info');
+        persist();
     });
 
     // ---- one-time explainer ----
     // Endless has its own rules and they aren't guessable from the screen, so it
     // gets its own card. Shown once per browser and never again — this mode is for
     // repeat runs, and a popup on every entry would be pure friction.
-    const SEEN_KEY = 'dinozoa.seenEndless';
+    const SEEN_KEY = 'dinozoa.seenEndless.hints-v2';
     let seenEndless = false;
     try { seenEndless = localStorage.getItem(SEEN_KEY) === '1'; } catch { /* private mode */ }
-    if (!seenEndless) {
+    if (!seenEndless && !saved) {
         renderer.showEndlessIntro();
         try { localStorage.setItem(SEEN_KEY, '1'); } catch { /* private mode */ }
     }

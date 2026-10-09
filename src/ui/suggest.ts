@@ -42,6 +42,14 @@ export interface SuggestEntry {
 
 interface Indexed extends SuggestEntry { nMain: string; nHint: string }
 
+const dismissSuggestions = new WeakMap<HTMLInputElement, () => void>();
+
+/** Restore typing focus after a dialog without covering the game controls. */
+export function focusWithoutSuggestions(input: HTMLInputElement): void {
+    input.focus({ preventScroll: true });
+    dismissSuggestions.get(input)?.();
+}
+
 // Lower is better. -1 means no match at all.
 function rank(e: Indexed, q: string): number {
     if (e.nMain.startsWith(q)) return 0;
@@ -159,6 +167,7 @@ export function attachSuggest(input: HTMLInputElement, entries: SuggestEntry[]):
         input.setAttribute('aria-expanded', 'false');
         input.removeAttribute('aria-activedescendant');
     };
+    dismissSuggestions.set(input, close);
 
     const setActive = (i: number) => {
         active = i;

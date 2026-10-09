@@ -15,6 +15,8 @@ import { SUPPORT_URL, SOURCE_URL } from './config';
 import { track, retentionBand } from './analytics';
 import { offerInstallAfterModal } from './ui/installPrompt';
 import { attachSuggest } from './ui/suggest';
+import { loadAnimalClues } from './game/animalClues';
+import { HintUI } from './ui/hints';
 
 // Mode lives in the URL rather than in a variable, so switching is a navigation.
 // That keeps exactly one GameState per page load — no re-wiring of the dozen
@@ -22,18 +24,27 @@ import { attachSuggest } from './ui/suggest';
 const ENDLESS = new URLSearchParams(location.search).has('endless');
 
 async function main() {
-    await loadDatabase();
+    await Promise.all([loadDatabase(), loadAnimalClues()]);
 
     const today = new Date();
-    const key = dateKey(today);
-    const answerId = getDailyAnimalId(today);
+    // Development-only sandbox: the preview uses isolated storage and no daily stats.
+    const previewId = import.meta.env.DEV ? Number(new URLSearchParams(location.search).get('hint-preview')) : 0;
+    const preview = Boolean(previewId && nodeLookup[previewId]?.answer);
+    const key = preview ? `hint-preview.${previewId}` : dateKey(today);
+    const answerId = preview ? previewId : getDailyAnimalId(today);
 
     const state = new GameState(answerId);
     const saved = loadGame(key);
     if (saved && saved.answerId === answerId) {
-        state.restore(saved.guessIds ?? [], saved.revealedIds ?? [], saved.surrendered ?? false);
+        state.restore(saved.guessIds ?? [], saved.revealedIds ?? [], saved.surrendered ?? false, saved);
     }
 
+    if (preview && !saved) {
+        const parent = Object.values(nodeLookup).find(n => n.children.some(c => c.id === answerId));
+        const sibling = parent?.children.find(n => n.children.length === 0 && n.id !== answerId);
+        if (sibling) state.submitGuess(sibling.scientific);
+        else if (parent) state.restore([], [parent.id]);
+    }
     const renderer = new Renderer();
 
     // Clicking any box in the tree — clade or animal — swaps the info card over to it.
@@ -45,7 +56,7 @@ async function main() {
             if (!ENDLESS && (state.won || state.lost) && taxonId === state.answerId) {
                 void renderer.showEndModal(
                     state.won, state.answerNode, state.guesses.length, loadStats(),
-                    state.guesses.map((g) => g.info.warmth), puzzleNo);
+                    state.guesses.map((g) => g.info.warmth), puzzleNo, state.hintCounts);
                 return;
             }
             void renderer.showLca(nodeLookup[taxonId], { picked: true });
@@ -58,7 +69,7 @@ async function main() {
     // advertising a launch two weeks after the real one.
     const puzzleNo = getPuzzleNumber(today);
     document.getElementById('animal-no')!.textContent =
-        puzzleNo >= 1 ? `Animal #${puzzleNo}` : `Preview — launches ${launchDateLabel()}`;
+        preview ? 'Hint preview — practice round' : puzzleNo >= 1 ? `Animal #${puzzleNo}` : `Preview — launches ${launchDateLabel()}`;
 
     const form = document.getElementById('guess-form') as HTMLFormElement;
     const input = document.getElementById('guess-input') as HTMLInputElement;
@@ -104,9 +115,12 @@ async function main() {
         revealedIds: [...state.revealedIds],
         finished: state.over,
         surrendered: state.surrendered,
+        ...state.hintProgress(),
     });
 
+    let hintUI: HintUI | undefined;
     const refreshControls = () => {
+        hintUI?.refresh();
         renderer.setRemaining(state.remaining);
         giveUpBtn.hidden = state.over || state.guessesUsed < GIVE_UP_AFTER;
         if (state.over) {
@@ -114,7 +128,8 @@ async function main() {
             return;
         }
         if (state.nextHintId() === null) {
-            renderer.setHint(false, 'No more ranks left to reveal.');
+            renderer.setHint(false, 'Extra hints unlocked below.');
+            hintBtn.hidden = true;
         } else if (state.remaining <= HINT_COST) {
             renderer.setHint(false, `A hint costs ${HINT_COST} guesses — not enough left.`);
         } else {
@@ -123,7 +138,7 @@ async function main() {
     };
 
     const finish = (won: boolean, gaveUp = false) => {
-        const stats = recordResult(key, won, state.guesses.length);
+        const stats = preview ? loadStats() : recordResult(key, won, state.guesses.length);
         track(won ? 'game-won' : gaveUp ? 'game-gave-up' : 'game-lost');
         // Sent on every finished game, so a day's dashboard shows the mix: how
         // many of the people who played today were here for the first time, and
@@ -134,7 +149,7 @@ async function main() {
         persist();
         const warmths = state.guesses.map((g) => g.info.warmth);
         setTimeout(() => void renderer.showEndModal(
-            won, state.answerNode, state.guesses.length, stats, warmths, puzzleNo), 700);
+            won, state.answerNode, state.guesses.length, stats, warmths, puzzleNo, state.hintCounts), 700);
         // Armed now, shown only once the end screen has been opened and closed —
         // see installPrompt.ts for why it must not appear beside the share button.
         offerInstallAfterModal(document.getElementById('modal')!);
@@ -234,7 +249,7 @@ async function main() {
         'Green means you are almost there! Styracosaurus shares the same family Ceratopsidae with the answer!',
         'The information panel always describes the closest clade your guess shares with the answer. Read it for clues about the hidden animal!',
         'Tap any animal or clade in the tree to read about it instead!',
-        'Find the answer and complete the tree!',
+        'Reach the last branch to unlock Factual Hints and Name Clues. Your first choice is free; each extra hint costs one guess. Find the answer to complete the tree!',
     ];
 
     let step = -1;
@@ -324,7 +339,7 @@ async function main() {
         renderer.showAccount(loadStats(), loadEndlessStats(), () => {
             clearStats();
             openAccount();               // redraw the panel with the cleared numbers
-            refreshControls();           // the daily scoreboard reads from stats too
+            if (!ENDLESS) refreshControls();
         });
     };
     (document.getElementById('account-btn') as HTMLButtonElement).addEventListener('click', openAccount);
@@ -334,6 +349,8 @@ async function main() {
         runEndless({ renderer, tree, form, input, hintBtn, candidates });
         return;
     }
+
+    hintUI = new HintUI(() => state, () => { persist(); refreshControls(); });
 
     // ---- first paint (also covers a restored game) ----
     // A refresh replays the whole tree from the root downwards, so you get to watch the
@@ -358,7 +375,7 @@ async function main() {
         const stats = loadStats();
         renderer.lockInput();
         void renderer.showEndModal(state.won, state.answerNode, state.guesses.length, stats,
-            state.guesses.map((g) => g.info.warmth), puzzleNo);
+            state.guesses.map((g) => g.info.warmth), puzzleNo, state.hintCounts);
     }
 
     // ---- guessing ----

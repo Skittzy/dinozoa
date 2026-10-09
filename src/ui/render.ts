@@ -1,3 +1,6 @@
+import { hintCountText, EMPTY_HINT_COUNTS } from '../game/hintTypes';
+import type { HintCounts } from '../game/hintTypes';
+import { cluesFor } from '../game/animalClues';
 // render.ts — everything that writes to the page. No game logic lives here.
 
 import type { DinoNode } from '../data/loadTree';
@@ -206,7 +209,7 @@ export class Renderer {
             `<p class="modal-line">Random animals, one after another, for as long as you like.</p>` +
             `<ul class="endless-intro">` +
             row('🎯', 'Your <b>score</b> is how many you identify correctly. Beat your best run.') +
-            row('🔟', '<b>10 guesses</b> per animal, and <b>3 free hints</b> — the hints cost you nothing here.') +
+            row('🔟', '<b>10 guesses</b> per animal. A <b>Clade Hint costs 3 guesses</b>. Reach the last branch to unlock Factual Hints and Name Clues: <b>one free choice</b>, then <b>1 guess each</b>.') +
             row('♾️', 'Miss one and the run <b>keeps going</b>. There are no lives, so a wrong animal just moves you on.') +
             row('🔥', 'Nothing here touches your daily streak or stats.') +
             `</ul>` +
@@ -224,7 +227,7 @@ export class Renderer {
     // Continue keeps the run going; End run closes it out and offers the share.
     showEndlessRoundModal(won: boolean, answer: DinoNode, guessCount: number,
                           score: number, attempted: number,
-                          onContinue: () => void, onEnd: () => void): void {
+                          onContinue: () => void, onEnd: () => void, hints: HintCounts = EMPTY_HINT_COUNTS): void {
         const common = answer.common && answer.common !== answer.scientific ? answer.common : '';
         const title = won ? winTitle(guessCount) : 'Out of guesses.';
         const line = won
@@ -238,6 +241,7 @@ export class Renderer {
             `<div class="modal-card" role="dialog" aria-modal="true" aria-label="${escapeHtml(title)}">` +
             `<h2 class="modal-title">${escapeHtml(title)}</h2>` +
             `<p class="modal-line">${escapeHtml(line)}</p>` +
+            `<p class="result-hints">${hintCountText(hints)}</p>` + clueSourcesHtml(answer.id) +
             `<div class="modal-answer">` +
             `<div class="modal-media" id="modal-media"><span class="lca-fallback">🦕</span></div>` +
             `<div><div class="modal-animal">${escapeHtml(common || answer.scientific)}</div>` +
@@ -277,13 +281,14 @@ export class Renderer {
 
     // ---- endless: end-of-run summary + share ----
     showEndlessSummary(score: number, attempted: number, stats: EndlessStats,
-                       missed: string[] = [], solved: string[] = []): void {
+                       missed: string[] = [], solved: string[] = [], hints: HintCounts = EMPTY_HINT_COUNTS): void {
         const isBest = score >= stats.bestScore && score > 0;
         this.modal.innerHTML =
             `<div class="modal-card" role="dialog" aria-modal="true" aria-label="Run over">` +
             `<button class="modal-close" id="modal-close" aria-label="Close">&times;</button>` +
             `<h2 class="modal-title">Run over</h2>` +
             `<p class="modal-line">${isBest ? 'New personal best!' : randomPraise()}</p>` +
+            `<p class="result-hints">${hintCountText(hints)}</p>` +
             `<div class="modal-stats stats-centred stats-four">` +
             `<div><div class="ms-value">${score}</div><div class="ms-label">Score</div></div>` +
             `<div><div class="ms-value">${attempted}</div><div class="ms-label">Rounds</div></div>` +
@@ -306,7 +311,7 @@ export class Renderer {
         ($('endless-again') as HTMLButtonElement).onclick = () => location.reload();
         ($('share-btn') as HTMLButtonElement).onclick = async () => {
             track('share-clicked');
-            const text = buildEndlessShareText(score, attempted, stats.bestScore, missed, solved);
+            const text = buildEndlessShareText(score, attempted, stats.bestScore, missed, solved, hints);
             try {
                 await navigator.clipboard.writeText(text);
                 $('share-note').textContent = 'Copied! Share it with your friends.';
@@ -388,7 +393,7 @@ export class Renderer {
 
     // ---- end-of-game modal ----
     async showEndModal(won: boolean, answer: DinoNode, guessCount: number, stats: Stats,
-                       warmths: number[] = [], puzzleNo = 0): Promise<void> {
+                       warmths: number[] = [], puzzleNo = 0, hints: HintCounts = EMPTY_HINT_COUNTS): Promise<void> {
         const common = answer.common && answer.common !== answer.scientific ? answer.common : '';
         const title = won ? 'You win!' : 'No more guesses.';
         const line = won
@@ -401,6 +406,7 @@ export class Renderer {
             `<h2 class="modal-title">${escapeHtml(title)}</h2>` +
             `<p class="modal-line">${escapeHtml(line)}</p>` +
             `<p class="modal-countdown" id="modal-countdown">${countdownLabel()}</p>` +
+            `<p class="result-hints">${hintCountText(hints)}</p>` + clueSourcesHtml(answer.id) +
             `<div class="modal-answer">` +
             `<div class="modal-media" id="modal-media"><span class="lca-fallback">🦕</span></div>` +
             `<div><div class="modal-animal">${escapeHtml(common || answer.scientific)}</div>` +
@@ -442,7 +448,7 @@ export class Renderer {
 
         ($('share-btn') as HTMLButtonElement).onclick = async () => {
             track('share-clicked');
-            const text = buildShareText(won, guessCount, warmths, puzzleNo, stats.streak);
+            const text = buildShareText(won, guessCount, warmths, puzzleNo, stats.streak, hints);
             try {
                 await navigator.clipboard.writeText(text);
                 $('share-note').textContent = 'Copied! Share it with your friends.';
@@ -478,7 +484,7 @@ function warmthSquare(w: number): string {
 }
 
 export function buildShareText(won: boolean, guessCount: number, warmths: number[],
-                               puzzleNo: number, streak: number): string {
+                               puzzleNo: number, streak: number, hints: HintCounts = EMPTY_HINT_COUNTS): string {
     // Before 1 Oct 2026 the puzzle number is <= 0; don't paste "Dinozoa #-38"
     // into anyone's group chat during pre-launch testing.
     const label = puzzleNo >= 1 ? `#${puzzleNo}` : 'preview';
@@ -489,7 +495,7 @@ export function buildShareText(won: boolean, guessCount: number, warmths: number
     const rows: string[] = [];
     for (let i = 0; i < squares.length; i += 5) rows.push(squares.slice(i, i + 5).join(''));
     const tail = streak > 1 ? `\nStreak: ${streak}` : '';
-    return `${head}\n${rows.join('\n')}${tail}\n${location.origin}`;
+    return `${head}\n${rows.join('\n')}${tail}\n${hintCountText(hints)}\n${location.origin}`;
 }
 
 
@@ -543,12 +549,13 @@ export function accuracyLabel(score: number, attempted: number): string {
 // passes `missed` and `solved`.
 // =========================================================================
 export function buildEndlessShareText(score: number, attempted: number, best: number,
-                                      _missed: string[] = [], _solved: string[] = []): string {
+                                      _missed: string[] = [], _solved: string[] = [], hints: HintCounts = EMPTY_HINT_COUNTS): string {
     const acc = attempted >= 5 ? ` — ${Math.round((score / attempted) * 100)}% accuracy` : '';
     const bestLine = best > score ? `\nMy best run: ${best}.` : '';
     return `Dinozoa — Endless mode\n` +
         `I identified ${score} of ${attempted} prehistoric animal${attempted === 1 ? '' : 's'}${acc}.` +
         bestLine +
+        `\n${hintCountText(hints)}` +
         `\nThink you can beat that?\n${location.origin}`;
 }
 
@@ -600,4 +607,13 @@ const FAST_TITLES = ['That was fast!', 'Quick work!', 'Barely a scratch.', 'Stra
 function winTitle(guessCount: number): string {
     const pool = guessCount < 5 ? FAST_TITLES : WIN_TITLES;
     return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function clueSourcesHtml(answerId: number): string {
+    const facts = cluesFor(answerId);
+    if (!facts.length) return '';
+    return '<details class="clue-sources"><summary>Factual hint sources</summary><ul>'
+        + facts.map(f => '<li>' + escapeHtml(f.text) + ' '
+            + f.sources.filter(s => /^https:\/\//.test(s.url)).map(s => `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.label)}</a>`).join(' · ')
+            + '</li>').join('') + '</ul></details>';
 }

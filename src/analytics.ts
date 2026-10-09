@@ -53,6 +53,7 @@ export function retentionBand(daysPlayed: number): string {
  * the event in among real pageviews instead of under Events.
  */
 export function track(name: string, title?: string): void {
+    if (import.meta.env?.DEV) return;
     try {
         window.goatcounter?.count?.({ path: name, title: title ?? name, event: true });
     } catch {

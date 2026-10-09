@@ -89,6 +89,22 @@ down the answer's lineage; hints are offered only while more than three guesses 
 taking one can never end the game by itself. Winning or running out opens a summary with
 the animal, a photograph, and the player's statistics.
 
+Reaching the answer’s immediate parent unlocks a celebration and two extra choices:
+**Factual Hint** and **Name Clue**. The first choice is free, shared between both types;
+each later choice costs one guess and must leave one guess to answer. Previously bought
+clade hints do not use the free allowance. Opening or closing the celebration is free.
+The short celebration only announces the unlock; **Continue playing** returns to the
+guess input. Players choose and reveal hints using the controls in the game itself.
+Revealed facts and spelling stay beside the input, survive refreshes, and have separate
+counts on results and shares. Scores still count submitted guesses, with hint use reported
+separately. Daily and Endless use the same prices; Endless keeps its ten-guess budget.
+
+`public/data/animal-clues.json` contains individually sourced, original clue text for all
+eligible answers. The browser selects stored text; there is no AI request or backend.
+References become visible after the round. Unknown comparisons never eliminate candidates.
+See [the specification](docs/hint-feature-spec.md), [implementation checklist](docs/hint-feature-checklist.md),
+and [content maintenance and limitations](docs/animal-clues.md).
+
 ## The lowest common ancestor
 
 The game is built on one algorithm. Given a guess and the answer, it finds the deepest node
@@ -222,10 +238,14 @@ degrade to a working game that does not remember anything.
 
 ## Endless mode
 
-Available at `?endless`. Random animals in sequence, ten guesses and three free hints each.
+Available at `?endless`. Random animals in sequence, ten guesses each. Both modes charge three guesses for clade hints. At the final branch, choose one free factual or name hint; later extra hints cost one guess each.
 There are no lives: failing an animal moves straight to the next one rather than ending the
 run. Score, rounds and accuracy are tracked in separate storage and never affect the daily
 streak.
+
+The active run, current animal, hint history and completed-round totals are saved under
+`dinozoa.endless.current`. Refreshing restores the run, including its between-round screen.
+The free extra-hint allowance resets for each new animal.
 
 ## Wikipedia integration
 
@@ -291,7 +311,7 @@ used, so the fallback is the original behaviour.
 npm test
 ```
 
-Six suites run against the real modules in Node, with `fetch` stubbed to read the JSON
+Seven suites run against the real modules in Node, with `fetch` stubbed to read the JSON
 from disk.
 
 | Suite | Covers | Assertions |
@@ -302,6 +322,12 @@ from disk.
 | `wiki_test.ts` | image selection scoring, accuracy label | 90 |
 | `taxonomy_test.ts` | stable identities, shared ancestors, source coverage, saved hints | Node assertions |
 | `cladeContent_test.ts` | local text, title mappings, redirects, offline fallbacks | Node assertions |
+| `hints_test.ts` | hint costs, unlocks, candidate reasoning, saved hints, all eligible answers and spoiler-free sharing | Node assertions |
+
+The suite also checks the factual dataset and its coverage report. Run `npm run clues:audit`
+after changing the answer pool or clue data to regenerate `docs/animal-clue-coverage.json`.
+Optional Chromium/WebKit integration checks are in `scripts/verify-hints-browser.cjs`;
+see [browser verification](docs/animal-clues.md#browser-verification) for setup.
 
 `npm run build` additionally type-checks the project under a strict `tsconfig` with
 `noUnusedLocals`, `noUnusedParameters` and `verbatimModuleSyntax`, and must complete with no

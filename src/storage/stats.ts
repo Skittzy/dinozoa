@@ -13,7 +13,9 @@ export interface Stats {
     gamesWon: number;
 }
 
-export interface SavedGame {
+import type { HintCounts, HintProgress } from '../game/hintTypes';
+
+export interface SavedGame extends HintProgress {
     answerId: number;
     guessIds: number[];
     revealedIds: number[];
@@ -130,29 +132,27 @@ export function recordEndlessRun(score: number, attempted: number): EndlessStats
     return s;
 }
 
-// ---------------------------------------------------------------------------
-// TODO — RESUMING AN ENDLESS RUN ACROSS A REFRESH. Deliberately not built yet.
-//
-// Right now a refresh abandons the run. Making it survive needs a run-level
-// record alongside the per-animal one:
-//
-//     interface EndlessRun {
-//         score: number;           // animals solved so far
-//         attempted: number;       // animals seen so far
-//         outcomes: boolean[];     // per animal, for the run summary
-//         awaitingChoice: boolean; // refreshed while continue/end-run was showing
-//         startedAt: number;       // so the resume prompt can show the run's age
-//     }
-//
-// The per-animal half is already free: SavedGame below stores answerId, and
-// GameState.restore() takes plain id arrays and knows nothing about dates. Point
-// saveGame/loadGame at a key like `dinozoa.endless.current` and mid-animal resume
-// works unchanged.
-//
-// What is left is:
-//   1. Save after every guess AND at every animal transition.
-//   2. `awaitingChoice`, or a refresh on the continue/end prompt skips an animal.
-//   3. A "Continue run? / Start new" prompt at boot, showing the run's age.
-//
-// Estimated ~120 lines. Safe to defer: nothing is stored today, so adding this
-// later needs no migration of existing saves.
+// A separate run record preserves the current animal, hints and completed rounds.
+export interface SavedEndlessRun {
+    version: 1;
+    score: number;
+    attempted: number;
+    missed: string[];
+    solved: string[];
+    hintCounts?: HintCounts;
+    game: SavedGame;
+}
+const ENDLESS_RUN_KEY = 'dinozoa.endless.current';
+export function loadEndlessRun(): SavedEndlessRun | null {
+    const value = readJSON<SavedEndlessRun>(ENDLESS_RUN_KEY);
+    return value?.version === 1 && value.game && Number.isInteger(value.game.answerId)
+        && Array.isArray(value.game.guessIds) && Array.isArray(value.game.revealedIds)
+        && Number.isInteger(value.score) && value.score >= 0
+        && Number.isInteger(value.attempted) && value.attempted >= value.score
+        && Array.isArray(value.solved) && value.solved.every(s => typeof s === 'string')
+        && Array.isArray(value.missed) && value.missed.every(s => typeof s === 'string') ? value : null;
+}
+export function saveEndlessRun(run: SavedEndlessRun): void { writeJSON(ENDLESS_RUN_KEY, run); }
+export function clearEndlessRun(): void {
+    try { localStorage.removeItem(ENDLESS_RUN_KEY); } catch { /* storage unavailable */ }
+}

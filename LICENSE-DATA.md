@@ -16,6 +16,9 @@ Copyright (C) 2026 Matej Krsteski
   alternate and pop-culture names.
 - `public/data/clade-content.json` — reviewed taxonomy additions, original clade
   descriptions, source links and Wikipedia title mappings.
+- `public/data/animal-clues.json` — original factual-hint wording, supporting
+  references and reviewed comparison metadata. The linked publications retain
+  their own rights; their text is not reproduced as a dataset.
 - The `SURVEY_POOL`, `ALIASES` and `GENERA` tables inside `build_db.py`, which are
   the source those files are generated from.
 - The survey results and the recognition thresholds derived from them.
