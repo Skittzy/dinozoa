@@ -844,16 +844,32 @@ body.endless .countdown { display: none; }
    has to be stated. */
 .suggest-wrap > #guess-input { width: 100%; }
 
-.suggest {
+.suggest-popup {
   position: absolute; top: calc(100% + .25rem); left: 0; right: 0; z-index: 40;
-  margin: 0; padding: .25rem; list-style: none;
-  max-height: 18rem; overflow-y: auto;
   background: var(--card); color: var(--ink);
   border: 2px solid #9db4c8; border-radius: .35rem;
   box-shadow: 0 8px 22px rgba(0, 0, 0, .16);
-  -webkit-overflow-scrolling: touch;
 }
-.suggest[hidden] { display: none; }
+.suggest {
+  margin: 0; padding: .25rem; list-style: none;
+  max-height: 18rem; overflow-y: auto; overflow-x: hidden;
+  overscroll-behavior-y: contain; touch-action: pan-y pinch-zoom;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.suggest::-webkit-scrollbar { display: none; }
+.suggest-popup[hidden], .suggest[hidden], .suggest-scrollbar[hidden] { display: none; }
+.suggest-popup.is-scrollable .suggest { padding-right: 1.5rem; }
+.suggest-scrollbar {
+  position: absolute; top: .35rem; bottom: .35rem; right: .1rem; width: 1.25rem;
+  touch-action: none; user-select: none; cursor: pointer;
+}
+.suggest-scrollbar::before, .suggest-scroll-thumb {
+  position: absolute; left: calc(50% - 3px); width: 6px; border-radius: 3px;
+}
+.suggest-scrollbar::before { content: ''; top: 0; bottom: 0; background: var(--line); }
+.suggest-scroll-thumb { top: 0; background: var(--muted); cursor: grab; }
+.suggest-scrollbar:active .suggest-scroll-thumb { cursor: grabbing; }
 
 .suggest li {
   display: flex; align-items: baseline; gap: .45rem;

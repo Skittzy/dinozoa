@@ -91,12 +91,28 @@ export function attachSuggest(input: HTMLInputElement, entries: SuggestEntry[]):
     input.parentNode!.insertBefore(wrap, input);
     wrap.appendChild(input);
 
+    const popup = document.createElement('div');
+    popup.className = 'suggest-popup';
+    popup.hidden = true;
+    wrap.appendChild(popup);
+
     const list = document.createElement('ul');
     list.className = 'suggest';
     list.id = 'guess-suggest';
     list.setAttribute('role', 'listbox');
     list.hidden = true;
-    wrap.appendChild(list);
+    popup.appendChild(list);
+
+    // Mobile browsers can hide native scrollbars even when the list overflows.
+    // Keep a visible thumb alongside the native scrolling list.
+    const scrollbar = document.createElement('div');
+    scrollbar.className = 'suggest-scrollbar';
+    scrollbar.setAttribute('aria-hidden', 'true');
+    scrollbar.hidden = true;
+    const thumb = document.createElement('div');
+    thumb.className = 'suggest-scroll-thumb';
+    scrollbar.appendChild(thumb);
+    popup.appendChild(scrollbar);
 
     input.setAttribute('role', 'combobox');
     input.setAttribute('aria-autocomplete', 'list');
@@ -108,12 +124,38 @@ export function attachSuggest(input: HTMLInputElement, entries: SuggestEntry[]):
 
     let shown: Indexed[] = [];
     let active = -1;
+    let keepOpenOnBlur = false;
+    let blurTimer: ReturnType<typeof setTimeout> | undefined;
+    let gesture: {
+        pointerId: number; row: Element | null; x: number; y: number;
+        scrollTop: number; moved: boolean;
+    } | null = null;
+    let drag: { pointerId: number; offset: number } | null = null;
+
+    const syncScrollbar = () => {
+        if (list.hidden) return;
+        const overflowing = list.scrollHeight > list.clientHeight + 1;
+        scrollbar.hidden = !overflowing;
+        popup.classList.toggle('is-scrollable', overflowing);
+        if (!overflowing) return;
+        const height = scrollbar.clientHeight;
+        const thumbHeight = Math.min(height, Math.max(24, height * list.clientHeight / list.scrollHeight));
+        const maxScroll = list.scrollHeight - list.clientHeight;
+        const progress = Math.max(0, Math.min(1, list.scrollTop / maxScroll));
+        thumb.style.height = `${thumbHeight}px`;
+        thumb.style.transform = `translateY(${progress * (height - thumbHeight)}px)`;
+    };
 
     const close = () => {
+        clearTimeout(blurTimer);
+        popup.hidden = true;
         list.hidden = true;
         list.innerHTML = '';
         shown = [];
         active = -1;
+        keepOpenOnBlur = false;
+        gesture = null;
+        drag = null;
         input.setAttribute('aria-expanded', 'false');
         input.removeAttribute('aria-activedescendant');
     };
@@ -137,8 +179,9 @@ export function attachSuggest(input: HTMLInputElement, entries: SuggestEntry[]):
         const e = shown[i];
         if (!e) return;
         input.value = e.value;
+        // Focusing a field blurred by a touch can render the list again.
+        input.focus({ preventScroll: true });
         close();
-        input.focus();
     };
 
     const render = () => {
@@ -165,12 +208,20 @@ export function attachSuggest(input: HTMLInputElement, entries: SuggestEntry[]):
             (e.hint ? `<span class="s-hint">${mark(e.hint, typed)}</span>` : '') +
             `</li>`).join('');
         list.hidden = false;
+        popup.hidden = false;
+        list.scrollTop = 0;
+        gesture = null;
         input.setAttribute('aria-expanded', 'true');
         setActive(-1);
+        syncScrollbar();
     };
 
     input.addEventListener('input', render);
-    input.addEventListener('focus', render);
+    input.addEventListener('focus', () => {
+        clearTimeout(blurTimer);
+        keepOpenOnBlur = false;
+        render();
+    });
 
     input.addEventListener('keydown', (ev) => {
         if (list.hidden) return;
@@ -199,17 +250,85 @@ export function attachSuggest(input: HTMLInputElement, entries: SuggestEntry[]):
         }
     });
 
-    // pointerdown, not click: the input blurs before a click completes, and a
-    // blur-driven close would remove the row out from under the finger. Cancelling
-    // the default here also stops the field losing focus in the first place.
+    // Let touch gestures scroll normally. Only a completed click/tap picks a row;
+    // movement, native scrolling and pointer cancellation all disqualify a tap.
     list.addEventListener('pointerdown', (ev) => {
-        const li = (ev.target as HTMLElement).closest('li');
-        if (!li) return;
-        ev.preventDefault();
+        clearTimeout(blurTimer);
+        keepOpenOnBlur = true;
+        const row = (ev.target as Element).closest('li');
+        gesture = {
+            pointerId: ev.pointerId, row, x: ev.clientX, y: ev.clientY,
+            scrollTop: list.scrollTop, moved: !ev.isPrimary || ev.button !== 0,
+        };
+        // Keep the input focused for mouse clicks without preventing touch pans.
+        if (ev.pointerType === 'mouse' && row && ev.button === 0) ev.preventDefault();
+    });
+    list.addEventListener('pointermove', (ev) => {
+        if (gesture?.pointerId !== ev.pointerId) return;
+        if (Math.hypot(ev.clientX - gesture.x, ev.clientY - gesture.y) > 10) gesture.moved = true;
+    });
+    list.addEventListener('pointercancel', () => {
+        if (gesture) gesture.moved = true;
+    });
+    list.addEventListener('scroll', () => {
+        if (gesture && list.scrollTop !== gesture.scrollTop) gesture.moved = true;
+        syncScrollbar();
+    }, { passive: true });
+    list.addEventListener('click', (ev) => {
+        const li = (ev.target as Element).closest('li');
+        if (!li || ev.button !== 0) return;
+        // detail=0 is keyboard/assistive activation, which has no pointer gesture.
+        if (ev.detail !== 0 && (!gesture || gesture.moved || gesture.row !== li
+            || list.scrollTop !== gesture.scrollTop)) return;
         pick([...list.children].indexOf(li));
     });
 
-    input.addEventListener('blur', () => setTimeout(close, 120));
+    const dragScrollbar = (clientY: number) => {
+        if (!drag) return;
+        const travel = scrollbar.clientHeight - thumb.getBoundingClientRect().height;
+        if (travel <= 0) return;
+        const top = clientY - scrollbar.getBoundingClientRect().top - drag.offset;
+        list.scrollTop = Math.max(0, Math.min(1, top / travel)) * (list.scrollHeight - list.clientHeight);
+        syncScrollbar();
+    };
+    scrollbar.addEventListener('pointerdown', (ev) => {
+        if (!ev.isPrimary || ev.button !== 0) return;
+        ev.preventDefault();
+        clearTimeout(blurTimer);
+        keepOpenOnBlur = true;
+        gesture = null;
+        const bounds = thumb.getBoundingClientRect();
+        drag = {
+            pointerId: ev.pointerId,
+            offset: ev.target === thumb ? ev.clientY - bounds.top : bounds.height / 2,
+        };
+        scrollbar.setPointerCapture(ev.pointerId);
+        dragScrollbar(ev.clientY);
+    });
+    scrollbar.addEventListener('pointermove', (ev) => {
+        if (drag?.pointerId === ev.pointerId) dragScrollbar(ev.clientY);
+    });
+    const endDrag = (ev: PointerEvent) => {
+        if (drag?.pointerId !== ev.pointerId) return;
+        drag = null;
+        if (scrollbar.hasPointerCapture(ev.pointerId)) scrollbar.releasePointerCapture(ev.pointerId);
+    };
+    scrollbar.addEventListener('pointerup', endDrag);
+    scrollbar.addEventListener('pointercancel', endDrag);
+    scrollbar.addEventListener('lostpointercapture', () => { drag = null; });
+    new ResizeObserver(syncScrollbar).observe(list);
+
+    input.addEventListener('blur', () => {
+        blurTimer = setTimeout(() => { if (!keepOpenOnBlur) close(); }, 120);
+    });
+    // A touch may blur the input while the user is still browsing the list.
+    // Close on an actual outside interaction, not midway through that swipe.
+    document.addEventListener('pointerdown', (ev) => {
+        if (!wrap.contains(ev.target as Node)) close();
+    });
+    document.addEventListener('focusin', (ev) => {
+        if (!wrap.contains(ev.target as Node)) close();
+    });
 
     // A submitted guess clears the field programmatically, which fires no input
     // event — so close from the form instead of waiting for one that never comes.
