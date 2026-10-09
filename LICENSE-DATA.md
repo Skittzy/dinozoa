@@ -11,7 +11,7 @@ Copyright (C) 2026 Matej Krsteski
 
 ## What "the data" means here
 
-- `public/data/dinosaur-database.json` — the 673-node taxonomic tree, the
+- `public/data/dinosaur-database.json` — the 708-node taxonomic tree, the
   selection of 472 guessable animals, the 129-animal answer pool, and the 270
   alternate and pop-culture names.
 - `public/data/clade-content.json` — reviewed taxonomy additions, original clade

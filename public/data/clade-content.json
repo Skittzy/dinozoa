@@ -481,14 +481,11 @@
       "rank": "subfamily",
       "common": "centrosaurine horned dinosaurs",
       "members": [
-        "Achelousaurus",
         "Centrosaurus",
         "Coronosaurus",
         "Diabloceratops",
-        "Einiosaurus",
         "Medusaceratops",
         "Nasutoceratops",
-        "Pachyrhinosaurus",
         "Spinops",
         "Styracosaurus",
         "Wendiceratops"
@@ -520,8 +517,6 @@
         "Kosmoceratops",
         "Pentaceratops",
         "Regaliceratops",
-        "Torosaurus",
-        "Triceratops",
         "Utahceratops"
       ]
     },
@@ -540,16 +535,7 @@
       "parent": "Hadrosauridae",
       "rank": "subfamily",
       "common": "saurolophine duck-billed dinosaurs",
-      "members": [
-        "Brachylophosaurus",
-        "Edmontosaurus",
-        "Gryposaurus",
-        "Kritosaurus",
-        "Maiasaura",
-        "Prosaurolophus",
-        "Saurolophus",
-        "Shantungosaurus"
-      ]
+      "members": []
     },
     "wikiTitle": "Saurolophinae",
     "summary": "Saurolophinae is a major branch of duck-billed dinosaurs. Its members include Edmontosaurus, Maiasaura and Saurolophus, separate from the lambeosaurine lineage.",
@@ -571,15 +557,7 @@
       "rank": "subfamily",
       "common": "lambeosaurine duck-billed dinosaurs",
       "members": [
-        "Charonosaurus",
-        "Corythosaurus",
-        "Hypacrosaurus",
-        "Lambeosaurus",
-        "Nipponosaurus",
-        "Olorotitan",
-        "Parasaurolophus",
-        "Tsintaosaurus",
-        "Velafrons"
+        "Nipponosaurus"
       ]
     },
     "wikiTitle": "Lambeosaurinae",
@@ -744,7 +722,7 @@
       ]
     },
     "wikiTitle": "Microraptoria",
-    "summary": "Microraptoria is a branch of dromaeosaurid dinosaurs. Microraptor is its only representative currently included in Dinozoa.",
+    "summary": "Microraptoria is a branch of dromaeosaurid dinosaurs. Microraptor is its only representative in Dinozoa. The game’s other raptor subgroups follow the first analysis of Jasinski et al. (2020).",
     "sources": [
       {
         "label": "Jasinski, Sullivan & Dodson (2020), Scientific Reports — Dineobellator; phylogenetic analysis and Fig. 3",
@@ -860,7 +838,7 @@
   "Gastornithidae": {
     "taxonomy": {
       "id": 668,
-      "parent": "Aves",
+      "parent": "Neognathae",
       "rank": "family",
       "common": "gastornithid birds",
       "members": [
@@ -978,5 +956,958 @@
   },
   "Marsupialia": {
     "wikiTitle": "Marsupial"
+  },
+  "Pachyrhinosaurini": {
+    "taxonomy": {
+      "id": 674,
+      "parent": "Centrosaurinae",
+      "rank": "tribe",
+      "common": "pachyrhinosaurin horned dinosaurs",
+      "members": [
+        "Achelousaurus",
+        "Einiosaurus",
+        "Pachyrhinosaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Pachyrhinosaurini is a centrosaurine branch. Dinozoa follows Maiorino et al. (2015), grouping Achelousaurus, Einiosaurus and Pachyrhinosaurus here.",
+    "sources": [
+      {
+        "label": "Maiorino et al. (2015) — Variation in the shape and mechanical performance of ceratopsid lower jaws",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4609198/"
+      },
+      {
+        "label": "Madzia et al. (2021), PeerJ — The phylogenetic nomenclature of ornithischian dinosaurs",
+        "url": "https://doi.org/10.7717/peerj.12362"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Maiorino et al. (2015), taxonomic grouping; Madzia et al. (2021), definition.",
+      "notes": ""
+    }
+  },
+  "Triceratopsini": {
+    "taxonomy": {
+      "id": 675,
+      "parent": "Chasmosaurinae",
+      "rank": "tribe",
+      "common": "triceratopsin horned dinosaurs",
+      "members": [
+        "Torosaurus",
+        "Triceratops"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Triceratopsini is a chasmosaurine branch containing Triceratops and Torosaurus. Dinozoa uses this core grouping; the positions of other chasmosaurines vary between analyses.",
+    "sources": [
+      {
+        "label": "Maiorino et al. (2015) — Variation in the shape and mechanical performance of ceratopsid lower jaws",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4609198/"
+      },
+      {
+        "label": "Brown & Henderson (2015), Current Biology — A New Horned Dinosaur Reveals Convergent Evolution in Cranial Ornamentation",
+        "url": "https://doi.org/10.1016/j.cub.2015.04.041"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Core membership in Maiorino et al. (2015).",
+      "notes": "Regaliceratops remains unresolved at Chasmosaurinae; do not import its original tribal placement automatically."
+    }
+  },
+  "Brachylophosaurini": {
+    "taxonomy": {
+      "id": 676,
+      "parent": "Saurolophinae",
+      "rank": "tribe",
+      "common": "brachylophosaurini",
+      "members": [
+        "Brachylophosaurus",
+        "Maiasaura"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Brachylophosaurini is a subgroup of saurolophine hadrosaurs. Following Xing et al. (2017), Dinozoa groups Brachylophosaurus and Maiasaura here.",
+    "sources": [
+      {
+        "label": "Xing, Mallon & Currie (2017), PLOS ONE — Edmontosaurus regalis and hadrosaurine phylogeny; Fig. 20",
+        "url": "https://doi.org/10.1371/journal.pone.0175253"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Xing, Mallon & Currie (2017), strict consensus, Fig. 20.",
+      "notes": "The source uses Hadrosaurinae for the branch called Saurolophinae in this game."
+    }
+  },
+  "Edmontosaurini": {
+    "taxonomy": {
+      "id": 677,
+      "parent": "Saurolophinae",
+      "rank": "tribe",
+      "common": "edmontosaurini",
+      "members": [
+        "Edmontosaurus",
+        "Shantungosaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Edmontosaurini is a subgroup of saurolophine hadrosaurs. Following Xing et al. (2017), Dinozoa groups Edmontosaurus and Shantungosaurus here.",
+    "sources": [
+      {
+        "label": "Xing, Mallon & Currie (2017), PLOS ONE — Edmontosaurus regalis and hadrosaurine phylogeny; Fig. 20",
+        "url": "https://doi.org/10.1371/journal.pone.0175253"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Xing, Mallon & Currie (2017), strict consensus, Fig. 20.",
+      "notes": "The source uses Hadrosaurinae for the branch called Saurolophinae in this game."
+    }
+  },
+  "Kritosaurini": {
+    "taxonomy": {
+      "id": 678,
+      "parent": "Saurolophinae",
+      "rank": "tribe",
+      "common": "kritosaurini",
+      "members": [
+        "Gryposaurus",
+        "Kritosaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Kritosaurini is a subgroup of saurolophine hadrosaurs. Following Xing et al. (2017), Dinozoa groups Gryposaurus and Kritosaurus here.",
+    "sources": [
+      {
+        "label": "Xing, Mallon & Currie (2017), PLOS ONE — Edmontosaurus regalis and hadrosaurine phylogeny; Fig. 20",
+        "url": "https://doi.org/10.1371/journal.pone.0175253"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Xing, Mallon & Currie (2017), strict consensus, Fig. 20.",
+      "notes": "The source uses Hadrosaurinae for the branch called Saurolophinae in this game."
+    }
+  },
+  "Saurolophini": {
+    "taxonomy": {
+      "id": 679,
+      "parent": "Saurolophinae",
+      "rank": "tribe",
+      "common": "saurolophini",
+      "members": [
+        "Prosaurolophus",
+        "Saurolophus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Saurolophini is a subgroup of saurolophine hadrosaurs. Following Xing et al. (2017), Dinozoa groups Prosaurolophus and Saurolophus here.",
+    "sources": [
+      {
+        "label": "Xing, Mallon & Currie (2017), PLOS ONE — Edmontosaurus regalis and hadrosaurine phylogeny; Fig. 20",
+        "url": "https://doi.org/10.1371/journal.pone.0175253"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Xing, Mallon & Currie (2017), strict consensus, Fig. 20.",
+      "notes": "The source uses Hadrosaurinae for the branch called Saurolophinae in this game."
+    }
+  },
+  "Parasaurolophini": {
+    "taxonomy": {
+      "id": 680,
+      "parent": "Lambeosaurinae",
+      "rank": "tribe",
+      "common": "parasaurolophin hadrosaurs",
+      "members": [
+        "Charonosaurus",
+        "Parasaurolophus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Parasaurolophini is a lambeosaurine branch containing Parasaurolophus and Charonosaurus. Dinozoa follows the grouping recovered by Prieto-Márquez et al. (2013).",
+    "sources": [
+      {
+        "label": "Prieto-Márquez et al. (2013), PLOS ONE — Diversity, relationships and biogeography of European lambeosaurines",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3724916/"
+      },
+      {
+        "label": "Farke et al. (2013), PeerJ — Ontogeny in Parasaurolophus",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3807589/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Prieto-Márquez et al. (2013), Fig. 25.",
+      "notes": ""
+    }
+  },
+  "Lambeosaurini": {
+    "taxonomy": {
+      "id": 681,
+      "parent": "Lambeosaurinae",
+      "rank": "tribe",
+      "common": "lambeosaurin hadrosaurs",
+      "members": [
+        "Corythosaurus",
+        "Hypacrosaurus",
+        "Lambeosaurus",
+        "Olorotitan",
+        "Velafrons"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Lambeosaurini groups Corythosaurus, Hypacrosaurus, Lambeosaurus, Olorotitan and Velafrons in Dinozoa, following Prieto-Márquez et al. (2013). Nipponosaurus is left unresolved within the broader Lambeosaurinae.",
+    "sources": [
+      {
+        "label": "Prieto-Márquez et al. (2013), PLOS ONE — Diversity, relationships and biogeography of European lambeosaurines",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3724916/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Prieto-Márquez et al. (2013), Fig. 25.",
+      "notes": "Nipponosaurus is not forced into a tribe."
+    }
+  },
+  "Tsintaosaurini": {
+    "taxonomy": {
+      "id": 682,
+      "parent": "Lambeosaurinae",
+      "rank": "tribe",
+      "common": "tsintaosaurin hadrosaurs",
+      "members": [
+        "Tsintaosaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Tsintaosaurini is the lambeosaurine branch joining Tsintaosaurus and Pararhabdodon in Prieto-Márquez et al. (2013). Tsintaosaurus is its only representative in Dinozoa.",
+    "sources": [
+      {
+        "label": "Prieto-Márquez et al. (2013), PLOS ONE — Diversity, relationships and biogeography of European lambeosaurines",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3724916/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Prieto-Márquez et al. (2013), definition and Fig. 25.",
+      "notes": ""
+    }
+  },
+  "Eudromaeosauria": {
+    "taxonomy": {
+      "id": 683,
+      "parent": "Dromaeosauridae",
+      "rank": "clade",
+      "common": "eudromaeosaurian raptors",
+      "members": [
+        "Achillobator",
+        "Deinonychus",
+        "Utahraptor"
+      ]
+    },
+    "wikiTitle": "Eudromaeosauria",
+    "summary": "Eudromaeosauria is a branch of dromaeosaurid dinosaurs. Dinozoa follows the first analysis of Jasinski et al. (2020), including seven of the game’s raptors here. Other analyses recover different internal relationships.",
+    "sources": [
+      {
+        "label": "Jasinski, Sullivan & Dodson (2020), Scientific Reports — Dineobellator; phylogenetic analysis and Fig. 3",
+        "url": "https://doi.org/10.1038/s41598-020-61480-7"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Jasinski et al. (2020), first analysis, strict consensus, Fig. 3.",
+      "notes": "Seven descendants after the three subfamilies are added. Bambiraptor and Zhenyuanlong remain outside this node."
+    }
+  },
+  "Dromaeosaurinae": {
+    "taxonomy": {
+      "id": 684,
+      "parent": "Eudromaeosauria",
+      "rank": "subfamily",
+      "common": "dromaeosaurine raptors",
+      "members": [
+        "Dakotaraptor",
+        "Dromaeosaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Dromaeosaurinae groups Dakotaraptor and Dromaeosaurus in Dinozoa, following Jasinski et al. (2020). That analysis places Achillobator and Utahraptor elsewhere within Eudromaeosauria; this arrangement is not universal.",
+    "sources": [
+      {
+        "label": "Jasinski, Sullivan & Dodson (2020), Scientific Reports — Dineobellator; phylogenetic analysis and Fig. 3",
+        "url": "https://doi.org/10.1038/s41598-020-61480-7"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Jasinski et al. (2020), first analysis, Fig. 3.",
+      "notes": "Do not combine the membership with older definitions that also assign Achillobator and Utahraptor here."
+    }
+  },
+  "Velociraptorinae": {
+    "taxonomy": {
+      "id": 685,
+      "parent": "Eudromaeosauria",
+      "rank": "subfamily",
+      "common": "velociraptorine raptors",
+      "members": [
+        "Velociraptor"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Velociraptorinae is the eudromaeosaurian branch containing Velociraptor. Under the Jasinski et al. (2020) classification used here, Velociraptor is its only representative in Dinozoa.",
+    "sources": [
+      {
+        "label": "Jasinski, Sullivan & Dodson (2020), Scientific Reports — Dineobellator; phylogenetic analysis and Fig. 3",
+        "url": "https://doi.org/10.1038/s41598-020-61480-7"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Jasinski et al. (2020), first analysis, Fig. 3.",
+      "notes": ""
+    }
+  },
+  "Saurornitholestinae": {
+    "taxonomy": {
+      "id": 686,
+      "parent": "Eudromaeosauria",
+      "rank": "subfamily",
+      "common": "saurornitholestine raptors",
+      "members": [
+        "Saurornitholestes"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Saurornitholestinae is a branch of Eudromaeosauria in Jasinski et al. (2020). Saurornitholestes is its only representative in Dinozoa; Bambiraptor is outside this group in the selected analysis.",
+    "sources": [
+      {
+        "label": "Jasinski, Sullivan & Dodson (2020), Scientific Reports — Dineobellator; phylogenetic analysis and Fig. 3",
+        "url": "https://doi.org/10.1038/s41598-020-61480-7"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Jasinski et al. (2020), first analysis, Fig. 3.",
+      "notes": ""
+    }
+  },
+  "Unenlagiinae": {
+    "taxonomy": {
+      "id": 687,
+      "parent": "Dromaeosauridae",
+      "rank": "subfamily",
+      "common": "unenlagiine raptors",
+      "members": [
+        "Austroraptor",
+        "Buitreraptor"
+      ]
+    },
+    "wikiTitle": "Unenlagiinae",
+    "summary": "Unenlagiinae groups Austroraptor and Buitreraptor here, following Jasinski et al. (2020). Its wider placement is disputed: some later analyses put this lineage outside Dromaeosauridae, among avialans.",
+    "sources": [
+      {
+        "label": "Jasinski, Sullivan & Dodson (2020), Scientific Reports — Dineobellator; phylogenetic analysis and Fig. 3",
+        "url": "https://doi.org/10.1038/s41598-020-61480-7"
+      },
+      {
+        "label": "Motta et al. (2025), Journal of Systematic Palaeontology — Phylogenetic relationships of Unenlagiidae among Paraves",
+        "url": "https://doi.org/10.1080/14772019.2025.2529608"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Jasinski et al. (2020), first analysis, Fig. 3.",
+      "notes": "Retains the existing dromaeosaurid placement; does not adopt the alternative avialan placement of Motta et al. (2025). Balaur is unchanged."
+    }
+  },
+  "Lognkosauria": {
+    "taxonomy": {
+      "id": 688,
+      "parent": "Titanosauria",
+      "rank": "clade",
+      "common": "lognkosaurian titanosaurs",
+      "members": [
+        "Argentinosaurus",
+        "Futalognkosaurus",
+        "Patagotitan",
+        "Puertasaurus"
+      ]
+    },
+    "wikiTitle": "Lognkosauria",
+    "summary": "Dinozoa follows Carballido et al. (2017), grouping Argentinosaurus, Futalognkosaurus, Patagotitan and Puertasaurus in Lognkosauria. Puertasaurus has particularly uncertain placement; Dreadnoughtus is outside this group in that analysis.",
+    "sources": [
+      {
+        "label": "Carballido et al. (2017), Proceedings B — A new giant titanosaur sheds light on body mass evolution",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5563814/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Carballido et al. (2017), Fig. 3.",
+      "notes": "Lognkosauria is outside Lithostrotia in this chosen topology; Notocolossus stays outside Lognkosauria."
+    }
+  },
+  "Lithostrotia": {
+    "taxonomy": {
+      "id": 689,
+      "parent": "Titanosauria",
+      "rank": "clade",
+      "common": "lithostrotian titanosaurs",
+      "members": [
+        "Malawisaurus",
+        "Rapetosaurus",
+        "Isisaurus"
+      ]
+    },
+    "wikiTitle": "Lithostrotia",
+    "summary": "Lithostrotia is a titanosaur branch including Malawisaurus and saltasaurids. Dinozoa follows Carballido et al. (2017), which places Dreadnoughtus and Lognkosauria outside it. Genera not resolved by the selected reference remain at Titanosauria.",
+    "sources": [
+      {
+        "label": "Carballido et al. (2017), Proceedings B — A new giant titanosaur sheds light on body mass evolution",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5563814/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Carballido et al. (2017), Fig. 3.",
+      "notes": "Ampelosaurus, Antarctosaurus, Nemegtosaurus and Paralititan are not sampled in Fig. 3 and remain unresolved at Titanosauria; this is not a claim that they are non-lithostrotians."
+    }
+  },
+  "Saltasauridae": {
+    "taxonomy": {
+      "id": 690,
+      "parent": "Lithostrotia",
+      "rank": "family",
+      "common": "saltasaurid titanosaurs",
+      "members": [
+        "Alamosaurus",
+        "Saltasaurus"
+      ]
+    },
+    "wikiTitle": "Saltasauridae",
+    "summary": "Saltasauridae is a lithostrotian family. Dinozoa groups Alamosaurus with Saltasaurus following the derived titanosaur arrangement of Carballido et al. (2017). Alamosaurus has been placed differently in other analyses.",
+    "sources": [
+      {
+        "label": "Carballido et al. (2017), Proceedings B — A new giant titanosaur sheds light on body mass evolution",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5563814/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Carballido et al. (2017), Fig. 3; Alamosaurus discussion.",
+      "notes": ""
+    }
+  },
+  "Baryonychinae": {
+    "taxonomy": {
+      "id": 691,
+      "parent": "Spinosauridae",
+      "rank": "subfamily",
+      "common": "baryonychine spinosaurs",
+      "members": [
+        "Baryonyx",
+        "Suchomimus"
+      ]
+    },
+    "wikiTitle": "Baryonychinae",
+    "summary": "Baryonychinae groups Baryonyx and Suchomimus in Dinozoa. This follows Barker et al. (2021), but support for this branch is weak and alternative spinosaur relationships remain possible.",
+    "sources": [
+      {
+        "label": "Barker et al. (2021), Scientific Reports — New spinosaurids from the Wessex Formation",
+        "url": "https://doi.org/10.1038/s41598-021-97870-8"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Barker et al. (2021), parsimony analysis, Fig. 6.",
+      "notes": "Cristatusaurus remains unresolved at Spinosauridae; no synonym or genus merge is imposed."
+    }
+  },
+  "Spinosaurinae": {
+    "taxonomy": {
+      "id": 692,
+      "parent": "Spinosauridae",
+      "rank": "subfamily",
+      "common": "spinosaurine spinosaurs",
+      "members": [
+        "Ichthyovenator",
+        "Irritator",
+        "Spinosaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Spinosaurinae groups Ichthyovenator, Irritator and Spinosaurus here, following Barker et al. (2021). The study finds uncertain internal relationships. Oxalaia is left unresolved at Spinosauridae rather than assigned or merged without a separate review.",
+    "sources": [
+      {
+        "label": "Barker et al. (2021), Scientific Reports — New spinosaurids from the Wessex Formation",
+        "url": "https://doi.org/10.1038/s41598-021-97870-8"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Barker et al. (2021), Fig. 6 and placement interval for Irritator.",
+      "notes": "Oxalaia and Cristatusaurus are not assigned using inferred synonymy."
+    }
+  },
+  "Carcharodontosaurinae": {
+    "taxonomy": {
+      "id": 693,
+      "parent": "Carcharodontosauridae",
+      "rank": "subfamily",
+      "common": "derived carcharodontosaurids",
+      "members": [
+        "Carcharodontosaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Carcharodontosaurinae includes Carcharodontosaurus and the giganotosaurin branch in Dinozoa, following Canale et al. (2022). Acrocanthosaurus, Concavenator and Eocarcharia remain outside this subgroup.",
+    "sources": [
+      {
+        "label": "Canale et al. (2022), Current Biology — New giant carnivorous dinosaur reveals convergent trends in arm reduction; Meraxes, Fig. 3",
+        "url": "https://doi.org/10.1016/j.cub.2022.05.057"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Canale et al. (2022), Fig. 3.",
+      "notes": ""
+    }
+  },
+  "Giganotosaurini": {
+    "taxonomy": {
+      "id": 694,
+      "parent": "Carcharodontosaurinae",
+      "rank": "tribe",
+      "common": "giganotosaurin theropods",
+      "members": [
+        "Giganotosaurus",
+        "Mapusaurus",
+        "Meraxes",
+        "Tyrannotitan"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Giganotosaurini groups Meraxes, Tyrannotitan, Giganotosaurus and Mapusaurus in Dinozoa. This follows the South American branch recovered in the Meraxes analysis by Canale et al. (2022).",
+    "sources": [
+      {
+        "label": "Canale et al. (2022), Current Biology — New giant carnivorous dinosaur reveals convergent trends in arm reduction; Meraxes, Fig. 3",
+        "url": "https://doi.org/10.1016/j.cub.2022.05.057"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Canale et al. (2022), Fig. 3.",
+      "notes": ""
+    }
+  },
+  "Brachyrostra": {
+    "taxonomy": {
+      "id": 695,
+      "parent": "Abelisauridae",
+      "rank": "clade",
+      "common": "brachyrostran abelisaurids",
+      "members": [
+        "Aucasaurus",
+        "Carnotaurus",
+        "Ekrixinatosaurus",
+        "Skorpiovenator"
+      ]
+    },
+    "wikiTitle": "Brachyrostra",
+    "summary": "Brachyrostra groups Aucasaurus, Carnotaurus, Ekrixinatosaurus and Skorpiovenator here, following the parsimony analysis of Pol et al. (2024). Relationships within Abelisauridae vary between analyses.",
+    "sources": [
+      {
+        "label": "Pol et al. (2024), Cladistics — Koleken and evolutionary rates among Ceratosauria",
+        "url": "https://doi.org/10.1111/cla.12583"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Pol et al. (2024), parsimony strict consensus, Fig. 18.",
+      "notes": ""
+    }
+  },
+  "Abelisaurinae": {
+    "taxonomy": {
+      "id": 696,
+      "parent": "Abelisauridae",
+      "rank": "subfamily",
+      "common": "abelisaurine theropods",
+      "members": [
+        "Abelisaurus",
+        "Majungasaurus",
+        "Rajasaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Dinozoa follows Pol et al. (2024), grouping Abelisaurus with Majungasaurus and Rajasaurus. Under that hypothesis, Abelisaurinae takes priority over the name Majungasaurinae. The position of Abelisaurus is weakly supported.",
+    "sources": [
+      {
+        "label": "Pol et al. (2024), Cladistics — Koleken and evolutionary rates among Ceratosauria",
+        "url": "https://doi.org/10.1111/cla.12583"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Pol et al. (2024), Fig. 18 and nomenclatural discussion.",
+      "notes": "Uses Abelisaurinae for the majungasaurine-side clade in this topology, not Wikipedia’s redirect to Brachyrostra."
+    }
+  },
+  "Ankylosaurini": {
+    "taxonomy": {
+      "id": 697,
+      "parent": "Ankylosauridae",
+      "rank": "tribe",
+      "common": "ankylosaurin armoured dinosaurs",
+      "members": [
+        "Ankylosaurus",
+        "Euoplocephalus",
+        "Scolosaurus",
+        "Ziapelta",
+        "Zuul"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Ankylosaurini groups Ankylosaurus, Euoplocephalus, Scolosaurus, Ziapelta and Zuul here. Dinozoa follows Arbour and Evans (2017), leaving relationships within this tribe unresolved.",
+    "sources": [
+      {
+        "label": "Arbour & Evans (2017), Royal Society Open Science — Zuul; Fig. 8",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5451805/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Arbour & Evans (2017), strict consensus, Fig. 8a.",
+      "notes": "Preserves the existing broader ankylosaurid/nodosaurid framework; no incompatible family revision is imported."
+    }
+  },
+  "Dryomorpha": {
+    "taxonomy": {
+      "id": 698,
+      "parent": "Iguanodontia",
+      "rank": "clade",
+      "common": "dryomorph ornithopods",
+      "members": [
+        "Dryosaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Dryomorpha joins dryosaurids and ankylopollexians. In Dinozoa, Dryosaurus shares this branch with Camptosaurus, Iguanodon and the hadrosaur lineage; Rhabdodon and Tenontosaurus remain outside it.",
+    "sources": [
+      {
+        "label": "McDonald (2012), PLOS ONE — Phylogeny of basal iguanodonts: an update",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3358318/"
+      },
+      {
+        "label": "Madzia et al. (2021), PeerJ — The phylogenetic nomenclature of ornithischian dinosaurs",
+        "url": "https://doi.org/10.7717/peerj.12362"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "McDonald (2012), Fig. 1; Madzia et al. (2021), definition.",
+      "notes": "Muttaburrasaurus remains at Iguanodontia because its finer placement differs between reference trees."
+    }
+  },
+  "Ankylopollexia": {
+    "taxonomy": {
+      "id": 699,
+      "parent": "Dryomorpha",
+      "rank": "clade",
+      "common": "ankylopollexian ornithopods",
+      "members": [
+        "Camptosaurus"
+      ]
+    },
+    "wikiTitle": "Ankylopollexia",
+    "summary": "Ankylopollexia is the iguanodontian branch containing Camptosaurus and more closely related hadrosaur-lineage dinosaurs. It excludes Dryosaurus. Dinozoa uses the intermediate groups reviewed by McDonald (2012).",
+    "sources": [
+      {
+        "label": "McDonald (2012), PLOS ONE — Phylogeny of basal iguanodonts: an update",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3358318/"
+      },
+      {
+        "label": "Madzia et al. (2021), PeerJ — The phylogenetic nomenclature of ornithischian dinosaurs",
+        "url": "https://doi.org/10.7717/peerj.12362"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "McDonald (2012), Fig. 1; Madzia et al. (2021), definition.",
+      "notes": ""
+    }
+  },
+  "Styracosterna": {
+    "taxonomy": {
+      "id": 700,
+      "parent": "Ankylopollexia",
+      "rank": "clade",
+      "common": "styracosternan ornithopods",
+      "members": [
+        "Lurdusaurus"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Styracosterna is the ankylopollexian branch closer to the hadrosaur lineage than to Camptosaurus. Dinozoa places Lurdusaurus and Hadrosauriformes here, retaining only the broad supported relationships.",
+    "sources": [
+      {
+        "label": "McDonald (2012), PLOS ONE — Phylogeny of basal iguanodonts: an update",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3358318/"
+      },
+      {
+        "label": "Madzia et al. (2021), PeerJ — The phylogenetic nomenclature of ornithischian dinosaurs",
+        "url": "https://doi.org/10.7717/peerj.12362"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "McDonald (2012), Fig. 1; Madzia et al. (2021), definition and explicit discussion of Lurdusaurus.",
+      "notes": ""
+    }
+  },
+  "Hadrosauriformes": {
+    "taxonomy": {
+      "id": 701,
+      "parent": "Styracosterna",
+      "rank": "clade",
+      "common": "hadrosauriform ornithopods",
+      "members": [
+        "Iguanodon"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Hadrosauriformes includes Iguanodon and Hadrosauroidea. Dinozoa uses this named branch above the hadrosaur lineage, following the definitions reviewed by Madzia et al. (2021).",
+    "sources": [
+      {
+        "label": "McDonald (2012), PLOS ONE — Phylogeny of basal iguanodonts: an update",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3358318/"
+      },
+      {
+        "label": "Madzia et al. (2021), PeerJ — The phylogenetic nomenclature of ornithischian dinosaurs",
+        "url": "https://doi.org/10.7717/peerj.12362"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "McDonald (2012), Fig. 1; Madzia et al. (2021), definition.",
+      "notes": ""
+    }
+  },
+  "Hadrosauroidea": {
+    "taxonomy": {
+      "id": 702,
+      "parent": "Hadrosauriformes",
+      "rank": "superfamily",
+      "common": "hadrosauroids",
+      "members": [
+        "Altirhinus",
+        "Bactrosaurus",
+        "Eolambia",
+        "Mantellisaurus",
+        "Ouranosaurus",
+        "Hadrosauridae"
+      ]
+    },
+    "wikiTitle": "Hadrosauroidea",
+    "summary": "Hadrosauroidea includes hadrosaurids and closer relatives such as Altirhinus, Eolambia and Ouranosaurus in Dinozoa. This follows the reviewed reference classifications; the placement of some early members varies between studies.",
+    "sources": [
+      {
+        "label": "McDonald (2012), PLOS ONE — Phylogeny of basal iguanodonts: an update",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3358318/"
+      },
+      {
+        "label": "Bertozzo, Dalla Vecchia & Fabbri (2017), PeerJ — The Venice specimen of Ouranosaurus; phylogenetic discussion and Fig. 19",
+        "url": "https://doi.org/10.7717/peerj.3403"
+      },
+      {
+        "label": "Madzia et al. (2021), PeerJ — The phylogenetic nomenclature of ornithischian dinosaurs",
+        "url": "https://doi.org/10.7717/peerj.12362"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "McDonald (2012), Fig. 1; Bertozzo et al. (2017), Ouranosaurus discussion; Madzia et al. (2021), composition.",
+      "notes": "Mantellisaurus is within Hadrosauroidea under the selected definition, not alongside Iguanodon."
+    }
+  },
+  "Heyuanninae": {
+    "taxonomy": {
+      "id": 703,
+      "parent": "Oviraptoridae",
+      "rank": "subfamily",
+      "common": "heyuannine oviraptorids",
+      "members": [
+        "Conchoraptor",
+        "Khaan",
+        "Nemegtomaia"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Heyuanninae is an oviraptorid branch. Dinozoa groups Conchoraptor, Khaan and Nemegtomaia here, following Funston et al. (2020); Citipati, Oviraptor and Rinchenia remain outside this group.",
+    "sources": [
+      {
+        "label": "Funston et al. (2020), Royal Society Open Science — A new two-fingered dinosaur and oviraptorosaur radiation",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7657903/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Funston et al. (2020), Fig. 6.",
+      "notes": ""
+    }
+  },
+  "Troodontinae": {
+    "taxonomy": {
+      "id": 704,
+      "parent": "Troodontidae",
+      "rank": "subfamily",
+      "common": "troodontine theropods",
+      "members": [
+        "Latenivenatrix",
+        "Saurornithoides",
+        "Troodon",
+        "Zanabazar"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Dinozoa follows Kubota et al. (2024), grouping Saurornithoides and Zanabazar with its traditional North American Troodon and Latenivenatrix entries. Those North American names have disputed limits; Mei and Sinornithoides remain outside Troodontinae in this model.",
+    "sources": [
+      {
+        "label": "Kubota, Kobayashi & Ikeda (2024), Scientific Reports — Early Cretaceous troodontine from Japan",
+        "url": "https://doi.org/10.1038/s41598-024-66815-2"
+      },
+      {
+        "label": "van der Reest & Currie (2017), Canadian Journal of Earth Sciences — Troodontids from the Dinosaur Park Formation",
+        "url": "https://doi.org/10.1139/cjes-2017-0031"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Kubota et al. (2024), Fig. 4 and discussion; van der Reest & Currie (2017), Latenivenatrix.",
+      "notes": "Retains published game labels rather than asserting Troodon and Latenivenatrix are unquestionably distinct valid genera. Anchiornis is unchanged; Byronosaurus stays outside this node."
+    }
+  },
+  "Parvipelvia": {
+    "taxonomy": {
+      "id": 705,
+      "parent": "Ichthyosauria",
+      "rank": "clade",
+      "common": "parvipelvian ichthyosaurs",
+      "members": [
+        "Excalibosaurus",
+        "Temnodontosaurus"
+      ]
+    },
+    "wikiTitle": "Parvipelvia",
+    "summary": "Parvipelvia includes Temnodontosaurus, Excalibosaurus and the thunnosaurian branch in Dinozoa. This follows the broad ichthyosaur relationships reviewed by Caine and Benton (2011).",
+    "sources": [
+      {
+        "label": "Caine & Benton (2011), Palaeontology — Ichthyosauria from the Upper Lias of Strawberry Bank; Fig. 18",
+        "url": "https://bpb-eu-w2.wpmucdn.com/blogs.bristol.ac.uk/dist/5/537/files/2019/07/2011Caine.pdf"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Caine & Benton (2011), Text-fig. 18; Parvipelvia in both analyses.",
+      "notes": "Cymbospondylus, Mixosaurus and Shonisaurus remain outside Parvipelvia."
+    }
+  },
+  "Thunnosauria": {
+    "taxonomy": {
+      "id": 706,
+      "parent": "Parvipelvia",
+      "rank": "clade",
+      "common": "thunnosaurian ichthyosaurs",
+      "members": [
+        "Ichthyosaurus",
+        "Ophthalmosaurus",
+        "Stenopterygius"
+      ]
+    },
+    "wikiTitle": "Thunnosauria",
+    "summary": "Thunnosauria groups Ichthyosaurus, Stenopterygius and Ophthalmosaurus in Dinozoa. The placement of Stenopterygius follows the second analysis of Caine and Benton (2011); their first analysis differs.",
+    "sources": [
+      {
+        "label": "Caine & Benton (2011), Palaeontology — Ichthyosauria from the Upper Lias of Strawberry Bank; Fig. 18",
+        "url": "https://bpb-eu-w2.wpmucdn.com/blogs.bristol.ac.uk/dist/5/537/files/2019/07/2011Caine.pdf"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Caine & Benton (2011), Text-fig. 18b.",
+      "notes": "Uses the second analysis for Stenopterygius, rather than combining incompatible internal arrangements."
+    }
+  },
+  "Palaeognathae": {
+    "taxonomy": {
+      "id": 707,
+      "parent": "Aves",
+      "rank": "clade",
+      "common": "palaeognath birds",
+      "members": [
+        "Aepyornis",
+        "Dinornis"
+      ]
+    },
+    "wikiTitle": "Palaeognathae",
+    "summary": "Palaeognathae is the bird lineage that includes ostriches, kiwi, moa and elephant birds. Dinozoa represents it with Dinornis and Aepyornis; they are not treated as immediate sister genera.",
+    "sources": [
+      {
+        "label": "Mitchell et al. (2014), Science — Ancient DNA reveals elephant birds and kiwi are sister taxa",
+        "url": "https://doi.org/10.1126/science.1251981"
+      },
+      {
+        "label": "Worthy et al. (2017), Royal Society Open Science — Evolution of giant flightless birds and extinct fowl",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5666277/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Mitchell et al. (2014); Worthy et al. (2017), bird backbone.",
+      "notes": ""
+    }
+  },
+  "Neognathae": {
+    "taxonomy": {
+      "id": 708,
+      "parent": "Aves",
+      "rank": "clade",
+      "common": "neognath birds",
+      "members": [
+        "Gastornithidae",
+        "Phorusrhacidae",
+        "Argentavis",
+        "Hieraaetus",
+        "Raphus"
+      ]
+    },
+    "wikiTitle": "Neognathae",
+    "summary": "Neognathae is the major bird branch outside Palaeognathae. Dinozoa includes its dodo, eagle, teratorn, terror-bird and Gastornis lineages here, following the broad avian framework reviewed by Worthy et al. (2017).",
+    "sources": [
+      {
+        "label": "Worthy et al. (2017), Royal Society Open Science — Evolution of giant flightless birds and extinct fowl",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5666277/"
+      }
+    ],
+    "review": {
+      "status": "conditional",
+      "basis": "Worthy et al. (2017), Neognathae backbone and Gastornis/phorusrhacid analyses.",
+      "notes": "Pelagornis remains unresolved at Aves because stem-neognath versus stem-neornithine placements are not resolved by this reference."
+    }
+  },
+  "Titanosauria": {
+    "wikiTitle": "Titanosauria",
+    "summary": "Titanosauria is a diverse sauropod branch. Dinozoa follows Carballido et al. (2017) for its named subgroups. Genera not resolved by that reference remain directly under Titanosauria; this does not prove they fall outside the narrower groups.",
+    "sources": [
+      {
+        "label": "Carballido et al. (2017), Proceedings B — A new giant titanosaur sheds light on body mass evolution",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5563814/"
+      }
+    ]
   }
 }

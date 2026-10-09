@@ -243,7 +243,38 @@ The same file defines the reviewed subdivisions through `taxonomy` entries. Each
 permanent ID, parent and list of existing members to move beneath it. The generator appends
 these nodes after the legacy tree, preserving saved IDs and the daily answer schedule.
 Keep IDs stable and attach sources when editing memberships. Conditional subdivisions
-have not been added. Regenerating the Wikipedia cache never overwrites these profiles.
+also carry a `review` entry naming the selected analysis and its membership limits.
+Their card descriptions explain important uncertainty. Regenerating the Wikipedia cache
+never overwrites these profiles.
+
+The conditional update adds 35 clades (IDs 674–708), including ceratopsid and hadrosaur
+tribes, raptor subgroups, titanosaur and spinosaur branches, smaller theropod groups,
+iguanodont intermediates, ichthyosaur branches and Palaeognathae / Neognathae. The exact
+members and source links live beside each description in `clade-content.json`.
+
+These are selected published classifications, not a claim of universal agreement:
+
+- Raptors follow the first analysis of Jasinski et al. (2020). Dromaeosaurinae contains
+  Dakotaraptor and Dromaeosaurus; Achillobator and Utahraptor remain at Eudromaeosauria.
+  Unenlagiinae groups Austroraptor and Buitreraptor within their existing dromaeosaurid
+  branch. The alternative avialan placement and moving Balaur are not adopted.
+- Titanosaurs follow Carballido et al. (2017), with Lognkosauria outside Lithostrotia.
+  Ampelosaurus, Antarctosaurus, Nemegtosaurus and Paralititan remain unresolved at
+  Titanosauria because the selected figure does not sample them. A broad placement in
+  this simplified tree must not be interpreted as evidence of exclusion from a subgroup.
+- Abelisaurinae follows the majungasaurine-side placement of Abelisaurus in Pol et al.
+  (2024). Its conflicting Wikipedia redirect to Brachyrostra is deliberately disabled.
+- Troodontinae follows Kubota et al. (2024), retaining the game's traditional North
+  American Troodon and Latenivenatrix labels. Their disputed taxonomic limits are noted
+  on the card; the update does not merge or remove existing animals.
+- Regaliceratops, Nipponosaurus, Cristatusaurus, Oxalaia, Muttaburrasaurus and Pelagornis
+  retain broader placements where the selected grouping does not settle their position.
+
+The amphibian scaffold is deferred: the existing Amphibia bucket includes stem tetrapods,
+and simply adding Temnospondyli beneath it would not correct that problem. This needs a
+separate review of the crown/total-group definitions and all eight included genera.
+The previously held stegosaur, nodosaurid, cartilaginous-fish and synonym revisions are
+also outside this update.
 
 Clades and individual animals are treated differently. For a clade the article's lead image
 is used, since it is usually a composite plate showing several members of the group. For an

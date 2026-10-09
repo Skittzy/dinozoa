@@ -68,6 +68,15 @@ try {
     const pelagiceti = await getCladeContent('Pelagiceti');
     assert.equal(pelagiceti?.wikiTitle, false);
     assert.equal(describeClade({ ...node, scientific: 'Pelagiceti' }, parent, pelagiceti, null).kind, 'local');
+    for (const name of ['Edmontosaurini', 'Dromaeosaurinae', 'Spinosaurinae', 'Abelisaurinae']) {
+        const content = await getCladeContent(name);
+        assert.equal(content?.wikiTitle, false, `${name}: a broader redirect is not an alternate title`);
+        const selected = describeClade({ ...node, scientific: name }, parent, content, wrong);
+        assert.equal(selected.kind, 'local');
+        assert.equal(selected.text, content?.summary);
+        assert.ok(selected.sources.length > 0);
+        assert.ok(selected.sources.every(s => !s.url.includes('wikipedia.org')));
+    }
     assert.equal(calls.filter(c => c === 'data/clade-content.json').length, 1);
 } finally { globalThis.fetch = originalFetch; }
 console.log('  ok  sourced local text, mapped articles, offline and redirect fallbacks');
