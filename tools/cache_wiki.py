@@ -196,6 +196,8 @@ def main() -> int:
                     help="cache only the animals that can be the daily answer")
     ap.add_argument("--clades", action="store_true",
                     help="also cache internal clade pages")
+    ap.add_argument("--clades-only", action="store_true",
+                    help="cache only internal clades, using reviewed article titles")
     ap.add_argument("--delay", type=float, default=0.15,
                     help="seconds between requests")
     args = ap.parse_args()
@@ -207,9 +209,20 @@ def main() -> int:
 
     with open(DB, encoding="utf-8") as fh:
         db = json.load(fh)
+    with open(os.path.join(HERE, "..", "public", "data", "clade-content.json"), encoding="utf-8") as fh:
+        content = json.load(fh)
+    internal = set()
+    def collect_internal(node):
+        if node.get("children"):
+            internal.add(node["scientific"])
+        for child in node.get("children", []):
+            collect_internal(child)
+    collect_internal(db["root"])
 
     titles: list[tuple[str, str]] = []
-    collect(db["root"], args.answers_only, args.clades, titles)
+    collect(db["root"], args.answers_only, args.clades or args.clades_only, titles)
+    if args.clades_only:
+        titles = [t for t in titles if t[0] in internal]
 
     # Keep anything already cached so an interrupted run can be resumed.
     cache: dict[str, dict] = {}
@@ -222,7 +235,18 @@ def main() -> int:
     print(f"fetching {len(titles)} taxa...", file=sys.stderr)
     for i, (title, common) in enumerate(titles, 1):
         entry: dict[str, str] = {}
-        summary = get(SUMMARY.format(title=urllib.parse.quote(title.replace(" ", "_"), safe="")))
+        wiki_title = content.get(title, {}).get("wikiTitle", title) if title in internal else title
+        if wiki_title is False:
+            continue
+        summary = get(SUMMARY.format(title=urllib.parse.quote(wiki_title.replace(" ", "_"), safe="")))
+        # Never cache a broader group's description or image for a minor clade.
+        served = ((summary or {}).get("titles") or {}).get("canonical") or (summary or {}).get("title")
+        norm = lambda s: " ".join((s or "").replace("_", " ").lower().split())
+        if title in internal and (norm(served) != norm(wiki_title)
+                                  or (summary or {}).get("type") == "disambiguation"):
+            print(f"  skipping unmatched clade article: {title} -> {served}", file=sys.stderr)
+            time.sleep(args.delay)
+            continue
         if summary:
             if summary.get("extract"):
                 entry["extract"] = summary["extract"]
@@ -235,12 +259,15 @@ def main() -> int:
                       or summary.get("title"))
             if served:
                 entry["articleTitle"] = served
+            if summary.get("type"):
+                entry["articleType"] = summary["type"]
             lead = ((summary.get("thumbnail") or {}).get("source")
                     or (summary.get("originalimage") or {}).get("source"))
         else:
             lead = None
 
-        img, artist, file_url = best_image(title, (title, common))
+        # Clades use the article's lead image, just like the browser renderer.
+        img, artist, file_url = (None, None, None) if title in internal else best_image(title, (title, common))
         if img:
             entry["imageUrl"] = img
             if artist:

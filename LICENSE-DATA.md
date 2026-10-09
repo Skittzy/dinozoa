@@ -11,9 +11,11 @@ Copyright (C) 2026 Matej Krsteski
 
 ## What "the data" means here
 
-- `public/data/dinosaur-database.json` — the 627-node taxonomic tree, the
+- `public/data/dinosaur-database.json` — the 673-node taxonomic tree, the
   selection of 472 guessable animals, the 129-animal answer pool, and the 270
   alternate and pop-culture names.
+- `public/data/clade-content.json` — reviewed taxonomy additions, original clade
+  descriptions, source links and Wikipedia title mappings.
 - The `SURVEY_POOL`, `ALIASES` and `GENERA` tables inside `build_db.py`, which are
   the source those files are generated from.
 - The survey results and the recognition thresholds derived from them.
@@ -48,9 +50,10 @@ worth protecting from being lifted into a commercial product.
 
 ## Third-party material
 
-Animal photographs and illustrations are **not** covered by this licence. They are
-fetched from Wikipedia at runtime and remain under their own terms, most commonly
-CC BY-SA. The game credits the image author where the Wikimedia API supplies one.
+Wikipedia extracts, animal photographs and illustrations are **not** covered by
+this licence. Whether cached or fetched at runtime, they remain under their own
+terms, most commonly CC BY-SA. The game links to the article and credits the image
+author where the Wikimedia API supplies one.
 
 Taxonomic names and the relationships between them are facts and are not subject
 to copyright.

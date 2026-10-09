@@ -32,6 +32,7 @@ export interface TaxonImage {
      *  when the name is a redirect — many minor clades have no article of their
      *  own and redirect to a parent, so the extract is about the PARENT. */
     articleTitle: string | null;
+    articleType?: string;
     /** Who made the image, and where its licence lives. Wikipedia palaeoart is
      *  mostly CC BY-SA, where crediting the author is a licence condition. */
     artist: string | null;
@@ -55,6 +56,7 @@ interface CachedEntry {
     artist?: string; fileUrl?: string; articleTitle?: string;
     fallbackUrl?: string; imageTitle?: string;
     licenseName?: string; licenseUrl?: string;
+    articleType?: string;
 }
 let wikiCache: Record<string, CachedEntry> | null = null;
 let overrides: Record<string, CachedEntry> | null = null;
@@ -296,17 +298,17 @@ async function bestLifeImage(title: string, names: string[]): Promise<LifeImage 
  *   could. Clades therefore cost one request instead of two.
  */
 export function fetchTaxonImage(title: string, preferRestoration = false,
-                                altNames: string[] = []): Promise<TaxonImage> {
-    const key = `${preferRestoration ? 'life' : 'lead'}:${title}`;
+                                altNames: string[] = [], wikiTitle = title): Promise<TaxonImage> {
+    const key = `${preferRestoration ? 'life' : 'lead'}:${title}:${wikiTitle}`;
     const cached = cache.get(key);
     if (cached) return cached;
 
     const promise = (async (): Promise<TaxonImage> => {
         try {
-            const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+            const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`;
 
             await loadCache();
-            const stored = wikiCache?.[title];
+            const stored = wikiCache?.[title] ?? wikiCache?.[wikiTitle];
             // Curated animal images do not replace the lead images used for clades.
             const override = preferRestoration ? overrides?.[title] : undefined;
             const picked = override?.imageUrl ? override : stored?.imageUrl ? stored : undefined;
@@ -333,6 +335,7 @@ export function fetchTaxonImage(title: string, preferRestoration = false,
                 pageUrl: override?.pageUrl ?? stored?.pageUrl ?? data?.content_urls?.desktop?.page ?? null,
                 articleTitle: override?.articleTitle ?? stored?.articleTitle
                     ?? data?.titles?.canonical ?? data?.title ?? null,
+                articleType: override?.articleType ?? stored?.articleType ?? data?.type,
                 artist: picked ? picked.artist ?? null : life?.artist ?? null,
                 fileUrl: picked ? picked.fileUrl ?? null : life?.fileUrl ?? null,
                 imageTitle: picked ? picked.imageTitle ?? null : life?.imageTitle ?? null,

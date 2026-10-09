@@ -902,6 +902,45 @@ for family, genera in GENERA.items():
         # store leaf under a synthetic unique key
         nodes[f"__leaf_{leaf['id']}"] = leaf
 
+# Append reviewed subdivisions after the legacy nodes to preserve every existing
+# ID (saved guesses, purchased hints and the deterministic daily answer order).
+# Definitions, memberships and research sources live together with their cards.
+_content_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "public", "data", "clade-content.json")
+with open(_content_path, encoding="utf-8") as _fh:
+    clade_content = json.load(_fh)
+by_name = {n["scientific"]: n for n in nodes.values()}
+used_ids = {n["id"] for n in nodes.values()}
+for name, content in clade_content.items():
+    tax = content.get("taxonomy")
+    if not tax:
+        continue
+    if name in by_name or tax["id"] in used_ids:
+        raise SystemExit(f"Duplicate subdivision name or ID: {name}")
+    node = {"id": tax["id"], "scientific": name, "common": tax["common"],
+            "rank": tax["rank"], "answer": False, "alt": [], "children": [],
+            "_parent": tax["parent"]}
+    nodes[name] = by_name[name] = node
+    used_ids.add(node["id"])
+
+reassigned = set()
+for name, content in clade_content.items():
+    for member in content.get("taxonomy", {}).get("members", []):
+        if member not in by_name or member in reassigned:
+            raise SystemExit(f"Unknown or multiply assigned member: {member}")
+        by_name[member]["_parent"] = name
+        reassigned.add(member)
+
+# Check the parent graph before linking, including disconnected cycles.
+for name, node in by_name.items():
+    visited = {name}
+    parent = node["_parent"]
+    while parent is not None:
+        if parent not in by_name or parent in visited:
+            raise SystemExit(f"Invalid parent chain for {name}: {parent}")
+        visited.add(parent)
+        parent = by_name[parent]["_parent"]
+
 # link children
 root = None
 for key, node in nodes.items():
@@ -931,6 +970,10 @@ def walk(n):
     for c in n["children"]:
         walk(c)
 walk(root)
+if len(all_nodes) != len(nodes):
+    raise SystemExit("The taxonomy must form one connected tree")
+if any(n["rank"] != "genus" for n in leaves):
+    raise SystemExit("An internal clade has no animal descendants")
 
 # duplicate scientific-name check
 names = [n["scientific"] for n in all_nodes]

@@ -1,0 +1,982 @@
+{
+  "Theria": {
+    "taxonomy": {
+      "id": 628,
+      "parent": "Mammalia",
+      "rank": "clade",
+      "common": "therian mammals",
+      "members": []
+    },
+    "wikiTitle": "Theria",
+    "summary": "Theria includes the placental and marsupial lineages, together with their extinct relatives. All mammals currently included in Dinozoa belong to this branch.",
+    "sources": [
+      {
+        "label": "Foley et al. (2023), Science — A genomic timescale for placental mammal evolution",
+        "url": "https://doi.org/10.1126/science.abl8189"
+      },
+      {
+        "label": "Janis et al. (2020), PeerJ — An eye for a tooth: Thylacosmilus",
+        "url": "https://doi.org/10.7717/peerj.9346"
+      }
+    ]
+  },
+  "Eutheria": {
+    "taxonomy": {
+      "id": 629,
+      "parent": "Theria",
+      "rank": "clade",
+      "common": "placentals and their stem relatives",
+      "members": [
+        "Dinocerata"
+      ]
+    },
+    "wikiTitle": "Eutheria",
+    "summary": "Eutheria includes placental mammals and extinct relatives outside the placental crown group. Dinozoa leaves the finer placement of Dinocerata unresolved within this broader branch.",
+    "sources": [
+      {
+        "label": "Halliday et al. — Resolving the relationships of Paleocene placental mammals",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6849585/"
+      }
+    ]
+  },
+  "Placentalia": {
+    "taxonomy": {
+      "id": 630,
+      "parent": "Eutheria",
+      "rank": "clade",
+      "common": "placental mammals",
+      "members": [
+        "Xenarthra"
+      ]
+    },
+    "wikiTitle": "Placentalia",
+    "summary": "Placentalia is the group descended from the common ancestor of living placental mammals. Its major branches include Afrotheria, Xenarthra and Boreoeutheria.",
+    "sources": [
+      {
+        "label": "Foley et al. (2023), Science — A genomic timescale for placental mammal evolution",
+        "url": "https://doi.org/10.1126/science.abl8189"
+      }
+    ]
+  },
+  "Boreoeutheria": {
+    "taxonomy": {
+      "id": 631,
+      "parent": "Placentalia",
+      "rank": "clade",
+      "common": "boreoeutherian mammals",
+      "members": []
+    },
+    "wikiTitle": "Boreoeutheria",
+    "summary": "Boreoeutheria unites Laurasiatheria and Euarchontoglires. In this game it includes carnivorans, hoofed mammals, whales, primates and rodents.",
+    "sources": [
+      {
+        "label": "Foley et al. (2023), Science — A genomic timescale for placental mammal evolution",
+        "url": "https://doi.org/10.1126/science.abl8189"
+      }
+    ]
+  },
+  "Laurasiatheria": {
+    "taxonomy": {
+      "id": 632,
+      "parent": "Boreoeutheria",
+      "rank": "clade",
+      "common": "laurasiatherian mammals",
+      "members": [
+        "Carnivora",
+        "Artiodactyla"
+      ]
+    },
+    "wikiTitle": "Laurasiatheria",
+    "summary": "Laurasiatheria is a placental branch that includes carnivorans, odd-toed ungulates and the even-toed ungulate lineage, including whales.",
+    "sources": [
+      {
+        "label": "Foley et al. (2023), Science — A genomic timescale for placental mammal evolution",
+        "url": "https://doi.org/10.1126/science.abl8189"
+      }
+    ]
+  },
+  "Euarchontoglires": {
+    "taxonomy": {
+      "id": 633,
+      "parent": "Boreoeutheria",
+      "rank": "clade",
+      "common": "primates, rodents and relatives",
+      "members": [
+        "Primates",
+        "Rodentia"
+      ]
+    },
+    "wikiTitle": "Euarchontoglires",
+    "summary": "Euarchontoglires is a placental branch represented in Dinozoa by primates and rodents. It also includes other living groups that are not in the game.",
+    "sources": [
+      {
+        "label": "Foley et al. (2023), Science — A genomic timescale for placental mammal evolution",
+        "url": "https://doi.org/10.1126/science.abl8189"
+      }
+    ]
+  },
+  "Afrotheria": {
+    "taxonomy": {
+      "id": 634,
+      "parent": "Placentalia",
+      "rank": "clade",
+      "common": "afrotherian mammals",
+      "members": []
+    },
+    "wikiTitle": "Afrotheria",
+    "summary": "Afrotheria is a placental branch that includes elephants and their relatives. Dinozoa also places the extinct embrithopod Arsinoitherium within this lineage.",
+    "sources": [
+      {
+        "label": "Foley et al. (2023), Science — A genomic timescale for placental mammal evolution",
+        "url": "https://doi.org/10.1126/science.abl8189"
+      },
+      {
+        "label": "Gheerbrant et al. (2018), Current Biology — Early African Fossils Elucidate the Origin of Embrithopod Mammals",
+        "url": "https://doi.org/10.1016/j.cub.2018.05.032"
+      }
+    ]
+  },
+  "Paenungulata": {
+    "taxonomy": {
+      "id": 635,
+      "parent": "Afrotheria",
+      "rank": "clade",
+      "common": "elephants, hyraxes and relatives",
+      "members": [
+        "Proboscidea",
+        "Embrithopoda"
+      ]
+    },
+    "wikiTitle": "Paenungulata",
+    "summary": "Paenungulata includes the elephant, hyrax and sea-cow lineages. Its extinct relatives include embrithopods such as Arsinoitherium.",
+    "sources": [
+      {
+        "label": "Gheerbrant et al. (2018), Current Biology — Early African Fossils Elucidate the Origin of Embrithopod Mammals",
+        "url": "https://doi.org/10.1016/j.cub.2018.05.032"
+      }
+    ]
+  },
+  "Metatheria": {
+    "taxonomy": {
+      "id": 636,
+      "parent": "Theria",
+      "rank": "clade",
+      "common": "marsupials and their stem relatives",
+      "members": [
+        "Marsupialia"
+      ]
+    },
+    "wikiTitle": "Metatheria",
+    "summary": "Metatheria includes marsupials and their extinct relatives. It is broader than Marsupialia: sparassodonts such as Thylacosmilus lie outside the marsupial crown group.",
+    "sources": [
+      {
+        "label": "Janis et al. (2020), PeerJ — An eye for a tooth: Thylacosmilus",
+        "url": "https://doi.org/10.7717/peerj.9346"
+      }
+    ]
+  },
+  "Sparassodonta": {
+    "taxonomy": {
+      "id": 637,
+      "parent": "Metatheria",
+      "rank": "order",
+      "common": "sparassodonts",
+      "members": [
+        "Thylacosmilus"
+      ]
+    },
+    "wikiTitle": "Sparassodonta",
+    "summary": "Sparassodonta is an extinct lineage of South American metatherians. Its members include Thylacosmilus, which is not a member of crown Marsupialia.",
+    "sources": [
+      {
+        "label": "Janis et al. (2020), PeerJ — An eye for a tooth: Thylacosmilus",
+        "url": "https://doi.org/10.7717/peerj.9346"
+      }
+    ]
+  },
+  "Panperissodactyla": {
+    "taxonomy": {
+      "id": 638,
+      "parent": "Laurasiatheria",
+      "rank": "clade",
+      "common": "odd-toed ungulates and relatives",
+      "members": [
+        "Perissodactyla",
+        "Litopterna",
+        "Notoungulata"
+      ]
+    },
+    "wikiTitle": "Panperissodactyla",
+    "summary": "Panperissodactyla links odd-toed ungulates with the extinct South American lineages represented here by Macrauchenia and Toxodon. Ancient protein evidence supports this relationship.",
+    "sources": [
+      {
+        "label": "Welker et al. (2015), Nature — Ancient proteins resolve the evolutionary history of Darwin’s South American ungulates",
+        "url": "https://doi.org/10.1038/nature14249"
+      }
+    ]
+  },
+  "Diprotodontia": {
+    "taxonomy": {
+      "id": 639,
+      "parent": "Marsupialia",
+      "rank": "order",
+      "common": "diprotodont marsupials",
+      "members": [
+        "Procoptodon"
+      ]
+    },
+    "wikiTitle": "Diprotodontia",
+    "summary": "Diprotodontia is the marsupial group containing kangaroos, wombats, koalas and their relatives. Its extinct members in Dinozoa include Procoptodon, Diprotodon and Thylacoleo.",
+    "sources": [
+      {
+        "label": "Beck et al. (2020) — Mukupirna and the evolution of Vombatiformes",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7316786/"
+      }
+    ]
+  },
+  "Vombatiformes": {
+    "taxonomy": {
+      "id": 640,
+      "parent": "Diprotodontia",
+      "rank": "suborder",
+      "common": "wombats, koalas and relatives",
+      "members": [
+        "Diprotodon",
+        "Thylacoleo"
+      ]
+    },
+    "wikiTitle": "Vombatiformes",
+    "summary": "Vombatiformes includes wombats, koalas and extinct relatives. Diprotodon and the marsupial lion Thylacoleo belong to this branch rather than the kangaroo lineage.",
+    "sources": [
+      {
+        "label": "Beck et al. (2020) — Mukupirna and the evolution of Vombatiformes",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7316786/"
+      }
+    ]
+  },
+  "Elephantidae": {
+    "taxonomy": {
+      "id": 641,
+      "parent": "Proboscidea",
+      "rank": "family",
+      "common": "elephants and mammoths",
+      "members": [
+        "Mammuthus",
+        "Palaeoloxodon"
+      ]
+    },
+    "wikiTitle": "Elephantidae",
+    "summary": "Elephantidae includes living elephants, mammoths and Palaeoloxodon. Mastodons such as Mammut belong to a different proboscidean lineage.",
+    "sources": [
+      {
+        "label": "Palkopoulou et al. (2018), PNAS — A comprehensive genomic history of extinct and living elephants",
+        "url": "https://doi.org/10.1073/pnas.1720554115"
+      }
+    ]
+  },
+  "Rhinocerotoidea": {
+    "taxonomy": {
+      "id": 642,
+      "parent": "Perissodactyla",
+      "rank": "superfamily",
+      "common": "rhinoceroses and relatives",
+      "members": [
+        "Paraceratherium"
+      ]
+    },
+    "wikiTitle": "Rhinocerotoidea",
+    "summary": "Rhinocerotoidea includes rhinoceroses and extinct relatives such as Paraceratherium. The giant Paraceratherium is outside the rhinoceros family Rhinocerotidae.",
+    "sources": [
+      {
+        "label": "Deng et al. (2021), Communications Biology — An Oligocene giant rhino provides insights into Paraceratherium evolution",
+        "url": "https://doi.org/10.1038/s42003-021-02170-6"
+      }
+    ]
+  },
+  "Rhinocerotidae": {
+    "taxonomy": {
+      "id": 643,
+      "parent": "Rhinocerotoidea",
+      "rank": "family",
+      "common": "rhinoceroses",
+      "members": [
+        "Coelodonta",
+        "Elasmotherium"
+      ]
+    },
+    "wikiTitle": "Rhinoceros",
+    "summary": "Rhinocerotidae is the rhinoceros family. Its extinct members include the woolly rhinoceros Coelodonta and Elasmotherium.",
+    "sources": [
+      {
+        "label": "Kosintsev et al. (online 2018; issue 2019), Nature Ecology & Evolution — Evolution and extinction of Elasmotherium",
+        "url": "https://doi.org/10.1038/s41559-018-0722-0"
+      },
+      {
+        "label": "Deng et al. (2021), Communications Biology — An Oligocene giant rhino provides insights into Paraceratherium evolution",
+        "url": "https://doi.org/10.1038/s42003-021-02170-6"
+      }
+    ]
+  },
+  "Cingulata": {
+    "taxonomy": {
+      "id": 644,
+      "parent": "Xenarthra",
+      "rank": "order",
+      "common": "armadillos and glyptodonts",
+      "members": [
+        "Doedicurus",
+        "Glyptodon"
+      ]
+    },
+    "wikiTitle": "Cingulata",
+    "summary": "Cingulata includes armadillos and their extinct relatives, including the heavily armoured glyptodonts. Doedicurus and Glyptodon belong to this branch.",
+    "sources": [
+      {
+        "label": "Comparative anatomy and phylogeny of armadillos and glyptodonts (2021), Journal of Anatomy",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8602025/"
+      }
+    ]
+  },
+  "Pilosa": {
+    "taxonomy": {
+      "id": 645,
+      "parent": "Xenarthra",
+      "rank": "order",
+      "common": "sloths and anteaters",
+      "members": []
+    },
+    "wikiTitle": "Pilosa",
+    "summary": "Pilosa is the xenarthran branch containing sloths and anteaters. In Dinozoa it is represented by extinct sloths.",
+    "sources": [
+      {
+        "label": "Sloth phylogeny study (2022), Zoological Journal of the Linnean Society — Reassessing the phylogeny and divergence times of sloths",
+        "url": "https://academic.oup.com/zoolinnean/article/196/4/1505/6617197"
+      }
+    ]
+  },
+  "Folivora": {
+    "taxonomy": {
+      "id": 646,
+      "parent": "Pilosa",
+      "rank": "suborder",
+      "common": "sloths",
+      "members": [
+        "Megalonyx"
+      ]
+    },
+    "wikiTitle": "Sloth",
+    "summary": "Folivora includes living tree sloths and extinct ground sloths. Dinozoa includes Megalonyx, Megatherium and Eremotherium from this lineage.",
+    "sources": [
+      {
+        "label": "Sloth phylogeny study (2022), Zoological Journal of the Linnean Society — Reassessing the phylogeny and divergence times of sloths",
+        "url": "https://academic.oup.com/zoolinnean/article/196/4/1505/6617197"
+      }
+    ]
+  },
+  "Megatheriidae": {
+    "taxonomy": {
+      "id": 647,
+      "parent": "Folivora",
+      "rank": "family",
+      "common": "megatheriid ground sloths",
+      "members": [
+        "Megatherium",
+        "Eremotherium"
+      ]
+    },
+    "wikiTitle": "Megatheriidae",
+    "summary": "Megatheriidae is a family of extinct ground sloths. Megatherium and Eremotherium belong here; Megalonyx belongs to a different sloth lineage.",
+    "sources": [
+      {
+        "label": "Sloth phylogeny study (2022), Zoological Journal of the Linnean Society — Reassessing the phylogeny and divergence times of sloths",
+        "url": "https://academic.oup.com/zoolinnean/article/196/4/1505/6617197"
+      }
+    ]
+  },
+  "Ruminantia": {
+    "taxonomy": {
+      "id": 648,
+      "parent": "Artiodactyla",
+      "rank": "clade",
+      "common": "ruminants",
+      "members": [
+        "Bison",
+        "Megaloceros",
+        "Sivatherium"
+      ]
+    },
+    "wikiTitle": "Ruminant",
+    "summary": "Ruminantia includes the cattle, deer and giraffe lineages. Its representatives in Dinozoa are Bison, Megaloceros and Sivatherium.",
+    "sources": [
+      {
+        "label": "Ruminant ankle-bone comparative study (2025) — The differentiated impacts and constraints of allometry, phylogeny, and environment",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11920208/"
+      }
+    ]
+  },
+  "Pelagiceti": {
+    "taxonomy": {
+      "id": 649,
+      "parent": "Cetacea",
+      "rank": "clade",
+      "common": "fully aquatic whale lineage",
+      "members": [
+        "Basilosaurus",
+        "Dorudon",
+        "Livyatan"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Pelagiceti includes basilosaurid whales and the lineage leading to living whales. In Dinozoa it groups Basilosaurus, Dorudon and Livyatan, while excluding the earlier Pakicetus and Ambulocetus branches.",
+    "sources": [
+      {
+        "label": "Antar et al. (2023) — A diminutive new basilosaurid whale reveals the trajectory of cetacean life histories",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10415296/"
+      }
+    ]
+  },
+  "Caniformia": {
+    "taxonomy": {
+      "id": 650,
+      "parent": "Carnivora",
+      "rank": "suborder",
+      "common": "dog-like carnivorans",
+      "members": [
+        "Canidae",
+        "Ursidae"
+      ]
+    },
+    "wikiTitle": "Caniformia",
+    "summary": "Caniformia is the carnivoran branch that includes dogs, bears and their relatives. Dinozoa represents it with canids and bears.",
+    "sources": [
+      {
+        "label": "Foley et al. (2023), Science — A genomic timescale for placental mammal evolution",
+        "url": "https://doi.org/10.1126/science.abl8189"
+      }
+    ]
+  },
+  "Feliformia": {
+    "taxonomy": {
+      "id": 651,
+      "parent": "Carnivora",
+      "rank": "suborder",
+      "common": "cat-like carnivorans",
+      "members": [
+        "Felidae"
+      ]
+    },
+    "wikiTitle": "Feliformia",
+    "summary": "Feliformia is the carnivoran branch that includes cats and their relatives. The extinct cats in Dinozoa belong to this branch.",
+    "sources": [
+      {
+        "label": "Foley et al. (2023), Science — A genomic timescale for placental mammal evolution",
+        "url": "https://doi.org/10.1126/science.abl8189"
+      }
+    ]
+  },
+  "Centrosaurinae": {
+    "taxonomy": {
+      "id": 652,
+      "parent": "Ceratopsidae",
+      "rank": "subfamily",
+      "common": "centrosaurine horned dinosaurs",
+      "members": [
+        "Achelousaurus",
+        "Centrosaurus",
+        "Coronosaurus",
+        "Diabloceratops",
+        "Einiosaurus",
+        "Medusaceratops",
+        "Nasutoceratops",
+        "Pachyrhinosaurus",
+        "Spinops",
+        "Styracosaurus",
+        "Wendiceratops"
+      ]
+    },
+    "wikiTitle": "Centrosaurinae",
+    "summary": "Centrosaurinae is one of the two major ceratopsid branches. It includes Centrosaurus, Styracosaurus and Pachyrhinosaurus, distinct from the chasmosaurine lineage containing Triceratops.",
+    "sources": [
+      {
+        "label": "Madzia et al. (2021), PeerJ — The phylogenetic nomenclature of ornithischian dinosaurs",
+        "url": "https://doi.org/10.7717/peerj.12362"
+      },
+      {
+        "label": "Chiba et al. (2018; online 2017), Journal of Paleontology — Systematic re-evaluation of Medusaceratops",
+        "url": "https://www.cambridge.org/core/journals/journal-of-paleontology/article/abs/new-material-and-systematic-reevaluation-of-medusaceratops-lokii-dinosauria-ceratopsidae-from-the-judith-river-formation-campanian-montana/852C434AB7EC109D5654742EAB15FDEC"
+      }
+    ]
+  },
+  "Chasmosaurinae": {
+    "taxonomy": {
+      "id": 653,
+      "parent": "Ceratopsidae",
+      "rank": "subfamily",
+      "common": "chasmosaurine horned dinosaurs",
+      "members": [
+        "Anchiceratops",
+        "Arrhinoceratops",
+        "Chasmosaurus",
+        "Kosmoceratops",
+        "Pentaceratops",
+        "Regaliceratops",
+        "Torosaurus",
+        "Triceratops",
+        "Utahceratops"
+      ]
+    },
+    "wikiTitle": "Chasmosaurinae",
+    "summary": "Chasmosaurinae is one of the two major ceratopsid branches. Its members include Chasmosaurus, Pentaceratops, Torosaurus and Triceratops.",
+    "sources": [
+      {
+        "label": "Madzia et al. (2021), PeerJ — The phylogenetic nomenclature of ornithischian dinosaurs",
+        "url": "https://doi.org/10.7717/peerj.12362"
+      }
+    ]
+  },
+  "Saurolophinae": {
+    "taxonomy": {
+      "id": 654,
+      "parent": "Hadrosauridae",
+      "rank": "subfamily",
+      "common": "saurolophine duck-billed dinosaurs",
+      "members": [
+        "Brachylophosaurus",
+        "Edmontosaurus",
+        "Gryposaurus",
+        "Kritosaurus",
+        "Maiasaura",
+        "Prosaurolophus",
+        "Saurolophus",
+        "Shantungosaurus"
+      ]
+    },
+    "wikiTitle": "Saurolophinae",
+    "summary": "Saurolophinae is a major branch of duck-billed dinosaurs. Its members include Edmontosaurus, Maiasaura and Saurolophus, separate from the lambeosaurine lineage.",
+    "sources": [
+      {
+        "label": "Xing, Mallon & Currie (2017), PLOS ONE — Edmontosaurus regalis and hadrosaurine phylogeny; Fig. 20",
+        "url": "https://doi.org/10.1371/journal.pone.0175253"
+      },
+      {
+        "label": "Takasaki et al. (2020), PLOS ONE — Re-examination of the Arctic Alaskan hadrosaurine; Table 2",
+        "url": "https://doi.org/10.1371/journal.pone.0232410"
+      }
+    ]
+  },
+  "Lambeosaurinae": {
+    "taxonomy": {
+      "id": 655,
+      "parent": "Hadrosauridae",
+      "rank": "subfamily",
+      "common": "lambeosaurine duck-billed dinosaurs",
+      "members": [
+        "Charonosaurus",
+        "Corythosaurus",
+        "Hypacrosaurus",
+        "Lambeosaurus",
+        "Nipponosaurus",
+        "Olorotitan",
+        "Parasaurolophus",
+        "Tsintaosaurus",
+        "Velafrons"
+      ]
+    },
+    "wikiTitle": "Lambeosaurinae",
+    "summary": "Lambeosaurinae is the hadrosaur branch that includes Corythosaurus, Lambeosaurus and Parasaurolophus. Many members are known for elaborate hollow skull crests.",
+    "sources": [
+      {
+        "label": "Prieto-Márquez et al. (2013), PLOS ONE — Diversity, relationships and biogeography of European lambeosaurines",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3724916/"
+      },
+      {
+        "label": "Farke et al. (2013), PeerJ — Ontogeny in Parasaurolophus",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3807589/"
+      }
+    ]
+  },
+  "Apatosaurinae": {
+    "taxonomy": {
+      "id": 656,
+      "parent": "Diplodocidae",
+      "rank": "subfamily",
+      "common": "apatosaurine sauropods",
+      "members": [
+        "Apatosaurus",
+        "Brontosaurus"
+      ]
+    },
+    "wikiTitle": "Apatosaurinae",
+    "summary": "Apatosaurinae is a branch of diplodocid sauropods that includes Apatosaurus and Brontosaurus. It is distinct from the diplodocine lineage containing Diplodocus.",
+    "sources": [
+      {
+        "label": "Tschopp, Mateus & Benson (2015), PeerJ — A specimen-level phylogenetic analysis and taxonomic revision of Diplodocidae",
+        "url": "https://doi.org/10.7717/peerj.857"
+      }
+    ]
+  },
+  "Diplodocinae": {
+    "taxonomy": {
+      "id": 657,
+      "parent": "Diplodocidae",
+      "rank": "subfamily",
+      "common": "diplodocine sauropods",
+      "members": [
+        "Barosaurus",
+        "Diplodocus",
+        "Galeamopus",
+        "Kaatedocus",
+        "Leinkupal",
+        "Supersaurus",
+        "Tornieria"
+      ]
+    },
+    "wikiTitle": "Diplodocinae",
+    "summary": "Diplodocinae is a branch of diplodocid sauropods. It includes Diplodocus, Barosaurus and their relatives, separate from Apatosaurus and Brontosaurus.",
+    "sources": [
+      {
+        "label": "Tschopp, Mateus & Benson (2015), PeerJ — A specimen-level phylogenetic analysis and taxonomic revision of Diplodocidae",
+        "url": "https://doi.org/10.7717/peerj.857"
+      }
+    ]
+  },
+  "Albertosaurinae": {
+    "taxonomy": {
+      "id": 658,
+      "parent": "Tyrannosauridae",
+      "rank": "subfamily",
+      "common": "albertosaurine tyrannosaurs",
+      "members": [
+        "Albertosaurus",
+        "Gorgosaurus"
+      ]
+    },
+    "wikiTitle": "Albertosaurinae",
+    "summary": "Albertosaurinae is the tyrannosaurid branch containing Albertosaurus and Gorgosaurus. It is distinct from Tyrannosaurinae, the branch containing Tyrannosaurus.",
+    "sources": [
+      {
+        "label": "Brusatte & Carr (2016), Scientific Reports — The phylogeny and evolutionary history of tyrannosauroid dinosaurs",
+        "url": "https://doi.org/10.1038/srep20252"
+      }
+    ]
+  },
+  "Tyrannosaurinae": {
+    "taxonomy": {
+      "id": 659,
+      "parent": "Tyrannosauridae",
+      "rank": "subfamily",
+      "common": "tyrannosaurine tyrannosaurs",
+      "members": [
+        "Daspletosaurus",
+        "Lythronax",
+        "Nanuqsaurus",
+        "Tarbosaurus",
+        "Teratophoneus",
+        "Tyrannosaurus"
+      ]
+    },
+    "wikiTitle": "Tyrannosaurinae",
+    "summary": "Tyrannosaurinae includes Tyrannosaurus, Tarbosaurus and their relatives. Relationships among some of its early branches differ between analyses.",
+    "sources": [
+      {
+        "label": "Brusatte & Carr (2016), Scientific Reports — The phylogeny and evolutionary history of tyrannosauroid dinosaurs",
+        "url": "https://doi.org/10.1038/srep20252"
+      },
+      {
+        "label": "Voris et al. (2025), Nature — A new Mongolian tyrannosauroid and the evolution of Eutyrannosauria",
+        "url": "https://doi.org/10.1038/s41586-025-08964-6"
+      }
+    ]
+  },
+  "Alioramini": {
+    "taxonomy": {
+      "id": 660,
+      "parent": "Tyrannosaurinae",
+      "rank": "tribe",
+      "common": "long-snouted tyrannosaurs",
+      "members": [
+        "Alioramus",
+        "Qianzhousaurus"
+      ]
+    },
+    "wikiTitle": "Alioramini",
+    "summary": "Alioramini is a group of long-snouted tyrannosaurids containing Alioramus and Qianzhousaurus. Their precise position among other tyrannosaurine branches has varied between analyses.",
+    "sources": [
+      {
+        "label": "Brusatte & Carr (2016), Scientific Reports — The phylogeny and evolutionary history of tyrannosauroid dinosaurs",
+        "url": "https://doi.org/10.1038/srep20252"
+      },
+      {
+        "label": "Voris et al. (2025), Nature — A new Mongolian tyrannosauroid and the evolution of Eutyrannosauria",
+        "url": "https://doi.org/10.1038/s41586-025-08964-6"
+      }
+    ]
+  },
+  "Proceratosauridae": {
+    "taxonomy": {
+      "id": 661,
+      "parent": "Tyrannosauroidea",
+      "rank": "family",
+      "common": "proceratosaurid tyrannosauroids",
+      "members": [
+        "Guanlong",
+        "Proceratosaurus",
+        "Yutyrannus"
+      ]
+    },
+    "wikiTitle": "Proceratosauridae",
+    "summary": "Proceratosauridae is an early branch of tyrannosauroids. Its members include Guanlong, Proceratosaurus and Yutyrannus, outside the later family Tyrannosauridae.",
+    "sources": [
+      {
+        "label": "Brusatte & Carr (2016), Scientific Reports — The phylogeny and evolutionary history of tyrannosauroid dinosaurs",
+        "url": "https://doi.org/10.1038/srep20252"
+      }
+    ]
+  },
+  "Microraptoria": {
+    "taxonomy": {
+      "id": 662,
+      "parent": "Dromaeosauridae",
+      "rank": "clade",
+      "common": "microraptorian dinosaurs",
+      "members": [
+        "Microraptor"
+      ]
+    },
+    "wikiTitle": "Microraptoria",
+    "summary": "Microraptoria is a branch of dromaeosaurid dinosaurs. Microraptor is its only representative currently included in Dinozoa.",
+    "sources": [
+      {
+        "label": "Jasinski, Sullivan & Dodson (2020), Scientific Reports — Dineobellator; phylogenetic analysis and Fig. 3",
+        "url": "https://doi.org/10.1038/s41598-020-61480-7"
+      }
+    ]
+  },
+  "Mosasaurinae": {
+    "taxonomy": {
+      "id": 663,
+      "parent": "Mosasauridae",
+      "rank": "subfamily",
+      "common": "mosasaurine marine reptiles",
+      "members": [
+        "Clidastes",
+        "Globidens",
+        "Mosasaurus",
+        "Prognathodon"
+      ]
+    },
+    "wikiTitle": "Mosasaurinae",
+    "summary": "Mosasaurinae is a major branch of mosasaurs. It includes Mosasaurus, Clidastes, Globidens and Prognathodon, separate from the other mosasaur subfamilies represented here.",
+    "sources": [
+      {
+        "label": "Simões et al. (2017), PLOS ONE — Mosasauroid phylogeny under multiple methods",
+        "url": "https://doi.org/10.1371/journal.pone.0176773"
+      }
+    ]
+  },
+  "Tylosaurinae": {
+    "taxonomy": {
+      "id": 664,
+      "parent": "Mosasauridae",
+      "rank": "subfamily",
+      "common": "tylosaurine marine reptiles",
+      "members": [
+        "Tylosaurus"
+      ]
+    },
+    "wikiTitle": "Tylosaurinae",
+    "summary": "Tylosaurinae is a mosasaur subfamily. Tylosaurus is its representative in Dinozoa.",
+    "sources": [
+      {
+        "label": "Simões et al. (2017), PLOS ONE — Mosasauroid phylogeny under multiple methods",
+        "url": "https://doi.org/10.1371/journal.pone.0176773"
+      }
+    ]
+  },
+  "Plioplatecarpinae": {
+    "taxonomy": {
+      "id": 665,
+      "parent": "Mosasauridae",
+      "rank": "subfamily",
+      "common": "plioplatecarpine marine reptiles",
+      "members": [
+        "Platecarpus"
+      ]
+    },
+    "wikiTitle": "Plioplatecarpinae",
+    "summary": "Plioplatecarpinae is a mosasaur subfamily. Platecarpus is its representative in Dinozoa.",
+    "sources": [
+      {
+        "label": "Simões et al. (2017), PLOS ONE — Mosasauroid phylogeny under multiple methods",
+        "url": "https://doi.org/10.1371/journal.pone.0176773"
+      }
+    ]
+  },
+  "Halisaurinae": {
+    "taxonomy": {
+      "id": 666,
+      "parent": "Mosasauridae",
+      "rank": "subfamily",
+      "common": "halisaurine marine reptiles",
+      "members": [
+        "Halisaurus"
+      ]
+    },
+    "wikiTitle": "Halisaurinae",
+    "summary": "Halisaurinae is a mosasaur subfamily. Halisaurus is its representative in Dinozoa.",
+    "sources": [
+      {
+        "label": "Simões et al. (2017), PLOS ONE — Mosasauroid phylogeny under multiple methods",
+        "url": "https://doi.org/10.1371/journal.pone.0176773"
+      }
+    ]
+  },
+  "Elasmosauridae": {
+    "taxonomy": {
+      "id": 667,
+      "parent": "Plesiosauroidea",
+      "rank": "family",
+      "common": "elasmosaurid plesiosaurs",
+      "members": [
+        "Albertonectes",
+        "Elasmosaurus",
+        "Styxosaurus",
+        "Thalassomedon"
+      ]
+    },
+    "wikiTitle": "Elasmosauridae",
+    "summary": "Elasmosauridae is a family of plesiosaurs that includes Elasmosaurus, Albertonectes, Styxosaurus and Thalassomedon. Cryptoclidus and Plesiosaurus lie outside this family.",
+    "sources": [
+      {
+        "label": "Otero (2016), PeerJ — Hydralmosaurus reassessed as Styxosaurus; elasmosaurid relationships",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4806632/"
+      },
+      {
+        "label": "Marx et al. (2021), PLOS ONE — Cranial anatomy and relationships of Cardiocorax",
+        "url": "https://doi.org/10.1371/journal.pone.0255773"
+      }
+    ]
+  },
+  "Gastornithidae": {
+    "taxonomy": {
+      "id": 668,
+      "parent": "Aves",
+      "rank": "family",
+      "common": "gastornithid birds",
+      "members": [
+        "Gastornis"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Gastornithidae includes the extinct flightless bird Gastornis. Despite its large size, Gastornis was not a terror bird of the family Phorusrhacidae.",
+    "sources": [
+      {
+        "label": "Worthy et al. (2017), Royal Society Open Science — Evolution of giant flightless birds and extinct fowl",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5666277/"
+      }
+    ]
+  },
+  "Leptoceratopsidae": {
+    "taxonomy": {
+      "id": 669,
+      "parent": "Ceratopsia",
+      "rank": "family",
+      "common": "leptoceratopsid dinosaurs",
+      "members": [
+        "Leptoceratops"
+      ]
+    },
+    "wikiTitle": "Leptoceratopsidae",
+    "summary": "Leptoceratopsidae is a family of ceratopsian dinosaurs that includes Leptoceratops. It is distinct from Protoceratopsidae and the large horned ceratopsids.",
+    "sources": [
+      {
+        "label": "Son et al. (2022), PeerJ — A new juvenile Yamaceratops and basal ceratopsian relationships",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8992648/"
+      }
+    ]
+  },
+  "Rhomaleosauridae": {
+    "taxonomy": {
+      "id": 670,
+      "parent": "Plesiosauria",
+      "rank": "family",
+      "common": "rhomaleosaurid plesiosaurs",
+      "members": [
+        "Rhomaleosaurus"
+      ]
+    },
+    "wikiTitle": "Rhomaleosauridae",
+    "summary": "Rhomaleosauridae is a plesiosaur family that includes Rhomaleosaurus. It is distinct from Pliosauridae.",
+    "sources": [
+      {
+        "label": "Benson, Evans & Druckenmiller (2012), PLOS ONE — Plesiosaurs from the Triassic–Jurassic boundary",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3306369/"
+      }
+    ]
+  },
+  "Therizinosauria": {
+    "taxonomy": {
+      "id": 671,
+      "parent": "Maniraptora",
+      "rank": "clade",
+      "common": "therizinosaurs",
+      "members": [
+        "Beipiaosaurus"
+      ]
+    },
+    "wikiTitle": "Therizinosauria",
+    "summary": "Therizinosauria is the theropod lineage containing Beipiaosaurus, Alxasaurus and Therizinosaurus. It is broader than the more derived family Therizinosauridae.",
+    "sources": [
+      {
+        "label": "Liao et al. (2021), PLOS ONE — Postcranial osteology of Beipiaosaurus",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8483305/"
+      }
+    ]
+  },
+  "Therizinosauroidea": {
+    "taxonomy": {
+      "id": 672,
+      "parent": "Therizinosauria",
+      "rank": "superfamily",
+      "common": "therizinosauroids",
+      "members": [
+        "Alxasaurus",
+        "Therizinosauridae"
+      ]
+    },
+    "wikiTitle": false,
+    "summary": "Therizinosauroidea groups Alxasaurus with the more derived therizinosaurids in the classification used here. Beipiaosaurus remains on an earlier therizinosaur branch.",
+    "sources": [
+      {
+        "label": "Liao et al. (2021), PLOS ONE — Postcranial osteology of Beipiaosaurus",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8483305/"
+      }
+    ]
+  },
+  "Somphospondyli": {
+    "taxonomy": {
+      "id": 673,
+      "parent": "Macronaria",
+      "rank": "clade",
+      "common": "somphospondylan sauropods",
+      "members": [
+        "Sauroposeidon",
+        "Titanosauria"
+      ]
+    },
+    "wikiTitle": "Somphospondyli",
+    "summary": "Somphospondyli is the sauropod branch that includes titanosaurs and relatives such as Sauroposeidon. Dinozoa places Sauroposeidon here rather than within Brachiosauridae.",
+    "sources": [
+      {
+        "label": "Mannion, Allain & Moine (2017), PeerJ — Earliest titanosauriform and evolution of Brachiosauridae",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5417094/"
+      }
+    ]
+  },
+  "Mammalia": {
+    "wikiTitle": "Mammal"
+  },
+  "Marsupialia": {
+    "wikiTitle": "Marsupial"
+  }
+}

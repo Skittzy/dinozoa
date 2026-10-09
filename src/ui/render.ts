@@ -1,9 +1,12 @@
 // render.ts — everything that writes to the page. No game logic lives here.
 
 import type { DinoNode } from '../data/loadTree';
+import { nodeLookup, parentLookup } from '../data/loadTree';
 import type { Stats } from '../storage/stats';
 import { fetchTaxonImage, isRedirect } from './wiki';
 import type { TaxonImage } from './wiki';
+import { getCladeContent, describeClade, isSuitableCladeArticle } from './cladeContent';
+import type { CladeDescription } from './cladeContent';
 import type { EndlessStats } from '../storage/stats';
 import { SUPPORT_URL } from '../config';
 import { msUntilNextAnimal } from '../game/dailyAnimal';
@@ -123,7 +126,7 @@ export class Renderer {
             `<div class="lca-rank">${escapeHtml(node.rank)}${common ? ' · ' + escapeHtml(common) : ''}</div>` +
             `<p class="lca-blurb" id="lca-blurb">Looking this group up…</p>` +
             `<div class="lca-media" id="lca-media"><span class="lca-fallback">🦴</span></div>` +
-            `<a class="lca-source" id="lca-source" href="https://en.wikipedia.org/wiki/${encodeURIComponent(node.scientific)}" target="_blank" rel="noopener">From Wikipedia ↗</a>` +
+            `<div class="lca-source" id="lca-source" hidden></div>` +
             `<p class="lca-credit" id="lca-credit" hidden></p>`;
         this.panel.dataset.state = 'ready';
 
@@ -132,31 +135,47 @@ export class Renderer {
         const isLeaf = node.children.length === 0;
         const blurb = document.getElementById('lca-blurb');
         const media = document.getElementById('lca-media');
-        const source = document.getElementById('lca-source') as HTMLAnchorElement | null;
+        const source = document.getElementById('lca-source');
         const credit = document.getElementById('lca-credit');
-        const data = await fetchTaxonImage(node.scientific, isLeaf, [node.common]);
+        const profile = isLeaf ? undefined : await getCladeContent(node.scientific);
+        if (!blurb?.isConnected || !media?.isConnected) return;
+        const parentId = parentLookup[node.id];
+        const parent = parentId == null ? undefined : nodeLookup[parentId];
+        const showDescription = (description: CladeDescription) => {
+            blurb.textContent = trimBlurb(description.text);
+            if (!source) return;
+            source.innerHTML = description.sources.map((s, i) => {
+                const label = description.kind === 'wikipedia' ? s.label
+                    : `Research${description.sources.length > 1 ? ` ${i + 1}` : ''}`;
+                return `<a href="${escapeHtml(s.url)}" title="${escapeHtml(s.label)}" `
+                    + `aria-label="${escapeHtml(s.label)}" target="_blank" rel="noopener">${escapeHtml(label)} ↗</a>`;
+            }).join(' · ');
+            source.hidden = description.sources.length === 0;
+        };
+        // Text is independent of images: local descriptions work immediately,
+        // even if the external article or its image is unavailable.
+        if (!isLeaf) showDescription(describeClade(node, parent, profile, null));
+        if (profile?.wikiTitle === false) return;
+        const data = await fetchTaxonImage(node.scientific, isLeaf, [node.common],
+                                          profile?.wikiTitle || node.scientific);
         if (!blurb?.isConnected || !media?.isConnected) return;
 
-        // Many minor clades have no Wikipedia article and redirect to a parent, so
-        // the extract describes the PARENT. Showing it unlabelled under this
-        // taxon's heading reads as a bug: the Avetheropoda card opened with
-        // "Tetanurae is a clade that includes...". Say whose article it is.
-        const redirected = isRedirect(node.scientific, data.articleTitle);
-        if (data.extract && redirected) {
-            blurb.textContent =
-                `${node.scientific} does not have its own Wikipedia article. `
-                + `It is covered under ${data.articleTitle}: ${trimBlurb(data.extract)}`;
+        if (!isLeaf) {
+            showDescription(describeClade(node, parent, profile, data));
+            // A broader article's montage can depict animals outside this clade.
+            if (!isSuitableCladeArticle(node.scientific, profile, data)) return;
         } else {
-            blurb.textContent = data.extract
-                ? trimBlurb(data.extract)
-                : `${node.scientific} is a ${node.rank} in the prehistoric tree of life.`;
+            const redirected = isRedirect(node.scientific, data.articleTitle);
+            showDescription({
+                text: data.extract
+                    ? (redirected ? `Covered under ${data.articleTitle}: ` : '') + data.extract
+                    : `${node.scientific} is a ${node.rank} in the prehistoric tree of life.`,
+                kind: 'wikipedia',
+                sources: data.extract && data.pageUrl?.startsWith('https://en.wikipedia.org/wiki/')
+                    ? [{ label: redirected ? `${data.articleTitle} on Wikipedia` : 'From Wikipedia', url: data.pageUrl }]
+                    : [],
+            });
         }
-        if (source) {
-            source.textContent = redirected
-                ? `${data.articleTitle} on Wikipedia ↗`
-                : 'From Wikipedia ↗';
-        }
-        if (source && data.pageUrl) source.href = data.pageUrl;
 
         if (credit) {
             credit.innerHTML = imageCreditHtml(data);

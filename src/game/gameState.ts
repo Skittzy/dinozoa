@@ -3,7 +3,7 @@
 
 import { nodeLookup, nameLookup, normaliseName, ancestorsOf, rootId, depthLookup } from '../data/loadTree';
 import type { DinoNode } from '../data/loadTree';
-import { lcaInfo } from './lca';
+import { findLCA, lcaInfo } from './lca';
 import type { LcaInfo } from './lca';
 
 export const MAX_GUESSES = 20;
@@ -168,7 +168,9 @@ export class GameState {
         // to take a surrender back after seeing the answer.
         this.surrendered = surrendered;
         for (const id of revealedIds) {
-            if (nodeLookup[id] !== undefined) this.revealedIds.push(id);
+            // A taxonomy correction can move an old hint off the answer's path.
+            // Keep its cost, but show the nearest ancestor still shared today.
+            if (nodeLookup[id] !== undefined) this.revealedIds.push(findLCA(this.answerId, id));
         }
         for (const id of guessIds) {
             if (this.byId.has(id) || nodeLookup[id] === undefined) continue;

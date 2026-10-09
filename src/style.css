@@ -151,6 +151,8 @@ button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .lca-img { width: 100%; height: auto; max-height: 320px; object-fit: contain; display: block; }
 .lca-fallback { font-size: 2.6rem; opacity: .6; }
 .lca-source { display: inline-block; margin-top: .45rem; font-size: .78rem; color: #4a5a2c; }
+.lca-source a { color: inherit; }
+.lca-source[hidden] { display: none; }
 
 /* ---------------- right: the tree ---------------- */
 .tree-frame {

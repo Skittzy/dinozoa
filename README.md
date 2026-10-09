@@ -229,7 +229,21 @@ streak.
 
 ## Wikipedia integration
 
-The information card fetches a description and image from the Wikipedia REST API.
+The information card uses a reviewed local description first, then a suitable Wikipedia
+article, then a short description of the node's actual parent in the game tree.
+
+`public/data/clade-content.json` holds the clade descriptions, research links and explicit
+Wikipedia title mappings (for example, `Rhinocerotidae` → `Rhinoceros`). The scientific
+name stays on the card. Original descriptions link to their research sources; Wikipedia
+extracts link to the actual article. Unapproved redirects and disambiguation pages are
+not used as descriptions or images for a clade. A failed lookup does not leave a broken
+Wikipedia link. Local descriptions work without contacting Wikipedia.
+
+The same file defines the reviewed subdivisions through `taxonomy` entries. Each has a
+permanent ID, parent and list of existing members to move beneath it. The generator appends
+these nodes after the legacy tree, preserving saved IDs and the daily answer schedule.
+Keep IDs stable and attach sources when editing memberships. Conditional subdivisions
+have not been added. Regenerating the Wikipedia cache never overwrites these profiles.
 
 Clades and individual animals are treated differently. For a clade the article's lead image
 is used, since it is usually a composite plate showing several members of the group. For an
@@ -246,7 +260,7 @@ used, so the fallback is the original behaviour.
 npm test
 ```
 
-Four suites run against the real modules in Node, with `fetch` stubbed to read the JSON
+Six suites run against the real modules in Node, with `fetch` stubbed to read the JSON
 from disk.
 
 | Suite | Covers | Assertions |
@@ -254,7 +268,9 @@ from disk.
 | `dailyAnimal_test.ts` | daily selection, UTC rollover, schedule stability, cycle uniqueness | Node assertions |
 | `rules_test.ts` | guess limit, hint cost, win and lose, save and restore | 22 |
 | `stats_test.ts` | persistence, streak arithmetic, reset, storage failure | 19 |
-| `wiki_test.ts` | image selection scoring, accuracy label | 38 |
+| `wiki_test.ts` | image selection scoring, accuracy label | 90 |
+| `taxonomy_test.ts` | stable identities, shared ancestors, source coverage, saved hints | Node assertions |
+| `cladeContent_test.ts` | local text, title mappings, redirects, offline fallbacks | Node assertions |
 
 `npm run build` additionally type-checks the project under a strict `tsconfig` with
 `noUnusedLocals`, `noUnusedParameters` and `verbatimModuleSyntax`, and must complete with no
@@ -267,12 +283,13 @@ The **source code** is licensed under the **GNU Affero General Public License v3
 version as a public service must publish their source under the same terms.
 
 The **data** is licensed separately under **CC BY-NC-SA 4.0** (`LICENSE-DATA.md`). This
-covers the taxonomic tree, the answer pool and the alternate-name tables, which took
+covers the taxonomic tree, original local clade descriptions, the answer pool and the alternate-name tables, which took
 considerably more work than the code that renders them.
 
-Animal images and descriptions come from Wikipedia at runtime and remain under their own
-licences, most commonly CC BY-SA. The game credits the image author where the Wikimedia
-API supplies one.
+Wikipedia extracts and Wikimedia images, whether cached or fetched at runtime, remain
+under their own licences, most commonly CC BY-SA. The game links to the article and
+credits the image author where the Wikimedia API supplies one. Original local clade
+descriptions link to the research supporting them.
 
 ## Deployment
 
@@ -291,6 +308,7 @@ browser chrome when added to a phone home screen.
 
 ```bash
 python3 tools/cache_wiki.py --answers-only
+python3 tools/cache_wiki.py --clades-only
 ```
 
 Writes `public/data/wiki-cache.json`: the description, image URL and image author for each
@@ -340,3 +358,6 @@ The JSON is generated rather than edited by hand. `build_db.py` holds the intern
 of the tree, the genus lists, the `SURVEY_POOL` of answer-eligible animals and the alternate
 name table. Running it writes directly to `public/data/` and reports the node counts, which
 source the answer pool came from, and whether any alternate name is ambiguous.
+Reviewed additions and their sources are maintained in `public/data/clade-content.json`.
+The generator checks their parent chains and rejects duplicate IDs, conflicting
+memberships and empty internal clades.
