@@ -19,6 +19,7 @@ import { Renderer } from './ui/render';
 import { TreeView } from './ui/treeView';
 import { loadEndlessStats, recordEndlessRun, loadEndlessRun, saveEndlessRun, clearEndlessRun } from './storage/stats';
 import { HintUI } from './ui/hints';
+import { newHintSeed } from './game/animalClues';
 import { EMPTY_HINT_COUNTS, type HintCounts } from './game/hintTypes';
 import { track } from './analytics';
 
@@ -52,7 +53,7 @@ export function runEndless(h: EndlessHandles): void {
         const count = saved?.hintCounts?.[kind];
         if (Number.isInteger(count) && count! >= 0) runHints[kind] = count!;
     }
-    let state = new GameState(saved && pool.includes(saved.game.answerId) ? saved.game.answerId : pickAnimal(), ENDLESS_RULES);
+    let state = new GameState(saved && pool.includes(saved.game.answerId) ? saved.game.answerId : pickAnimal(), ENDLESS_RULES, newHintSeed());
     if (saved && state.answerId === saved.game.answerId) {
         state.restore(saved.game.guessIds, saved.game.revealedIds, saved.game.surrendered, saved.game);
     }
@@ -113,7 +114,7 @@ export function runEndless(h: EndlessHandles): void {
     // Move to the next animal. Called both after a win (via Continue) and
     // immediately after a failure, since failing costs nothing but the animal.
     const nextAnimal = () => {
-        state = new GameState(pickAnimal(), ENDLESS_RULES);
+        state = new GameState(pickAnimal(), ENDLESS_RULES, newHintSeed());
         renderer.unlockInput();
         input.value = '';
         tree.update(state);

@@ -5,7 +5,7 @@ import { nodeLookup, nameLookup, normaliseName, ancestorsOf, rootId, depthLookup
 import type { DinoNode } from '../data/loadTree';
 import { findLCA, lcaInfo } from './lca';
 import type { LcaInfo } from './lca';
-import { clueVersion, currentClue, playableCluesFor, selectFact } from './animalClues';
+import { clueVersion, currentClue, isClueVersionCompatible, playableCluesFor, selectFact } from './animalClues';
 import { matchesName, namePattern, nextNamePosition } from './nameClues';
 import type { ExtraHintKind, ExtraHintRecord, HintCounts, HintProgress } from './hintTypes';
 
@@ -64,10 +64,12 @@ export class GameState {
     surrendered = false;
 
     private byId = new Map<number, GuessRecord>();
+    private factualHintSeed: string;
 
-    constructor(answerId: number, rules: Rules = DAILY_RULES) {
+    constructor(answerId: number, rules: Rules = DAILY_RULES, factualHintSeed = `answer-${answerId}`) {
         this.answerId = answerId;
         this.rules = rules;
+        this.factualHintSeed = factualHintSeed;
     }
 
     get answerNode(): DinoNode {
@@ -183,7 +185,7 @@ export class GameState {
             if (this.reachedFinalClade && parentLookup[n.id] !== this.bestKnownId()) return false;
             if (this.namePositions.length && !matchesName(n.scientific, this.answerNode.scientific, this.namePositions)) return false;
             return this.extraHints.every(h => h.type !== 'factual'
-                || h.version !== clueVersion()
+                || !isClueVersionCompatible(h.version)
                 || !currentClue(this.answerId, h.id)?.excludes?.includes(n.id));
         }).map(n => n.id);
     }
@@ -196,7 +198,7 @@ export class GameState {
             return position === null ? null : { type: kind, id: `name-${position}`, position,
                 cost: this.extraHintPrice, version: 'name-1' };
         }
-        const clue = selectFact(this.answerId, new Set(this.extraHints.map(h => h.id)), candidates);
+        const clue = selectFact(this.answerId, new Set(this.extraHints.map(h => h.id)), candidates, this.factualHintSeed);
         return clue ? { type: kind, id: clue.id, cost: this.extraHintPrice, version: clueVersion() } : null;
     }
 
@@ -226,7 +228,8 @@ export class GameState {
     }
 
     hintProgress(): HintProgress {
-        return { milestoneShown: this.milestoneShown, extraHints: this.extraHints.map(h => ({ ...h })) };
+        return { factualHintSeed: this.factualHintSeed, milestoneShown: this.milestoneShown,
+            extraHints: this.extraHints.map(h => ({ ...h })) };
     }
 
     submitGuess(rawName: string): GuessOutcome {
@@ -256,6 +259,8 @@ export class GameState {
         // hand a surrendered game back as playable, which is both a bug and a way
         // to take a surrender back after seeing the answer.
         this.surrendered = surrendered;
+        if (typeof hints.factualHintSeed === 'string' && hints.factualHintSeed.trim()
+            && hints.factualHintSeed.length <= 200) this.factualHintSeed = hints.factualHintSeed;
         this.milestoneShown = hints.milestoneShown === true;
         const seenHints = new Set<string>();
         const positions = new Set<number>();

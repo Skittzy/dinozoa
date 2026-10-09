@@ -102,6 +102,11 @@ separately. Daily and Endless use the same prices; Endless keeps its ten-guess b
 `public/data/animal-clues.json` contains individually sourced, original clue text for all
 eligible answers. The browser selects stored text; there is no AI request or backend.
 References become visible after the round. Unknown comparisons never eliminate candidates.
+Scientific and pop-culture clues share the **Factual Hint** button, with a small category
+label on each revealed clue. Useful, unused clues are shuffled: Daily shares the same
+starting order, while Endless saves a fresh order for each round. Refreshing does not
+reroll hints. The current pop-culture set covers 22 eligible dinosaurs; its sources and
+scope are documented in [pop-culture hints](docs/pop-culture-hints.md).
 See [the specification](docs/hint-feature-spec.md), [implementation checklist](docs/hint-feature-checklist.md),
 and [content maintenance and limitations](docs/animal-clues.md).
 

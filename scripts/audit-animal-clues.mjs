@@ -6,6 +6,10 @@ const nodes = new Map(), parents = new Map();
 function walk(n, parent) { nodes.set(n.id, n); parents.set(n.id, parent); n.children.forEach(c => walk(c, n)); }
 walk(tree, null);
 const pool = [...nodes.values()].filter(n => n.answer && !n.children.length);
+function isDinosaur(animal) {
+  for (let n = animal; n; n = parents.get(n.id)) if (n.scientific === 'Dinosauria') return true;
+  return false;
+}
 const ids = new Set();
 const coverage = pool.map(animal => {
   const p = data.animals[animal.id];
@@ -18,6 +22,12 @@ const coverage = pool.map(animal => {
     assert(c.sources.length && c.sources.every(s => s.label && new URL(s.url).protocol === 'https:'), `Bad source ${c.id}`);
     assert(!(c.excludes ?? []).includes(animal.id), `Self-exclusion ${c.id}`);
     assert(c.sharedBy.includes(animal.id));
+    if (c.category === 'pop culture') {
+      assert(isDinosaur(animal), `Outside this release's dinosaur scope: ${c.id}`);
+      assert(c.media?.title && ['film', 'television'].includes(c.media.medium), `Missing screen reference: ${c.id}`);
+      assert(c.text.includes(c.media.title), `Name the work in the displayed clue: ${c.id}`);
+      assert.equal(c.excludes.length, 0, `Screen appearances do not establish candidate exclusions: ${c.id}`);
+    }
     for (const other of c.excludes ?? []) {
       assert(nodes.has(other) && !nodes.get(other).children.length, `Invalid candidate ${other}`);
       assert(!c.sharedBy.includes(other), `Contradictory comparison ${c.id}`);
@@ -35,6 +45,11 @@ const coverage = pool.map(animal => {
   return {
     id: animal.id, scientific: animal.scientific, finalClade: parents.get(animal.id).scientific,
     directGuessableAnimals: siblings.length, researchedFacts: p.clues.length,
+    scientificClues: p.clues.filter(c => c.category !== 'pop culture').length,
+    popCultureClues: p.clues.filter(c => c.category === 'pop culture').length,
+    popCultureStatus: p.clues.some(c => c.category === 'pop culture') ? 'sourced'
+      : isDinosaur(animal) ? 'Not covered in the initial set; no claim of absence from media.'
+      : 'Outside the initial dinosaur-focused research scope.',
     distinctPlayableTopics: new Set(usable.map(c => c.topic)).size,
     factsWithReviewedSiblingContradictions: usable.filter(c => c.excludes.some(id => siblings.includes(id))).length,
     comparisonStatus: 'Unlisted candidates are unknown. Descriptive facts are not guaranteed to eliminate a candidate.',
@@ -46,11 +61,15 @@ for (const id of Object.keys(data.animals)) assert(pool.some(n => n.id === Numbe
 const report = {
   contentVersion: data.version, eligibleAnswers: pool.length, answersWithSourcedFacts: coverage.length,
   sourceCheckedFacts: ids.size,
+  eligibleDinosaurAnswers: pool.filter(isDinosaur).length,
+  answersWithPopCultureClues: coverage.filter(c => c.popCultureClues > 0).length,
+  popCultureClues: coverage.reduce((n, c) => n + c.popCultureClues, 0),
   playableFacts: coverage.reduce((n, c) => n + c.researchedFacts - c.withheld.length, 0),
   missingAnswerProfiles: [],
   limitations: [
     'Source checks are implementation research, not independent specialist peer review.',
-    'Two researched facts per animal; general/redundant facts may be withheld. More anatomical comparisons remain useful future work.',
+    'Two scientific clues per animal, with selectively researched pop-culture additions; general/redundant facts may be withheld.',
+    'Pop-culture coverage is an initial selection, not an exhaustive screen-appearance catalogue. A missing clue never implies absence from a work.',
     `Complete comparison evidence for all ${[...nodes.values()].filter(n => !n.children.length).length} guessable animals is not available. Missing information never excludes a candidate.`,
     'A fact is unavailable when all remaining candidates positively match it, its topic was used, or only the answer remains.',
     'Occurrence at one fossil site is never interpreted as absence elsewhere.',

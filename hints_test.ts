@@ -2,8 +2,8 @@ import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 globalThis.fetch = (async (url: any) => new Response(readFileSync('public/' + String(url).replace(/^\//, ''), 'utf8'))) as any;
 const { loadDatabase, nodeLookup, parentLookup } = await import('./src/data/loadTree.ts');
-const { GameState, ENDLESS_RULES } = await import('./src/game/gameState.ts');
-const { loadAnimalClues, setClueDatabase, selectFact, cluesFor } = await import('./src/game/animalClues.ts');
+const { GameState, DAILY_RULES, ENDLESS_RULES } = await import('./src/game/gameState.ts');
+const { loadAnimalClues, setClueDatabase, selectFact, cluesFor, isClueVersionCompatible, clueCategoryLabel } = await import('./src/game/animalClues.ts');
 await loadDatabase();
 await loadAnimalClues();
 const kentro = 360, stego = 359;
@@ -59,6 +59,12 @@ unknown.useExtraHint('factual');
 assert(!unknown.plausibleCandidates().includes(other));
 assert(unknown.plausibleCandidates().includes(kentro));
 assert.equal(unknown.extraHintUnavailable('factual'), 'No more helpful factual hints are available. Try a Name Clue.');
+// An explicitly compatible additive release retains the old fact's evidence.
+setClueDatabase({ version: 'additive', compatibleVersions: ['fixture'], animals: {
+    [kentro]: { scientific: 'Kentrosaurus', clues: cluesFor(kentro) }
+} });
+assert(isClueVersionCompatible('fixture'));
+assert(!unknown.plausibleCandidates().includes(other));
 const retired = new GameState(kentro);
 retired.restore([stego], [], false, unknown.hintProgress());
 setClueDatabase({ version: 'new-version', animals: {} });
@@ -75,11 +81,65 @@ setClueDatabase({ version: 'selection', animals: { [kentro]: { scientific: 'Kent
     { ...template, id: 'specific', topic: 'one', excludes: [other] },
     { ...template, id: 'repeat', topic: 'one' },
 ] } } });
-assert.equal(selectFact(kentro, new Set(), [kentro, other])?.id, 'specific');
+assert(['specific', 'repeat'].includes(selectFact(kentro, new Set(), [kentro, other])!.id));
 assert.equal(selectFact(kentro, new Set(['specific']), [kentro, other]), null);
 assert.equal(selectFact(kentro, new Set(), [kentro]), null);
 // Every answer can reach its parent and every name clue preserves the answer.
 await loadAnimalClues();
+// Both categories can come first; ordering is repeatable and independent of file
+// order. Filtering a candidate or consuming a clue must not reroll the others.
+const originalProfile = cluesFor(kentro);
+function sequence(seed: string): string[] {
+    const used = new Set<string>();
+    while (true) {
+        const clue = selectFact(kentro, used, [kentro, other], seed);
+        if (!clue) return [...used];
+        assert(!used.has(clue.id));
+        used.add(clue.id);
+        assert(used.size <= originalProfile.length);
+    }
+}
+const orders = new Set<string>(), firstCategories = new Set<string>();
+for (let day = 1; day <= 40; day++) {
+    const seed = `daily:2026-10-${day}`;
+    const order = sequence(seed);
+    assert.equal(order.length, originalProfile.length);
+    assert.deepEqual(sequence(seed), order);
+    const used = new Set([order[0]]);
+    assert.equal(selectFact(kentro, used, [kentro, other], seed)?.id, order[1]);
+    assert.equal(selectFact(kentro, used, [kentro], seed), null);
+    orders.add(order.join(','));
+    firstCategories.add(clueCategoryLabel(originalProfile.find(c => c.id === order[0])!));
+}
+assert(orders.size > 1, 'different round seeds should vary the order');
+assert.deepEqual([...firstCategories].sort(), ['Pop culture', 'Scientific']);
+const expectedOrder = sequence('same-round');
+setClueDatabase({ version: 'reordered', animals: {
+    [kentro]: { scientific: 'Kentrosaurus', clues: [...originalProfile].reverse() }
+} });
+assert.deepEqual(sequence('same-round'), expectedOrder);
+await loadAnimalClues();
+for (const rules of [DAILY_RULES, ENDLESS_RULES]) {
+    const round = new GameState(kentro, rules, 'saved-round');
+    round.submitGuess('Stegosaurus');
+    const first = round.nextExtraHint('factual');
+    assert.deepEqual(round.nextExtraHint('factual'), first, 'checking availability must not reroll');
+    assert.equal(round.useExtraHint('factual')?.cost, 0);
+    const resumed = new GameState(kentro, rules, 'discard-this-new-seed');
+    resumed.restore([stego], [], false, round.hintProgress());
+    assert.equal(resumed.hintProgress().factualHintSeed, 'saved-round');
+    assert.deepEqual(resumed.nextExtraHint('factual'), round.nextExtraHint('factual'));
+    assert.equal(resumed.useExtraHint('factual')?.cost, 1);
+    assert.equal(resumed.useExtraHint('factual')?.cost, 1);
+    assert.equal(resumed.nextExtraHint('factual'), null);
+    assert.equal(resumed.hintCounts.factual, originalProfile.length);
+}
+const legacySeed = new GameState(kentro, DAILY_RULES, 'daily:legacy');
+legacySeed.restore([stego], [], false, { extraHints: [{ type: 'factual', id: '360-01', cost: 0, version: '2026-10-09.2' }] });
+assert(isClueVersionCompatible('2026-10-09.2'), 'existing scientific hints remain readable after this additive update');
+assert.equal(legacySeed.hintProgress().factualHintSeed, 'daily:legacy');
+assert.equal(legacySeed.extraHintPrice, 1);
+assert.notEqual(legacySeed.nextExtraHint('factual')?.id, '360-01');
 // Existing facts must not be reported as missing after spelling narrows the answer.
 const narrowed = new GameState(201);
 narrowed.restore([], [parentLookup[201]!]);

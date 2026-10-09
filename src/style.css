@@ -1001,6 +1001,9 @@ body.endless .countdown { display: none; }
 .hint-journal p + p { border-top: 1px solid var(--line); }
 .hint-journal p > span { display: flex; align-items: center; gap: .3rem; font-size: .8rem; font-weight: 700; color: var(--ink); margin-bottom: .25rem; }
 .hint-journal svg { width: 18px; height: 18px; flex: none; }
+.hint-journal .hint-category { margin-left: .2rem; padding-left: .45rem; border-left: 1px solid var(--line); font-size: .72rem; font-weight: 600; }
+.hint-category-scientific { color: var(--green); }
+.hint-category-pop-culture { color: #8a6a00; }
 .journal-fact svg { color: var(--green); }
 .journal-name svg { color: #8a6a00; }
 .journal-name strong { display: block; overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1rem; letter-spacing: .05em; }

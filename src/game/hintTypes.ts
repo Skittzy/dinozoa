@@ -7,6 +7,7 @@ export interface ExtraHintRecord {
     position?: number;
 }
 export interface HintProgress {
+    factualHintSeed?: string;
     milestoneShown?: boolean;
     extraHints?: ExtraHintRecord[];
 }

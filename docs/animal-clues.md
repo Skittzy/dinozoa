@@ -1,8 +1,8 @@
 # Factual and name hints
 
 The feature is entirely local. `animal-clues.json` loads with the taxonomy; it contains
-258 individually source-checked facts for the current 129 eligible answers, linking to
-185 distinct museum, university, government, research-paper or curated research-database
+283 individually source-checked clues for the current 129 eligible answers, linking to
+202 distinct museum, university, government, research-paper, media or curated research-database
 pages. Clues are original paraphrases. This was an implementation source review, not an
 independent review by a palaeontologist.
 
@@ -12,7 +12,8 @@ independent review by a palaeontologist.
 of direct guessable animals in that group, playable topics, withheld facts and research
 qualifications. It is generated from the actual tree and checked by `npm test`.
 
-- Every current answer has two researched facts. 256 facts are eligible for selection.
+- Every current answer has two scientific clues. There are also 25 pop-culture clues;
+  281 clues in total are eligible for selection. See [the pop-culture source list](pop-culture-hints.md).
 - Two general facts are withheld: the ceratopsian rostral beak in Psittacosaurus and
   curved claws/serrated teeth in Coelophysis. Their sources remain recorded.
 - Jaekelopterus’s two facts concern the same claw discovery. They share a topic so a
@@ -61,7 +62,12 @@ Jaekelopterus shares its crushing pincers, so it is skipped when those are the o
 possibilities. General characters already implied by the clade should be withheld.
 
 Selection skips used topics, withheld facts and facts positively shared by every remaining
-candidate. It prefers a moderate evidenced split, with stable clue-ID tie breaking.
+candidate. Eligible clues receive seeded random priorities, with stable clue-ID tie breaking.
+Neither category receives priority. The journal labels each fact Scientific or Pop culture;
+fictional portrayals do not establish real anatomy, behaviour or candidate exclusions.
+Daily's seed uses the puzzle date key; the answer ID is part of each clue's priority.
+Endless generates and saves a random seed per animal. Restoring the game or checking
+button availability preserves the order; guesses only filter the eligible set.
 Descriptive identification cues remain available when comparisons are unknown; these
 do not silently remove animals. The interface never promises a numerical reduction.
 
@@ -93,11 +99,13 @@ Each purchase stores its type, ID, paid cost, version and name position when app
 Saving also records whether the celebration has already appeared. Old Daily saves need
 neither field and keep their existing guesses and clade hints.
 
-A removed fact or a different database version retains its original cost and free-hint
-usage. Its text is replaced with a clear retired-content message; its old exclusions stop
-being applied. A failed file load is described as unavailable, not as a content revision.
-The game never substitutes another fact for free. Name records are independently versioned.
-This deliberately conservative policy retires saved facts even when a version change
+An additive release can list prior `compatibleVersions` only when all retained old clues
+have unchanged wording and evidence. Version `2026-10-09.4` preserves `2026-10-09.2` and `2026-10-09.3` this
+way. Missing clues or incompatible versions retain their cost and free-hint usage, show
+an unavailable/retired message and stop applying old exclusions. A failed file load is
+described as unavailable, not as a content revision. The game never substitutes another
+fact for free. Name records are independently versioned.
+Without explicit compatibility, the conservative policy retires saved facts even when a version change
 only affects another animal. Future content archives could retain old descriptions.
 
 Full sources appear on the completed-round screen, so article names and URLs cannot

@@ -613,7 +613,7 @@ function clueSourcesHtml(answerId: number): string {
     const facts = cluesFor(answerId);
     if (!facts.length) return '';
     return '<details class="clue-sources"><summary>Factual hint sources</summary><ul>'
-        + facts.map(f => '<li>' + escapeHtml(f.text) + ' '
+        + facts.map(f => '<li><strong class="hint-category-' + (f.category === 'pop culture' ? 'pop-culture' : 'scientific') + '">' + (f.category === 'pop culture' ? 'Pop culture' : 'Scientific') + ':</strong> ' + escapeHtml(f.text) + ' '
             + f.sources.filter(s => /^https:\/\//.test(s.url)).map(s => `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.label)}</a>`).join(' · ')
             + '</li>').join('') + '</ul></details>';
 }

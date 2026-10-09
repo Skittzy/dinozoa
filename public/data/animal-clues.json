@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-09.2",
+  "version": "2026-10-09.4",
   "reviewedOn": "2026-10-09",
   "reviewMethod": "Individually source-checked, originally paraphrased implementation content; not a palaeontologist peer review. Species/specimen qualifications remain in displayed text. Unreviewed comparisons are unknown.",
   "animals": {
@@ -552,6 +552,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "451-pop-walking-patchi",
+          "text": "Patchi, the young hero of Walking with Dinosaurs (2013), belongs to this genus.",
+          "category": "pop culture",
+          "media": {
+            "title": "Walking with Dinosaurs (2013)",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "National Geographic — Review of Walking with Dinosaurs",
+              "url": "https://www.nationalgeographic.com/science/article/how-to-ruin-dinosaurs"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-walking-patchi",
+          "distinguishing": true,
+          "sharedBy": [
+            451
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -595,6 +620,31 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "440-02",
+          "distinguishing": true,
+          "sharedBy": [
+            440
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "440-pop-good-dinosaur-pet-collector",
+          "text": "In Pixar’s The Good Dinosaur, the mysterious Pet Collector is one of these animals.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Good Dinosaur",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "Pixar — The Good Dinosaur characters",
+              "url": "https://www.pixar.com/the-good-dinosaur"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-good-dinosaur-pet-collector",
           "distinguishing": true,
           "sharedBy": [
             440
@@ -707,6 +757,60 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "439-02",
+          "distinguishing": true,
+          "sharedBy": [
+            439
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "439-pop-jurassic-park-sick-animal",
+          "text": "In Jurassic Park (1993), Ellie Sattler examines a sick animal of this kind during the park tour.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic Park (1993)",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Jurassic franchise dinosaurs",
+              "url": "https://www.syfy.com/syfy-wire/ranking-the-30-best-dinosaurs-in-the-jurassic-park-franchise"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-jurassic-park-sick-animal",
+          "distinguishing": true,
+          "sharedBy": [
+            439
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "439-pop-land-before-time-cera",
+          "text": "Cera, one of Littlefoot’s friends in The Land Before Time TV series, is this kind of dinosaur.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Land Before Time",
+            "medium": "television"
+          },
+          "sources": [
+            {
+              "label": "Amblin — The Land Before Time TV series",
+              "url": "https://amblin.com/tv/land-before-time/"
+            },
+            {
+              "label": "Amblin — The Land Before Time character guide",
+              "url": "https://amblin.com/movie/the-land-before-time/"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named TV character only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-land-before-time-cera",
           "distinguishing": true,
           "sharedBy": [
             439
@@ -1057,6 +1161,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "406-pop-dominion-snow",
+          "text": "In Jurassic World Dominion, Owen Grady ropes one of these dinosaurs in a snowy landscape to protect it from poachers.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic World Dominion",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Dominion first-look scenes and director comments",
+              "url": "https://www.syfy.com/syfy-wire/jurassic-world-dominion-first-look-images"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-dominion-snow",
+          "distinguishing": true,
+          "sharedBy": [
+            406
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -1302,6 +1431,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "393-pop-dinosaur-aladar",
+          "text": "Aladar, the hero raised by lemurs in Disney’s Dinosaur (2000), belongs to this genus.",
+          "category": "pop culture",
+          "media": {
+            "title": "Dinosaur (2000)",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "D23 — Dinosaur (2000)",
+              "url": "https://d23.com/a-to-z/dinosaur-film/"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-dinosaur-aladar",
+          "distinguishing": true,
+          "sharedBy": [
+            393
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -1400,6 +1554,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "378-pop-camp-cretaceous-bumpy",
+          "text": "Bumpy, the dinosaur who befriends Ben in Jurassic World: Camp Cretaceous, belongs to this genus.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic World: Camp Cretaceous",
+            "medium": "television"
+          },
+          "sources": [
+            {
+              "label": "Jurassic World official channel — Bumpy Saves the Day",
+              "url": "https://www.youtube.com/watch?v=RGXJFeTyaEg"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-camp-cretaceous-bumpy",
+          "distinguishing": true,
+          "sharedBy": [
+            378
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -1449,6 +1628,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "360-pop-camp-cretaceous-pierce",
+          "text": "The dinosaur named Pierce in Jurassic World: Camp Cretaceous belongs to this genus.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic World: Camp Cretaceous",
+            "medium": "television"
+          },
+          "sources": [
+            {
+              "label": "Frontier — Camp Cretaceous characters and dinosaur variants",
+              "url": "https://www.jurassicworldevolution.com/2/news/le-pack-de-dinosaures-de-la-colo-du-cretace-debarque-le-8-mars-2022"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-camp-cretaceous-pierce",
+          "distinguishing": true,
+          "sharedBy": [
+            360
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -1492,6 +1696,60 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "359-02",
+          "distinguishing": true,
+          "sharedBy": [
+            359
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "359-pop-lost-world-sarah",
+          "text": "In The Lost World: Jurassic Park, Sarah Harding gets too close to a youngster and provokes the herd.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Lost World: Jurassic Park",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — How Stegosaurus joined The Lost World",
+              "url": "https://www.syfy.com/syfy-wire/how-fan-letters-got-stegosaurus-into-steven-spielberg-jurassic-park-sequel-the-lost-world"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-lost-world-sarah",
+          "distinguishing": true,
+          "sharedBy": [
+            359
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "359-pop-land-before-time-spike",
+          "text": "Spike, one of Littlefoot’s friends in The Land Before Time TV series, is this kind of dinosaur.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Land Before Time",
+            "medium": "television"
+          },
+          "sources": [
+            {
+              "label": "Amblin — The Land Before Time TV series",
+              "url": "https://amblin.com/tv/land-before-time/"
+            },
+            {
+              "label": "Amblin — The Land Before Time character guide",
+              "url": "https://amblin.com/movie/the-land-before-time/"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named TV character only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-land-before-time-spike",
           "distinguishing": true,
           "sharedBy": [
             359
@@ -1590,6 +1848,31 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "315-02",
+          "distinguishing": true,
+          "sharedBy": [
+            315
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "315-pop-good-dinosaur-arlo",
+          "text": "Arlo, the young dinosaur who travels with a human boy in Pixar’s The Good Dinosaur, belongs to this genus.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Good Dinosaur",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "Pixar — The Good Dinosaur characters",
+              "url": "https://www.pixar.com/the-good-dinosaur"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-good-dinosaur-arlo",
           "distinguishing": true,
           "sharedBy": [
             315
@@ -1786,6 +2069,31 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "330-02",
+          "distinguishing": true,
+          "sharedBy": [
+            330
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "330-pop-jurassic-park-first-sighting",
+          "text": "In Jurassic Park (1993), this is the first living dinosaur Alan Grant sees roaming the park.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic Park (1993)",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Jurassic franchise dinosaurs",
+              "url": "https://www.syfy.com/syfy-wire/ranking-the-30-best-dinosaurs-in-the-jurassic-park-franchise"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-jurassic-park-first-sighting",
           "distinguishing": true,
           "sharedBy": [
             330
@@ -2135,6 +2443,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "214-pop-dinosaur-predators",
+          "text": "In Disney’s Dinosaur (2000), these predators threaten Aladar and his migrating herd.",
+          "category": "pop culture",
+          "media": {
+            "title": "Dinosaur (2000)",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "D23 — Dinosaur (2000)",
+              "url": "https://d23.com/a-to-z/dinosaur-film/"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-dinosaur-predators",
+          "distinguishing": true,
+          "sharedBy": [
+            214
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -2332,6 +2665,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "231-pop-jurassic-park-nedry",
+          "text": "In Jurassic Park (1993), its fictional portrayal spits venom at Dennis Nedry during his attempted escape.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic Park (1993)",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "Stan Winston School — Making the Jurassic Park Spitter",
+              "url": "https://www.stanwinstonschool.com/blog/making-jurassic-park-dilophosaurus-aka-spitter"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-jurassic-park-nedry",
+          "distinguishing": true,
+          "sharedBy": [
+            231
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -2381,6 +2739,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "201-pop-walking-big-al",
+          "text": "The BBC special The Ballad of Big Al reconstructs the life of an individual of this genus.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Ballad of Big Al",
+            "medium": "television"
+          },
+          "sources": [
+            {
+              "label": "BBC — The Ballad of Big Al programme guide",
+              "url": "https://www.bbc.co.uk/programmes/p008ctwg"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-walking-big-al",
+          "distinguishing": true,
+          "sharedBy": [
+            201
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -2424,6 +2807,31 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "207-02",
+          "distinguishing": true,
+          "sharedBy": [
+            207
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "207-pop-dominion-final-battle",
+          "text": "In Jurassic World Dominion, this predator fights a T. rex and a long-clawed feathered dinosaur in the final battle.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic World Dominion",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — The dinosaur battle in Dominion",
+              "url": "https://www.syfy.com/syfy-wire/jurassic-world-dominion-extended-cut-changes-t-rex-story"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-dominion-final-battle",
           "distinguishing": true,
           "sharedBy": [
             207
@@ -2577,6 +2985,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "241-pop-lost-world-dieter",
+          "text": "In The Lost World: Jurassic Park, a group of these small dinosaurs overwhelms the hunter Dieter Stark.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Lost World: Jurassic Park",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Jurassic Park and Jurassic World dinosaur attacks",
+              "url": "https://www.syfy.com/syfy-wire/jurassic-park-world-best-dinosaur-attacks"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-lost-world-dieter",
+          "distinguishing": true,
+          "sharedBy": [
+            241
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -2669,6 +3102,35 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "265-02",
+          "distinguishing": true,
+          "sharedBy": [
+            265
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "265-pop-land-before-time-ruby",
+          "text": "Ruby, the feathered friend in The Land Before Time TV series, is this kind of dinosaur.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Land Before Time",
+            "medium": "television"
+          },
+          "sources": [
+            {
+              "label": "Amblin — The Land Before Time TV series",
+              "url": "https://amblin.com/tv/land-before-time/"
+            },
+            {
+              "label": "Common Sense Media — The Land Before Time TV review",
+              "url": "https://www.commonsensemedia.org/tv-reviews/the-land-before-time"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named TV character only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-land-before-time-ruby",
           "distinguishing": true,
           "sharedBy": [
             265
@@ -3263,6 +3725,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "173-pop-jurassic-world-blue",
+          "text": "In Jurassic World, Blue is one of these animals trained by Owen Grady.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic World",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Jurassic franchise dinosaurs",
+              "url": "https://www.syfy.com/syfy-wire/ranking-the-30-best-dinosaurs-in-the-jurassic-park-franchise"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-jurassic-world-blue",
+          "distinguishing": true,
+          "sharedBy": [
+            173
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -3557,6 +4044,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "259-pop-dominion-claire-swamp",
+          "text": "In Jurassic World Dominion, Claire hides underwater in a swamp to escape this long-clawed dinosaur.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic World Dominion",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Dominion effects-team interview",
+              "url": "https://www.syfy.com/syfy-wire/jurassic-world-dominion-dinosaurs-cgi-practical-special-effects-david-vickery-john-nolan-interview"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-dominion-claire-swamp",
+          "distinguishing": true,
+          "sharedBy": [
+            259
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -3615,6 +4127,31 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "247-02",
+          "distinguishing": true,
+          "sharedBy": [
+            247
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "247-pop-jurassic-park-stampede",
+          "text": "In Jurassic Park (1993), a running herd of these animals sweeps past Alan Grant and the children.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic Park (1993)",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Jurassic franchise dinosaurs",
+              "url": "https://www.syfy.com/syfy-wire/ranking-the-30-best-dinosaurs-in-the-jurassic-park-franchise"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-jurassic-park-stampede",
           "distinguishing": true,
           "sharedBy": [
             247
@@ -3930,6 +4467,60 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "156-pop-jurassic-park-breakout",
+          "text": "In Jurassic Park (1993), its escape from an enclosure is announced by ripples in a cup of water.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic Park (1993)",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Jurassic Park and Jurassic World dinosaur attacks",
+              "url": "https://www.syfy.com/syfy-wire/jurassic-park-world-best-dinosaur-attacks"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-jurassic-park-breakout",
+          "distinguishing": true,
+          "sharedBy": [
+            156
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "156-pop-land-before-time-chomper",
+          "text": "Chomper, one of Littlefoot’s friends in The Land Before Time TV series, is this kind of dinosaur.",
+          "category": "pop culture",
+          "media": {
+            "title": "The Land Before Time",
+            "medium": "television"
+          },
+          "sources": [
+            {
+              "label": "Amblin — The Land Before Time TV series",
+              "url": "https://amblin.com/tv/land-before-time/"
+            },
+            {
+              "label": "Amblin — The Land Before Time character guide",
+              "url": "https://amblin.com/movie/the-land-before-time/"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named TV character only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-land-before-time-chomper",
+          "distinguishing": true,
+          "sharedBy": [
+            156
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -4028,6 +4619,31 @@
           ],
           "excludes": [],
           "comparisonEvidence": []
+        },
+        {
+          "id": "195-pop-camp-cretaceous-trio",
+          "text": "Grim, Limbo and Chaos are three of these animals in Jurassic World: Camp Cretaceous.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic World: Camp Cretaceous",
+            "medium": "television"
+          },
+          "sources": [
+            {
+              "label": "Frontier — Camp Cretaceous characters and dinosaur variants",
+              "url": "https://www.jurassicworldevolution.com/2/news/le-pack-de-dinosaures-de-la-colo-du-cretace-debarque-le-8-mars-2022"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-camp-cretaceous-trio",
+          "distinguishing": true,
+          "sharedBy": [
+            195
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
         }
       ]
     },
@@ -4120,6 +4736,31 @@
           "reviewedOn": "2026-10-09",
           "scope": "The described genus, species or specimen only, as qualified in the text.",
           "topic": "194-02",
+          "distinguishing": true,
+          "sharedBy": [
+            194
+          ],
+          "excludes": [],
+          "comparisonEvidence": []
+        },
+        {
+          "id": "194-pop-jurassic-park-iii-boat",
+          "text": "In Jurassic Park III, this sail-backed predator attacks a boat carrying Alan Grant and the Kirby family.",
+          "category": "pop culture",
+          "media": {
+            "title": "Jurassic Park III",
+            "medium": "film"
+          },
+          "sources": [
+            {
+              "label": "SYFY — Scary moments from the original Jurassic Park trilogy",
+              "url": "https://www.syfy.com/syfy-wire/jurassic-park-original-trilogy-scariest-moments"
+            }
+          ],
+          "review": "reviewed",
+          "reviewedOn": "2026-10-09",
+          "scope": "The named screen portrayal only; fictional actions and designs are not biological claims about the real animal.",
+          "topic": "portrayal-jurassic-park-iii-boat",
           "distinguishing": true,
           "sharedBy": [
             194
@@ -6383,5 +7024,9 @@
         }
       ]
     }
-  }
+  },
+  "compatibleVersions": [
+    "2026-10-09.2",
+    "2026-10-09.3"
+  ]
 }

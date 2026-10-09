@@ -1,6 +1,6 @@
 import type { GameState } from '../game/gameState';
 import type { ExtraHintKind, ExtraHintRecord } from '../game/hintTypes';
-import { clueVersion, currentClue } from '../game/animalClues';
+import { clueVersion, currentClue, isClueVersionCompatible, clueCategoryLabel } from '../game/animalClues';
 import { nodeLookup } from '../data/loadTree';
 import { track } from '../analytics';
 import { focusWithoutSuggestions } from './suggest';
@@ -102,7 +102,7 @@ export class HintUI {
     private hintText(state: GameState, hint: ExtraHintRecord): string {
         if (hint.type === 'name') return state.revealedName ?? '';
         if (clueVersion() === 'unavailable') return 'This saved fact could not be loaded. Its original cost is preserved.';
-        if (hint.version !== clueVersion()) return 'This saved fact has been retired after a content update. Its original cost is preserved.';
+        if (!isClueVersionCompatible(hint.version)) return 'This saved fact has been retired after a content update. Its original cost is preserved.';
         return currentClue(state.answerId, hint.id)?.text
             ?? 'This saved fact is currently unavailable. Its original cost is preserved.';
     }
@@ -128,7 +128,11 @@ export class HintUI {
         }
         // Keep the journal independent of the clade-description card.
         const facts = state.extraHints.filter(h => h.type === 'factual');
-        const journal = facts.map(h => `<p class="journal-fact"><span>${BOOK_ICON} Factual Hint</span>${escape(this.hintText(state, h))}</p>`);
+        const journal = facts.map(h => {
+            const clue = isClueVersionCompatible(h.version) ? currentClue(state.answerId, h.id) : undefined;
+            const category = clue ? `<small class="hint-category hint-category-${clue.category === 'pop culture' ? 'pop-culture' : 'scientific'}">${clueCategoryLabel(clue)}</small>` : '';
+            return `<p class="journal-fact"><span>${BOOK_ICON} Factual Hint${category}</span>${escape(this.hintText(state, h))}</p>`;
+        });
         if (state.revealedName) journal.push(`<p class="journal-name"><span>${NAME_ICON} Name Clue</span><strong>${escape(state.revealedName)}</strong></p>`);
         const journalEl = this.section.querySelector('.hint-journal')!;
         const html = journal.join('');

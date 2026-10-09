@@ -19,6 +19,19 @@
 - [x] 15. Give animals without playable factual clues a clear custom message; distinguish missing coverage from exhausted hints, redundant hints and loading failures. Hint-rule tests, production build and a mobile browser check of the missing-facts message/free Name Clue fallback pass.
 - [x] 16. Restore the original “Hint” button label shared by Daily and Endless; production build passes.
 
+## Pop-culture hints and shuffled selection
+
+- [x] Audit the eligible answer pool; add individually sourced, scene/character-specific pop-culture clues and record coverage gaps. Added 21 clues for 21 of 73 eligible dinosaurs; sources and remaining scope are in `pop-culture-hints.md` and the generated coverage report.
+- [x] Shuffle useful, unused factual clues with a stable Daily seed and a saved per-round Endless seed; retain existing prices, topic deduplication and evidence rules.
+- [x] Label revealed factual clues “Scientific” or “Pop culture” within the existing two-button interface.
+- [x] Verify selection, persistence, existing saves, browser/mobile layout, coverage audit and production build. All seven suites, the data audit and Chromium/WebKit integration checks pass. Inspected 390px/320px journal screenshots. All 258 original scientific entries are unchanged; prior saved facts remain compatible.
+
+## The Land Before Time and category colours
+
+- [x] Add four individually sourced TV-character clues: Cera, Spike, Chomper and Ruby. Coverage is now 25 pop-culture clues across 22 eligible dinosaurs; ambiguous identifications remain documented.
+- [x] Give Scientific labels green text and Pop culture labels dark ochre text, retaining written categories and the existing paper panel.
+- [x] Verify the new clues, previous content compatibility, mobile/browser presentation, tests and production build. All seven suites and the clue audit pass; production build and Chromium/WebKit integration checks pass. Inspected 390px/320px category colours and the Spike clue. Previous `.2` and `.3` saved clues remain readable; all 279 pre-existing entries are unchanged.
+
 ## Decisions
 
 - Daily and Endless use the same hint prices; Endless keeps 10 guesses.

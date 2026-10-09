@@ -5,6 +5,7 @@
 - Both modes charge 3 guesses for clade hints. The first extra hint (factual or name, shared allowance) is free; subsequent extra hints cost 1 guess. Endless retains its 10-guess budget.
 - Factual research must cover every eligible answer before this task is complete; unsupported or non-distinguishing cases must be explicitly reported.
 - The milestone popup only announces the unlock. Hint selection and reveals stay in the main game, keeping the popup short and easy to dismiss.
+- Scientific and sourced pop-culture clues share the Factual Hint button and existing prices. Reveal a small category label beside each fact. Shuffle eligible clues without enforcing a category order, using a shared Daily seed and a saved random seed for each Endless round.
 - The attached brief below supplies the remaining requirements. These final decisions supersede its earlier Endless-pricing question and staged-content rollout.
 
 ## Design alignment
@@ -29,6 +30,8 @@ and result/tutorial dialogs in `src/style.css`.
   matching the button border thickness. Entries
   are separated by rules, with a label and icon; the solid background lifts them out
   of the page grain and makes them easier to find.
+- Category labels use green for Scientific and dark ochre for Pop culture, with
+  semibold journal text. Keep the words visible alongside the colour distinction.
   Avoid nested cards, coloured left rails, pill badges and floating hover effects.
 - The popup reuses `modal-card`, `modal-close` and `share-btn`: flat beige paper,
   existing corner radius/shadow, ordinary dark backdrop and rectangular action.
@@ -90,9 +93,9 @@ whether a site was made with AI. The practical goal here is consistency with Din
    Add a pure logic module such as src/game/animalClues.ts.
    Determine plausible candidates using previous guesses, their shared-ancestor feedback, revealed clades and already-revealed extra hints. Start from guessable animals, collapsing aliases to their animal IDs.
    Do not silently restrict this reasoning to eligible daily answers: players can currently guess animals outside that pool.
-   For Factual Hints, select an unused, reviewed clue that adds information. Prefer clues that distinguish some remaining candidates without always choosing the most revealing fact first. Skip redundant clues, such as a diet shared by every remaining animal.
+   For Factual Hints, shuffle unused, reviewed clues that add information. Scientific and pop-culture clues are equally eligible; neither category always comes first. Skip redundant clues, such as a diet shared by every remaining animal.
    Any automatic elimination must follow reviewed evidence. A fact about where fossils have been found must not become an unsupported claim about every place the animal could have lived.
-   Use deterministic selection with stable tie-breaking. Refreshing must not provide a different free clue.
+   Use seeded priorities with stable tie-breaking, independent of dataset ordering. Daily uses the date key and answer ID; Endless generates and saves a fresh seed per animal. Refreshing or checking button availability must not reroll the next clue. Later guesses filter eligibility without changing the remaining clues' relative order.
 6. Implement progressive Name Clues.
    Add a module such as src/game/nameClues.ts.
    Build the clue from the answer’s canonical scientific name. Continue accepting existing common names and aliases when guessing.

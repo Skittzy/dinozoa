@@ -4,7 +4,7 @@ import './style.css';
 import { loadDatabase, guessableNames, nodeLookup, rootId, altNames } from './data/loadTree';
 import { getDailyAnimalId, dateKey, getPuzzleNumber, msUntilNextAnimal,
          launchDateLabel } from './game/dailyAnimal';
-import { GameState, MAX_GUESSES, HINT_COST } from './game/gameState';
+import { GameState, DAILY_RULES, MAX_GUESSES, HINT_COST } from './game/gameState';
 import type { GuessOutcome } from './game/gameState';
 import { Renderer } from './ui/render';
 import { TreeView } from './ui/treeView';
@@ -33,7 +33,7 @@ async function main() {
     const key = preview ? `hint-preview.${previewId}` : dateKey(today);
     const answerId = preview ? previewId : getDailyAnimalId(today);
 
-    const state = new GameState(answerId);
+    const state = new GameState(answerId, DAILY_RULES, `daily:${key}`);
     const saved = loadGame(key);
     if (saved && saved.answerId === answerId) {
         state.restore(saved.guessIds ?? [], saved.revealedIds ?? [], saved.surrendered ?? false, saved);
