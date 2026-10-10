@@ -1062,6 +1062,16 @@
     "licenseUrl": "https://www.gnu.org/licenses/gpl.html",
     "depicts": "Megaloceros giganteus"
   },
+  "Megalosaurus": {
+    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Megalosaurus_TD.png/960px-Megalosaurus_TD.png",
+    "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Megalosaurus_TD.png",
+    "imageTitle": "Megalosaurus TD",
+    "artist": "TotalDino",
+    "fileUrl": "https://commons.wikimedia.org/wiki/File:Megalosaurus_TD.png",
+    "licenseName": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "depicts": "Megalosaurus"
+  },
   "Meganeura": {
     "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Meganeura.png/960px-Meganeura.png",
     "fallbackUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Meganeura.png/500px-Meganeura.png",

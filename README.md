@@ -399,7 +399,7 @@ Three defences, in the order the game checks them:
    image, on the grounds that a Wikipedia editor chose it deliberately and the
    heuristic did not.
 
-The overrides include 179 curated animal images from Wikimedia Commons and
+The overrides include 180 curated animal images from Wikimedia Commons and
 apply only to leaf animals. Their titles, artists, file pages and licences
 were verified with the Commons API. Each entry records the illustrated taxon.
 Credits and licence links appear on animal cards and in daily/endless result dialogs.
