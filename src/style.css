@@ -1033,7 +1033,9 @@ body.endless .countdown { display: none; }
 .milestone-continue { min-height: 44px; }
 .result-hints { margin: .8rem 0; color: var(--muted); font-size: .8rem; }
 .clue-sources { font-size: .78rem; text-align: left; margin: .8rem 0; }
+.clue-sources > summary { text-align: center; cursor: pointer; }
 .clue-sources li { margin: .45rem 0; }
+.modal-card:has(.clue-sources) { max-height: calc(100dvh - 2rem); overflow-y: auto; overscroll-behavior: contain; }
 @keyframes milestone-grow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 @media (max-width: 430px) {
   .milestone-dialog { padding: 1.1rem 1rem 1rem; }

@@ -14,6 +14,28 @@ export interface CladeDescription {
     sources: ContentSource[];
 }
 
+export interface CladeImage extends Pick<TaxonImage,
+    'imageUrl' | 'fallbackUrl' | 'artist' | 'fileUrl' | 'imageTitle' | 'licenseName' | 'licenseUrl'> {
+    caption: string;
+    reviewNote: string;
+}
+
+let imagePromise: Promise<Record<string, CladeImage>> | null = null;
+export async function getCladeImage(name: string): Promise<CladeImage | undefined> {
+    imagePromise ??= fetch('data/clade-images.json')
+        .then(r => r.ok ? r.json() : {})
+        .catch(() => ({}));
+    return (await imagePromise)?.[name];
+}
+
+// Temporary fix: reviewed image picks are independent of article descriptions.
+// Review each entry in clade-images.json before replacing a representative or redirect image.
+export function selectCladeImage(name: string, content: CladeContent | undefined,
+                                 article: TaxonImage | null, selected?: CladeImage): CladeImage | TaxonImage | null {
+    if (selected?.imageUrl?.startsWith('https://')) return selected;
+    return isSuitableCladeArticle(name, content, article) ? article : null;
+}
+
 let contentPromise: Promise<Record<string, CladeContent>> | null = null;
 export async function getCladeContent(name: string): Promise<CladeContent | undefined> {
     contentPromise ??= fetch('data/clade-content.json')

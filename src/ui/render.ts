@@ -8,7 +8,7 @@ import { nodeLookup, parentLookup } from '../data/loadTree';
 import type { Stats } from '../storage/stats';
 import { fetchTaxonImage, isRedirect } from './wiki';
 import type { TaxonImage } from './wiki';
-import { getCladeContent, describeClade, isSuitableCladeArticle } from './cladeContent';
+import { getCladeContent, getCladeImage, describeClade, selectCladeImage } from './cladeContent';
 import type { CladeDescription } from './cladeContent';
 import type { EndlessStats } from '../storage/stats';
 import { SUPPORT_URL } from '../config';
@@ -140,7 +140,8 @@ export class Renderer {
         const media = document.getElementById('lca-media');
         const source = document.getElementById('lca-source');
         const credit = document.getElementById('lca-credit');
-        const profile = isLeaf ? undefined : await getCladeContent(node.scientific);
+        const [profile, cladeImage] = isLeaf ? [undefined, undefined]
+            : await Promise.all([getCladeContent(node.scientific), getCladeImage(node.scientific)]);
         if (!blurb?.isConnected || !media?.isConnected) return;
         const parentId = parentLookup[node.id];
         const parent = parentId == null ? undefined : nodeLookup[parentId];
@@ -158,16 +159,14 @@ export class Renderer {
         // Text is independent of images: local descriptions work immediately,
         // even if the external article or its image is unavailable.
         if (!isLeaf) showDescription(describeClade(node, parent, profile, null));
-        if (profile?.wikiTitle === false) return;
-        const data = await fetchTaxonImage(node.scientific, isLeaf, [node.common],
-                                          profile?.wikiTitle || node.scientific);
+        const data = profile?.wikiTitle === false ? null
+            : await fetchTaxonImage(node.scientific, isLeaf, [node.common],
+                                    profile?.wikiTitle || node.scientific);
         if (!blurb?.isConnected || !media?.isConnected) return;
 
         if (!isLeaf) {
             showDescription(describeClade(node, parent, profile, data));
-            // A broader article's montage can depict animals outside this clade.
-            if (!isSuitableCladeArticle(node.scientific, profile, data)) return;
-        } else {
+        } else if (data) {
             const redirected = isRedirect(node.scientific, data.articleTitle);
             showDescription({
                 text: data.extract
@@ -180,21 +179,24 @@ export class Renderer {
             });
         }
 
+        const picture = isLeaf ? data : selectCladeImage(node.scientific, profile, data, cladeImage);
+        if (!picture) return;
         if (credit) {
-            credit.innerHTML = imageCreditHtml(data);
+            credit.innerHTML = (cladeImage?.caption ? `${escapeHtml(cladeImage.caption)}<br>` : '')
+                + imageCreditHtml(picture);
             credit.hidden = !credit.innerHTML;
         }
-        if (data.imageUrl) {
+        if (picture.imageUrl) {
             const img = new Image();
-            img.alt = node.scientific;
+            img.alt = cladeImage?.caption || node.scientific;
             img.className = 'lca-img';
             img.onload = () => { media.innerHTML = ''; media.appendChild(img); };
             // If the wider render doesn't exist, drop back to the size Wikipedia gave us.
             img.onerror = () => {
                 img.onerror = null;                       // never loop
-                if (data.fallbackUrl && img.src !== data.fallbackUrl) img.src = data.fallbackUrl;
+                if (picture.fallbackUrl && img.src !== picture.fallbackUrl) img.src = picture.fallbackUrl;
             };
-            img.src = data.imageUrl;
+            img.src = picture.imageUrl;
         }
     }
 
@@ -241,13 +243,13 @@ export class Renderer {
             `<div class="modal-card" role="dialog" aria-modal="true" aria-label="${escapeHtml(title)}">` +
             `<h2 class="modal-title">${escapeHtml(title)}</h2>` +
             `<p class="modal-line">${escapeHtml(line)}</p>` +
-            `<p class="result-hints">${hintCountText(hints)}</p>` + clueSourcesHtml(answer.id) +
+            `<p class="result-hints">${hintCountText(hints)}</p>` +
             `<div class="modal-answer">` +
             `<div class="modal-media" id="modal-media"><span class="lca-fallback">🦕</span></div>` +
             `<div><div class="modal-animal">${escapeHtml(common || answer.scientific)}</div>` +
             `<div class="modal-sci">${escapeHtml(answer.scientific)}</div>` +
             `<p class="lca-credit" id="modal-credit" hidden></p></div>` +
-            `</div>` +
+            `</div>` + clueSourcesHtml(answer.id) +
             // Stacked, not side by side: score is the reward and gets its own row.
             `<div class="score-hero" id="score-hero">` +
             `<div class="sh-value" id="sh-score">${from}</div>` +
@@ -406,13 +408,13 @@ export class Renderer {
             `<h2 class="modal-title">${escapeHtml(title)}</h2>` +
             `<p class="modal-line">${escapeHtml(line)}</p>` +
             `<p class="modal-countdown" id="modal-countdown">${countdownLabel()}</p>` +
-            `<p class="result-hints">${hintCountText(hints)}</p>` + clueSourcesHtml(answer.id) +
+            `<p class="result-hints">${hintCountText(hints)}</p>` +
             `<div class="modal-answer">` +
             `<div class="modal-media" id="modal-media"><span class="lca-fallback">🦕</span></div>` +
             `<div><div class="modal-animal">${escapeHtml(common || answer.scientific)}</div>` +
             `<div class="modal-sci">${escapeHtml(answer.scientific)}</div>` +
             `<p class="lca-credit" id="modal-credit" hidden></p></div>` +
-            `</div>` +
+            `</div>` + clueSourcesHtml(answer.id) +
             `<div class="modal-stats">` +
             `<div><div class="ms-value">${stats.gamesPlayed}</div><div class="ms-label">Plays</div></div>` +
             `<div><div class="ms-value">${stats.gamesWon}</div><div class="ms-label">Wins</div></div>` +

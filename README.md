@@ -302,7 +302,11 @@ The previously held stegosaur, nodosaurid, cartilaginous-fish and synonym revisi
 also outside this update.
 
 Clades and individual animals are treated differently. For a clade the article's lead image
-is used, since it is usually a composite plate showing several members of the group. For an
+is normally used, since it is usually a composite plate showing several members of the group.
+`public/data/clade-images.json` supplies temporary, attributed image selections for missing
+clade images independently of their descriptions. Each provisional entry includes a review
+note; the [review checklist](docs/clade-images-review.md) links every original image.
+For an
 individual animal the lead image is frequently a mounted skeleton, which shows the player
 nothing about the living creature, so the module retrieves every image on the page and
 scores the filenames to find a life restoration. Names containing `restoration`,

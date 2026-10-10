@@ -1,4 +1,7 @@
 {
+  "Animalia": {
+    "wikiTitle": "Animal"
+  },
   "Theria": {
     "taxonomy": {
       "id": 628,
@@ -1909,5 +1912,74 @@
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5563814/"
       }
     ]
+  },
+  "Amniota": {
+    "wikiTitle": "Amniote"
+  },
+  "Amphibia": {
+    "wikiTitle": "Amphibian"
+  },
+  "Archosauria": {
+    "wikiTitle": "Archosaur"
+  },
+  "Arthropoda": {
+    "wikiTitle": "Arthropod"
+  },
+  "Aves": {
+    "wikiTitle": "Bird"
+  },
+  "Cephalopoda": {
+    "wikiTitle": "Cephalopod"
+  },
+  "Cetacea": {
+    "wikiTitle": "Cetacean"
+  },
+  "Chordata": {
+    "wikiTitle": "Chordate"
+  },
+  "Dinosauria": {
+    "wikiTitle": "Dinosaur"
+  },
+  "Eurypterida": {
+    "wikiTitle": "Eurypterid"
+  },
+  "Insecta": {
+    "wikiTitle": "Insect"
+  },
+  "Mosasauridae": {
+    "wikiTitle": "Mosasaur"
+  },
+  "Nothosauria": {
+    "wikiTitle": "Nothosaur"
+  },
+  "Placodermi": {
+    "wikiTitle": "Placoderm"
+  },
+  "Plesiosauria": {
+    "wikiTitle": "Plesiosaur"
+  },
+  "Primates": {
+    "wikiTitle": "Primate"
+  },
+  "Pterosauria": {
+    "wikiTitle": "Pterosaur"
+  },
+  "Reptilia": {
+    "wikiTitle": "Reptile"
+  },
+  "Rodentia": {
+    "wikiTitle": "Rodent"
+  },
+  "Serpentes": {
+    "wikiTitle": "Snake"
+  },
+  "Tetrapoda": {
+    "wikiTitle": "Tetrapod"
+  },
+  "Trilobita": {
+    "wikiTitle": "Trilobite"
+  },
+  "Ursidae": {
+    "wikiTitle": "Bear"
   }
 }
